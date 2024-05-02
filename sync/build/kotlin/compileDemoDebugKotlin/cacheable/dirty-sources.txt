@@ -1,0 +1,4 @@
+/Users/sarojmaharjan/Developer/Android/Eatelicious/sync/src/main/kotlin/com/sawrose/eatelicious/sync/util/Synchronizer.kt
+/Users/sarojmaharjan/Developer/Android/Eatelicious/sync/src/main/kotlin/com/sawrose/eatelicious/sync/util/SyncManager.kt
+/Users/sarojmaharjan/Developer/Android/Eatelicious/sync/src/main/kotlin/com/sawrose/eatelicious/sync/Sync.kt
+/Users/sarojmaharjan/Developer/Android/Eatelicious/sync/src/main/kotlin/com/sawrose/eatelicious/sync/workers/SyncWorker.kt

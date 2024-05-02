@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "284891828669",
+    "project_id": "eatelicious-bfa60",
+    "storage_bucket": "eatelicious-bfa60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284891828669:android:764f5bbce44134060a42d4",
+        "android_client_info": {
+          "package_name": "com.sawrose.eatelicious"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284891828669-gmrkvj3lhpg6i3mm3arqv7377jpr0g5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2tGNHepJLEW9z2hlsNCuK0Q7OgXkHscw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284891828669-gmrkvj3lhpg6i3mm3arqv7377jpr0g5k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

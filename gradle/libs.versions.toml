@@ -1,0 +1,158 @@
+[versions]
+agp = "8.1.4"
+kotlin = "1.9.23"
+ksp = "1.9.23-1.0.20"
+androidDesugarJdkLibs = "2.0.4"
+
+androidxAndroidCompose = "1.9.0"
+androidxCoreKtx = "1.13.1"
+compose-bom = "2024.05.00"
+kotlinxCoroutines = "1.8.0"
+androidxComposeCompiler = "1.5.13"
+androidxComposeNavigation = "2.7.7"
+androidx-splashScreen = "1.0.1"
+androidxWindowsSizeClass = "1.2.1"
+adaptive = "0.26.2-beta"
+google-service = "4.4.1"
+firebase-bom = "32.8.1"
+
+ktor = "2.3.4"
+room = "2.6.1"
+spatia-room = "0.2.9"
+koin = "3.5.3"
+koin-compose = "3.4.6"
+store = "5.0.0"
+androidxLifecycle = "2.7.0"
+
+startupRuntime = "1.1.1"
+workRuntimeKtx = "2.9.0"
+
+#Unit test
+junit = "4.13.2"
+junit-ext = "1.1.5"
+turbine = "0.13.0"
+robolectric = "4.11.1"
+roborazzi = "1.5.0-alpha-2"
+mockk = "1.13.10"
+
+# Instrumental Test
+espresso-core = "3.5.1"
+
+[libraries]
+android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
+
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCoreKtx" }
+androidx-splash-screen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidx-splashScreen" }
+
+androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
+androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxAndroidCompose" }
+
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
+compose-material-iconsext = { group = "androidx.compose.material", name = "material-icons-extended" }
+compose-ui-uitextfonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-ui-util = { group = "androidx.compose.ui", name = "ui-util" }
+compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+
+androidx-window-size = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "androidxWindowsSizeClass" }
+accomponist-adaptive = { group = "com.google.accompanist", name = "accompanist-adaptive", version.ref = "adaptive" }
+
+androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxComposeNavigation" }
+
+# sync
+androidx-startup-runtime = { group = "androidx.startup", name = "startup-runtime", version.ref = "startupRuntime" }
+androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workRuntimeKtx" }
+
+# coroutine
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+
+#ktor
+ktor-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-content-serialization = { group = "io.ktor", name = "ktor-client-serialization", version.ref = "ktor" }
+ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging-jvm", version.ref = "ktor" }
+ktor-engine-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
+ktor-engine-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+# Spatia Room
+spatia-room = { group = "com.github.anboralabs", name = "spatia-room", version.ref = "spatia-room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+
+
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-compose" }
+koin-compose-navigation = { module = "io.insert-koin:koin-androidx-compose-navigation", version.ref = "koin-compose" }
+
+mobilenativefoundation-store = { module = "org.mobilenativefoundation.store:store5", version.ref = "store" }
+
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
+
+# Unit Testing
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
+mockk-agent = { group = "io.mockk", name = "mockk-agent-jvm", version.ref = "mockk" }
+androidx-junit-ext = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ext" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+robolectric-shadows = { group = "org.robolectric", name = "shadows-framework", version.ref = "robolectric" }
+roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+
+#Instrumental Testing
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+google-service = { id = "com.google.gms.google-services", version.ref = "google-service" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
+
+[bundles]
+
+network = [
+    "ktor-core",
+    "ktor-cio",
+    "ktor-client-logging",
+    "ktor-client-content-negotiation",
+    "ktor-client-content-serialization",
+    "ktor-serialization-kotlinx-json",
+]
+
+koin = [
+    "koin-core",
+    "koin-android",
+    "koin-compose",
+    "koin-compose-navigation"
+]
+
+test-core = [
+    "junit",
+    "mockk",
+    "kotlinx-coroutines-test",
+    "turbine"
+]
+
