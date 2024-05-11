@@ -1,4 +1,4 @@
-package com.sawrose.eatelicious.core.data.local.dap
+package com.sawrose.eatelicious.core.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

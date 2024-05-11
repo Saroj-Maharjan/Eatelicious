@@ -1,5 +1,6 @@
 plugins {
     id("eatelicious.android.library")
+    id("eatelicious.android.koin")
 }
 
 android {
@@ -8,5 +9,7 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
+    implementation(project(":core:data"))
+
     implementation(libs.kotlinx.coroutines.android)
 }

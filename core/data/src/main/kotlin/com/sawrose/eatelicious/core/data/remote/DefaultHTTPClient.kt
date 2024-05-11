@@ -19,10 +19,7 @@ fun defaultHttpClient(
     install(ContentNegotiation) {
       val converter = KotlinxSerializationConverter(
           Json {
-            isLenient = true
             ignoreUnknownKeys = true
-            allowSpecialFloatingPointValues = true
-            useArrayPolymorphism = true
           })
       register(ContentType.Any, converter = converter)
     }

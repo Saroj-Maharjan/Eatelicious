@@ -1,9 +1,10 @@
 package com.sawrose.eatelicious.core.data.service
 
-import com.sawrose.eatelicious.core.domain.repository.RecipeRepository
-import com.sawrose.eatelicious.core.domain.request.RecipeRequests
-import com.sawrose.eatelicious.core.domain.service.LocalRecipeService
-import com.sawrose.eatelicious.core.domain.service.RemoteRecipeService
+import android.util.Log
+import com.sawrose.eatelicious.core.data.repository.RecipeRepository
+import com.sawrose.eatelicious.core.data.repository.request.RecipeRequests
+import com.sawrose.eatelicious.core.data.repository.service.LocalRecipeService
+import com.sawrose.eatelicious.core.data.repository.service.RemoteRecipeService
 import com.sawrose.eatelicious.core.model.Recipe
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -17,7 +18,7 @@ import org.mobilenativefoundation.store.store5.StoreReadResponse
 class StoreRecipeService(
     private val remoteRecipeService: RemoteRecipeService,
     private val localRecipeService: LocalRecipeService,
-): RecipeRepository {
+) : RecipeRepository {
 
     private val store = StoreBuilder.from<RecipeRequests, Result<List<Recipe>>, List<Recipe>>(
         fetcher = Fetcher.of { request ->
@@ -28,15 +29,27 @@ class StoreRecipeService(
                 localRecipeService.stream(request)
             },
             writer = { _, recipes ->
-                val recipe = recipes.getOrNull().orEmpty()
-                localRecipeService.insert(recipe)
+                recipes.fold(
+                    onSuccess = {
+                        localRecipeService.insert(it)
+                        Log.i("StoreRecipeService", "Inserting the database: $it")
+                    },
+                    onFailure = {
+                        Log.e(
+                            "StoreRecipeService",
+                            "Error writing data to local source of truth",
+                            it
+                        )
+                    }
+                )
             },
         )
     ).build()
 
     override fun stream(
         request: RecipeRequests,
-        refreshCache: Boolean): Flow<List<Recipe>> {
+        refreshCache: Boolean,
+    ): Flow<List<Recipe>> {
         return store.stream(
             request = StoreReadRequest.cached(
                 key = request,
@@ -45,17 +58,21 @@ class StoreRecipeService(
         )
             .distinctUntilChanged()
             .map { response ->
-                when(response) {
+                when (response) {
                     is StoreReadResponse.Data -> {
                         response.value
                     }
+
                     is StoreReadResponse.NoNewData -> {
                         emptyList()
                     }
+
                     is StoreReadResponse.Error.Exception,
-                    is StoreReadResponse.Error.Message, -> {
+                    is StoreReadResponse.Error.Message,
+                    -> {
                         emptyList()
                     }
+
                     is StoreReadResponse.Loading -> {
                         emptyList()
                     }

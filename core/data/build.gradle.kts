@@ -2,6 +2,7 @@ plugins {
     id("eatelicious.android.library")
     id("eatelicious.android.room")
     id("eatelicious.android.koin")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -10,7 +11,6 @@ android {
 
 dependencies {
     implementation(project(":core:commons"))
-    implementation(project(":core:domain"))
     implementation(project(":core:model"))
 
 

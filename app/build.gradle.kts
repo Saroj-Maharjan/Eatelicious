@@ -55,7 +55,10 @@ dependencies {
     implementation(project(":feature:mealplan"))
     implementation(project(":feature:bookmark"))
     implementation(project(":core:commons"))
+    implementation(project(":core:data"))
+    implementation(project(":core:domain"))
     implementation(project(":core:designsystem"))
+    implementation(project(":core:model"))
 
 
     implementation(libs.androidx.splash.screen)

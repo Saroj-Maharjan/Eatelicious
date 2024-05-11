@@ -1,39 +1,64 @@
 package com.sawrose.eatelicious.feature.discover
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.sawrose.eatelicious.core.designsystem.component.ScreenBackground
+import com.sawrose.eatelicious.core.model.Recipe
 
 @Composable
-internal fun DiscoverRoute() {
-  DiscoverScreen()
+internal fun DiscoverRoute(
+    uiState: DiscoverUIState,
+    onRecipeClicked: (Recipe) -> Unit,
+    handleEvent: (DiscoverEvent) -> Unit,
+) {
+
+    when (uiState) {
+        is DiscoverUIState.Loading -> {
+            CircularProgressIndicator()
+        }
+
+        is DiscoverUIState.Error -> {
+            Text("Error: ${uiState.message}")
+        }
+
+        is DiscoverUIState.Success -> {
+            DiscoverScreen(
+                recipes = uiState.data,
+                onRecipeClicked = onRecipeClicked,
+                handleEvent = handleEvent
+            )
+        }
+    }
 }
 
 @Composable
-fun DiscoverScreen() {
-  ScreenBackground(
-      modifier = Modifier.fillMaxSize()
-  ) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .padding(16.dp)
-        .background(color = Color(0x8000838F))
+fun DiscoverScreen(
+    recipes: List<Recipe>,
+    onRecipeClicked: (Recipe) -> Unit,
+    handleEvent: (DiscoverEvent) -> Unit
+) {
+    ScreenBackground(
+        modifier = Modifier.fillMaxSize()
     ) {
-      Text(
-          text = "Discover",
-          textAlign = TextAlign.Center,
-          modifier = Modifier.padding(16.dp).align(Alignment.Center),
-          style = MaterialTheme.typography.bodyLarge)
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(150.dp),
+            contentPadding = PaddingValues(8.dp)
+        ) {
+            items(recipes) { recipe ->
+                DiscoverRow(
+                    recipe = recipe,
+                    onRecipeClicked = onRecipeClicked,
+                    handleEvent = handleEvent
+                )
+            }
+        }
     }
-  }
 }

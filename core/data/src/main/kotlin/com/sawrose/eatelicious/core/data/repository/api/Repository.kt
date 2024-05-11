@@ -1,4 +1,4 @@
-package com.sawrose.eatelicious.commons.data
+package com.sawrose.eatelicious.core.data.repository.api
 
 import kotlinx.coroutines.flow.Flow
 

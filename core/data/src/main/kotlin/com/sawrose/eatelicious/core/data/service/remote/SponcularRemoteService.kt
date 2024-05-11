@@ -1,42 +1,47 @@
 package com.sawrose.eatelicious.core.data.service.remote
 
+import android.util.Log
 import com.sawrose.eatelicious.commons.network.SponcularEndpoints
+import com.sawrose.eatelicious.core.data.local.mapper.RecipeMapper
+import com.sawrose.eatelicious.core.data.remote.dto.RecipeDTO
+import com.sawrose.eatelicious.core.data.remote.dto.Response
+import com.sawrose.eatelicious.core.data.remote.dto.toRecipe
 import com.sawrose.eatelicious.core.data.remote.BaseKtorClient
 import com.sawrose.eatelicious.core.data.remote.RemoteParams
-import com.sawrose.eatelicious.core.domain.request.RecipeRequests
-import com.sawrose.eatelicious.core.domain.service.RemoteRecipeService
+import com.sawrose.eatelicious.core.data.remote.mapper.RecipeDtoMapper
+import com.sawrose.eatelicious.core.data.repository.request.RecipeRequests
+import com.sawrose.eatelicious.core.data.repository.service.RemoteRecipeService
 import com.sawrose.eatelicious.core.model.Recipe
 
-/** Implementation of [RemoteRecipeServics] */
-class SponcularRemoteService(private val apiClient: BaseKtorClient) : RemoteRecipeService {
-  override suspend fun fetch(request: RecipeRequests): Result<List<Recipe>> {
-    return when (request) {
-      is RecipeRequests.random -> {
-        apiClient.getResponse(
-            endpoint =
-                SponcularEndpoints.getRandomRecipe(
-                    apikey = apiClient.baseUrl,
-                    tags = request.tags,
-                    number = request.number,
-                ),
-            params = getParams(request)
-        )
-      }
-        is RecipeRequests.search -> {
-            apiClient.getResponse(
-                endpoint = SponcularEndpoints.search(
-                    apikey = apiClient.baseUrl,
-                    query = "",
-                    cuisine = null,
-                    addRecipeInformation = false,
-                    number = 10,
-                    offset = 1,
-                    ),
-                params = getParams(request)
-            )
+/**
+ *  Implementation of [RemoteRecipeService] that fetches data from the Spoonacular API.
+ *  */
+class SponcularRemoteService(
+    private val apiClient: BaseKtorClient,
+    private val mapper: RecipeDtoMapper
+) : RemoteRecipeService {
+
+    override suspend fun fetch(request: RecipeRequests): Result<List<Recipe>> {
+        return when (request) {
+            is RecipeRequests.random -> {
+                apiClient.getResponse<Response>(
+                    endpoint =
+                    SponcularEndpoints.getRandomRecipe(),
+                    params = getParams(request)
+                ).map { response ->
+                    Log.i("APIResponse", "fetch: $response")
+                    mapper.mapFromEntityList(response.recipes)
+                }
+            }
+
+            is RecipeRequests.search -> {
+                apiClient.getResponse(
+                    endpoint = SponcularEndpoints.search(),
+                    params = getParams(request)
+                )
+            }
         }
     }
-  }
 
     private fun getParams(
         request: RecipeRequests,
@@ -63,7 +68,7 @@ class SponcularRemoteService(private val apiClient: BaseKtorClient) : RemoteReci
         return initialParams
     }
 
-    companion object{
+    companion object {
         private const val TAGS = "tags"
         private const val NUMBER = "number"
         private const val QUERY = "query"

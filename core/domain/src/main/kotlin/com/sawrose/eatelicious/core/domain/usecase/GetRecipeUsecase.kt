@@ -1,7 +1,7 @@
 package com.sawrose.eatelicious.core.domain.usecase
 
-import com.sawrose.eatelicious.core.domain.repository.RecipeRepository
-import com.sawrose.eatelicious.core.domain.request.RecipeRequests
+import com.sawrose.eatelicious.core.data.repository.RecipeRepository
+import com.sawrose.eatelicious.core.data.repository.request.RecipeRequests
 
 class GetRecipeUsecase(
     private val repository: RecipeRepository

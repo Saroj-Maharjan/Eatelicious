@@ -1,4 +1,4 @@
-package com.sawrose.eatelicious.core.domain.request
+package com.sawrose.eatelicious.core.data.repository.request
 
 /**
  * Deine an emuration of way we can request a list of recipe in app.

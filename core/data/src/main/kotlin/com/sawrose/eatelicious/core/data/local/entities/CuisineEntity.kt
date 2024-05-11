@@ -6,9 +6,11 @@ import androidx.room.PrimaryKey
 private const val CUISINE_TABLE_NAME = "cuisines"
 
 @Entity(tableName = CUISINE_TABLE_NAME)
-class CuisineEntity (
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val image: String,
-    val title: String,
-    val color: String
+data class CuisineEntity(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long,
+    val videoURL: String,
+    val description: String,
+    val shortDescription: String,
+    val thumbnailURL: String,
 )
