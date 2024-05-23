@@ -13,7 +13,7 @@ androidxComposeCompiler = "1.5.13"
 androidxComposeNavigation = "2.7.7"
 androidx-splashScreen = "1.0.1"
 androidxWindowsSizeClass = "1.2.1"
-adaptive = "0.26.2-beta"
+adaptive = "0.34.0"
 google-service = "4.4.1"
 firebase-bom = "33.0.0"
 
