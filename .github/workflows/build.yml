@@ -82,6 +82,9 @@ jobs:
       - uses: gradle/gradle-build-action@v3
         with:
           cache-disabled: true
+          
+      - name: Get local.properties from secrets
+        run: echo "${{secrets.LOCAL_PROPERTIES }}" > $GITHUB_WORKSPACE/local.properties
 
       #      - name: Decrypt secrets
       #        run: ./release/decrypt-secrets.sh
