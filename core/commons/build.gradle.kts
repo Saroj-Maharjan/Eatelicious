@@ -1,6 +1,7 @@
 plugins {
     id("eatelicious.android.library")
     id("eatelicious.android.koin")
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -8,4 +9,5 @@ android {
 }
 
 dependencies {
+    implementation(libs.circuit.runtime)
 }

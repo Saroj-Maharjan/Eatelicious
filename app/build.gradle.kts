@@ -80,7 +80,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     testImplementation(libs.kotlinx.coroutines.test)
 
-    implementation(libs.androidx.compose.navigation)
+    implementation(libs.circuit.foundation)
 
     testImplementation(libs.junit)
 

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+./gradlew spotlessCheck --init-script gradle/init.gradle.kts --no-configuration-cache
+./gradlew spotlessApply
