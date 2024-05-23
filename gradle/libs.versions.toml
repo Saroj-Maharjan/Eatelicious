@@ -21,7 +21,7 @@ ktor = "2.3.11"
 room = "2.6.1"
 spatia-room = "0.2.9"
 koin = "3.5.6"
-koin-compose = "3.4.6"
+koin-compose = "3.5.6"
 store = "5.0.0"
 androidxLifecycle = "2.7.0"
 
