@@ -19,7 +19,6 @@ internal fun DiscoverRoute(
     onRecipeClicked: (Recipe) -> Unit,
     handleEvent: (DiscoverEvent) -> Unit,
 ) {
-
     when (uiState) {
         is DiscoverUIState.Loading -> {
             CircularProgressIndicator()
@@ -33,7 +32,7 @@ internal fun DiscoverRoute(
             DiscoverScreen(
                 recipes = uiState.data,
                 onRecipeClicked = onRecipeClicked,
-                handleEvent = handleEvent
+                handleEvent = handleEvent,
             )
         }
     }
@@ -43,20 +42,20 @@ internal fun DiscoverRoute(
 fun DiscoverScreen(
     recipes: List<Recipe>,
     onRecipeClicked: (Recipe) -> Unit,
-    handleEvent: (DiscoverEvent) -> Unit
+    handleEvent: (DiscoverEvent) -> Unit,
 ) {
     ScreenBackground(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         LazyVerticalGrid(
             columns = GridCells.Adaptive(150.dp),
-            contentPadding = PaddingValues(8.dp)
+            contentPadding = PaddingValues(8.dp),
         ) {
             items(recipes) { recipe ->
                 DiscoverRow(
                     recipe = recipe,
                     onRecipeClicked = onRecipeClicked,
-                    handleEvent = handleEvent
+                    handleEvent = handleEvent,
                 )
             }
         }

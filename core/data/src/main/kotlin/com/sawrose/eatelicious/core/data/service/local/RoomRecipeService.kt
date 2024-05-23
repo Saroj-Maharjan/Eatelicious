@@ -2,8 +2,6 @@ package com.sawrose.eatelicious.core.data.service.local
 
 import android.util.Log
 import com.sawrose.eatelicious.core.data.local.AppDatabase
-import com.sawrose.eatelicious.core.data.local.entities.mapToEntity
-import com.sawrose.eatelicious.core.data.local.entities.mapToRecipe
 import com.sawrose.eatelicious.core.data.local.mapper.RecipeMapper
 import com.sawrose.eatelicious.core.data.repository.request.RecipeRequests
 import com.sawrose.eatelicious.core.data.repository.service.LocalRecipeService
@@ -14,7 +12,7 @@ import kotlinx.coroutines.flow.map
 
 class RoomRecipeService(
     private val database: AppDatabase,
-    private val mapper: RecipeMapper
+    private val mapper: RecipeMapper,
 ) : LocalRecipeService {
     override suspend fun insert(data: List<Recipe>) {
         data.forEach { recipe ->
@@ -25,11 +23,11 @@ class RoomRecipeService(
 
     override fun stream(request: RecipeRequests): Flow<List<Recipe>> {
         return when (request) {
-            is RecipeRequests.search -> {
+            is RecipeRequests.Search -> {
                 flowOf()
             }
 
-            is RecipeRequests.random -> {
+            is RecipeRequests.Random -> {
                 database.recipeTable.getRecipes().map {
                     mapper.mapFromEntityList(it)
                 }

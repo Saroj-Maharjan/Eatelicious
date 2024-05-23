@@ -4,7 +4,7 @@ import com.sawrose.eatelicious.commons.utils.EntityMapper
 import com.sawrose.eatelicious.core.data.remote.dto.RecipeDTO
 import com.sawrose.eatelicious.core.model.Recipe
 
-class RecipeDtoMapper: EntityMapper<RecipeDTO, Recipe> {
+class RecipeDtoMapper : EntityMapper<RecipeDTO, Recipe> {
     override fun mapFromEntity(entity: RecipeDTO): Recipe {
         return Recipe(
             id = entity.id,
@@ -15,7 +15,7 @@ class RecipeDtoMapper: EntityMapper<RecipeDTO, Recipe> {
             step = entity.analyzedInstructions.first().steps.map { it.step },
             ingredientOriginalString = entity.extendedIngredients.map { it.original },
             summary = entity.summary,
-            saved = false
+            saved = false,
         )
     }
 
@@ -37,8 +37,7 @@ class RecipeDtoMapper: EntityMapper<RecipeDTO, Recipe> {
             analyzedInstructions = emptyList(),
             summary = domain.summary,
             sourceName = "",
-            creditsText = ""
+            creditsText = "",
         )
     }
-
 }

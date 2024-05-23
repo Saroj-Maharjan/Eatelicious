@@ -5,21 +5,21 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.io.File
 
 /**
  * Configure Compose Specific options for Android
  */
 internal fun Project.configureAndroidCompose(
-    commonExtension: CommonExtension<*, *, *, *, *>
-){
+    commonExtension: CommonExtension<*, *, *, *, *, *>,
+) {
     commonExtension.apply {
         buildFeatures {
             compose = true
         }
 
         composeOptions {
-            kotlinCompilerExtensionVersion = libs.findVersion("androidxComposeCompiler").get().toString()
+            kotlinCompilerExtensionVersion =
+                libs.findVersion("androidxComposeCompiler").get().toString()
         }
 
         dependencies {
@@ -48,17 +48,17 @@ private fun Project.buildComposeMetricsParameters(): List<String> {
         val metricsFolder = buildDir.resolve("compose-metrics").resolve(relativePath)
         metricParameters.add("-P")
         metricParameters.add(
-            "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" + metricsFolder.absolutePath
+            "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" + metricsFolder.absolutePath,
         )
     }
 
     val enableReportsProvider = project.providers.gradleProperty("enableComposeCompilerReports")
     val enableReports = (enableReportsProvider.orNull == "true")
     if (enableReports) {
-        val reportsFolder = File(project.buildDir, "compose-reports")
+        val reportsFolder = buildDir.resolve("compose-reports").resolve(relativePath)
         metricParameters.add("-P")
         metricParameters.add(
-            "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" + reportsFolder.absolutePath
+            "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" + reportsFolder.absolutePath,
         )
     }
     return metricParameters.toList()

@@ -12,25 +12,26 @@ import io.ktor.serialization.kotlinx.KotlinxSerializationConverter
 import kotlinx.serialization.json.Json
 
 fun defaultHttpClient(
-  engine: HttpClientEngine = provideHttpClientEngine()
+    engine: HttpClientEngine = provideHttpClientEngine(),
 ) = HttpClient(engine) {
     expectSuccess = true
 
     install(ContentNegotiation) {
-      val converter = KotlinxSerializationConverter(
-          Json {
-            ignoreUnknownKeys = true
-          })
-      register(ContentType.Any, converter = converter)
+        val converter = KotlinxSerializationConverter(
+            Json {
+                ignoreUnknownKeys = true
+            },
+        )
+        register(ContentType.Any, converter = converter)
     }
 
     install(Logging) {
-      logger =
-          object : Logger {
-            override fun log(message: String) {
-              Log.d("Remote service Logs", "Response: $message")
+        logger =
+            object : Logger {
+                override fun log(message: String) {
+                    Log.d("Remote service Logs", "Response: $message")
+                }
             }
-          }
-      level = LogLevel.ALL
+        level = LogLevel.ALL
     }
 }

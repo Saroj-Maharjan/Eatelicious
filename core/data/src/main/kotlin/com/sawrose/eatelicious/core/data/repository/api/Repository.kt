@@ -12,6 +12,6 @@ interface Repository<Request, Data> {
      * */
     fun stream(
         request: Request,
-        refreshCache: Boolean = true
+        refreshCache: Boolean = true,
     ): Flow<Data>
 }

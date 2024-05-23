@@ -9,25 +9,25 @@ import io.ktor.client.request.get
  */
 open class BaseKtorClient(
     val baseUrl: String,
-    val httpClient: HttpClient
-){
-    constructor(baseUrl: String): this(baseUrl, defaultHttpClient())
+    val httpClient: HttpClient,
+) {
+    constructor(baseUrl: String) : this(baseUrl, defaultHttpClient())
 
     /**
      * A helper function to build the [baseUrl] and [endpoint] operation and perform a get request.
      * */
 
-    suspend inline fun <reified T: Any> getResponse(
+    suspend inline fun <reified T : Any> getResponse(
         endpoint: String,
-        params: RemoteParams = emptyMap()
-    ): Result<T>{
+        params: RemoteParams = emptyMap(),
+    ): Result<T> {
         val url = "$baseUrl$endpoint"
         return try {
-            val apiResult: T = httpClient.get(url){
+            val apiResult: T = httpClient.get(url) {
                 addParams(params)
             }.body()
             Result.success(apiResult)
-        } catch (e: Exception){
+        } catch (e: Exception) {
             Result.failure(e)
         }
     }

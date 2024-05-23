@@ -48,7 +48,7 @@ fun RowScope.EateliciousNavigationBarItem(
             unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
             selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
             unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
-            indicatorColor =  MaterialTheme.colorScheme.primaryContainer
+            indicatorColor = MaterialTheme.colorScheme.primaryContainer,
         ),
     )
 }
@@ -69,6 +69,6 @@ fun EateliciousNavigationBar(
         modifier = modifier,
         contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
         tonalElevation = 4.dp,
-        content = content
+        content = content,
     )
 }

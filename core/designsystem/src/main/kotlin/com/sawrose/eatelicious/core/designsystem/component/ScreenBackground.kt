@@ -15,16 +15,16 @@ fun ScreenBackground(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
-  val color = MaterialTheme.colorScheme.background
+    val color = MaterialTheme.colorScheme.background
 
-  Surface(
-      color= if(color == Color.Unspecified) Color.Transparent else color,
-      modifier = modifier.fillMaxSize()
-  ) {
-    CompositionLocalProvider(
-        LocalAbsoluteTonalElevation provides 0.dp
+    Surface(
+        color = if (color == Color.Unspecified) Color.Transparent else color,
+        modifier = modifier.fillMaxSize(),
     ) {
-        content()
+        CompositionLocalProvider(
+            LocalAbsoluteTonalElevation provides 0.dp,
+        ) {
+            content()
+        }
     }
-  }
 }

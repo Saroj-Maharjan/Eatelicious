@@ -1,2 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/sarojmaharjan/Developer/Android/Eatelicious/sync/src/main/assets"/></dataSet><dataSet config="demo" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/sarojmaharjan/Developer/Android/Eatelicious/sync/src/demo/assets"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/sarojmaharjan/Developer/Android/Eatelicious/sync/src/debug/assets"/></dataSet><dataSet config="variant" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/sarojmaharjan/Developer/Android/Eatelicious/sync/src/demoDebug/assets"/></dataSet><dataSet config="generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/sarojmaharjan/Developer/Android/Eatelicious/sync/build/intermediates/shader_assets/demoDebug/out"/></dataSet></merger>
+<merger version="3">
+    <dataSet config="main"
+        ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="/Users/sarojmaharjan/Developer/Android/Eatelicious/sync/src/main/assets" />
+    </dataSet>
+    <dataSet config="demo"
+        ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="/Users/sarojmaharjan/Developer/Android/Eatelicious/sync/src/demo/assets" />
+    </dataSet>
+    <dataSet config="debug"
+        ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="/Users/sarojmaharjan/Developer/Android/Eatelicious/sync/src/debug/assets" />
+    </dataSet>
+    <dataSet config="variant"
+        ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source
+            path="/Users/sarojmaharjan/Developer/Android/Eatelicious/sync/src/demoDebug/assets" />
+    </dataSet>
+    <dataSet config="generated"
+        ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source
+            path="/Users/sarojmaharjan/Developer/Android/Eatelicious/sync/build/intermediates/shader_assets/demoDebug/out" />
+    </dataSet>
+</merger>

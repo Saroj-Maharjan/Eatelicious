@@ -16,18 +16,26 @@ import com.sawrose.eatelicious.core.designsystem.component.ScreenBackground
 
 @Composable
 internal fun MealPlanRoute() {
-  MealPlanScreen()
+    MealPlanScreen()
 }
 
 @Composable
 fun MealPlanScreen() {
-  ScreenBackground(modifier = Modifier.fillMaxSize()) {
-    Box(modifier = Modifier.fillMaxSize().padding(16.dp).background(color = Color(0x8000838F))) {
-      Text(
-          text = "Meal Plan",
-          textAlign = TextAlign.Center,
-          modifier = Modifier.padding(16.dp).align(Alignment.Center),
-          style = MaterialTheme.typography.bodyLarge)
+    ScreenBackground(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .background(color = Color(0x8000838F)),
+        ) {
+            Text(
+                text = "Meal Plan",
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(16.dp)
+                    .align(Alignment.Center),
+                style = MaterialTheme.typography.bodyLarge,
+            )
+        }
     }
-  }
 }

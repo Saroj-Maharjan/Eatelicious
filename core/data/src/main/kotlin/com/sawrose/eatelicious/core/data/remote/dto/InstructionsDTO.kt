@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class InstructionsDTO(
     val name: String,
-    val steps: List<Step>
+    val steps: List<Step>,
 )

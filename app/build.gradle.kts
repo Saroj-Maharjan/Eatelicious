@@ -1,3 +1,4 @@
+import java.util.Properties
 
 plugins {
     id("eatelicious.android.application")
@@ -23,12 +24,17 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix = com.sawrose.eatelicious.EateliciousBuildType.DEBUG.applicationIdSuffix
+            applicationIdSuffix =
+                com.sawrose.eatelicious.EateliciousBuildType.DEBUG.applicationIdSuffix
         }
         val release by getting {
             isMinifyEnabled = true
-            applicationIdSuffix = com.sawrose.eatelicious.EateliciousBuildType.RELEASE.applicationIdSuffix
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            applicationIdSuffix =
+                com.sawrose.eatelicious.EateliciousBuildType.RELEASE.applicationIdSuffix
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
 
             // To publish on the Play store a private signing key is required, but to allow anyone
             // who clones the code to sign and run the release variant, use the debug signing key.
@@ -59,7 +65,7 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:model"))
-
+    implementation(projects.core.logging)
 
     implementation(libs.androidx.splash.screen)
     implementation(libs.androidx.core.ktx)
@@ -80,7 +86,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     testImplementation(libs.kotlinx.coroutines.test)
 
-    implementation(libs.androidx.compose.navigation)
+    implementation(libs.circuit.foundation)
 
     testImplementation(libs.junit)
 

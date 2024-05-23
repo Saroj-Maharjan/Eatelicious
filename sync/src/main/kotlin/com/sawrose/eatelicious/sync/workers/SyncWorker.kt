@@ -7,8 +7,8 @@ import java.util.concurrent.Executor
 
 class SyncWorker(
     private val appContext: Context,
-    workerParams: WorkerParameters
-): CoroutineWorker(appContext, workerParams) {
+    workerParams: WorkerParameters,
+) : CoroutineWorker(appContext, workerParams) {
     override suspend fun doWork(): Result {
         TODO("Not yet implemented")
     }
