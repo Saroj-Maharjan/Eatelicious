@@ -26,7 +26,7 @@ val dataKoinModule = module {
         Room.databaseBuilder(
             androidContext(),
             AppDatabase::class.java,
-            "eatelicious-db"
+            "eatelicious-db",
         )
             .build()
     }
@@ -39,5 +39,4 @@ val dataKoinModule = module {
     singleOf(::SponcularRemoteService) { bind<RemoteRecipeService>() }
     singleOf(::RoomRecipeService) { bind<LocalRecipeService>() }
     singleOf(::StoreRecipeService) { bind<RecipeRepository>() }
-
 }

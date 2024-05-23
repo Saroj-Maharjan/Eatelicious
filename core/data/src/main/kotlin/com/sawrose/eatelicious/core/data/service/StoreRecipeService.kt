@@ -38,12 +38,12 @@ class StoreRecipeService(
                         Log.e(
                             "StoreRecipeService",
                             "Error writing data to local source of truth",
-                            it
+                            it,
                         )
-                    }
+                    },
                 )
             },
-        )
+        ),
     ).build()
 
     override fun stream(
@@ -53,8 +53,8 @@ class StoreRecipeService(
         return store.stream(
             request = StoreReadRequest.cached(
                 key = request,
-                refresh = refreshCache
-            )
+                refresh = refreshCache,
+            ),
         )
             .distinctUntilChanged()
             .map { response ->

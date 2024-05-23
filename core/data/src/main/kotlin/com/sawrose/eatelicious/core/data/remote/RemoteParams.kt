@@ -12,8 +12,8 @@ typealias RemoteParams = Map<String, Any>
 /**
  * Add All the [params] to this [HttpRequestBuilder] as long as they're not null.
  */
-fun HttpRequestBuilder.addParams(params: RemoteParams){
-    params.forEach {(key, value) ->
+fun HttpRequestBuilder.addParams(params: RemoteParams) {
+    params.forEach { (key, value) ->
         this.parameter(key, value)
     }
 }

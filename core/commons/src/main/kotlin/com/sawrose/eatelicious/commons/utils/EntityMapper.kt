@@ -9,10 +9,18 @@ interface EntityMapper<E, D> {
     fun mapToEntity(domain: D): E
 
     fun mapFromEntityList(entities: List<E>): List<D> {
-        return entities.mapTo(mutableListOf(), ::mapFromEntity)
+        return entities
+            .mapTo(
+                mutableListOf(),
+                ::mapFromEntity,
+            )
     }
 
     fun mapFromDomainList(domainModels: List<D>): List<E> {
-        return domainModels.mapTo(mutableListOf(), ::mapToEntity)
+        return domainModels
+            .mapTo(
+                mutableListOf(),
+                ::mapToEntity,
+            )
     }
 }

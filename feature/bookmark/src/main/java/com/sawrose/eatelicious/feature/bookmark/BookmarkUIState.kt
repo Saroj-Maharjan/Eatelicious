@@ -7,8 +7,8 @@ import com.slack.circuit.runtime.CircuitUiState
 @Stable
 data class BookmarkUIState(
     val recipes: List<Recipe> = emptyList(),
-    val eventSink: (BookmarkUIEvent) -> Unit
-): CircuitUiState
+    val eventSink: (BookmarkUIEvent) -> Unit,
+) : CircuitUiState
 
 sealed class BookmarkUIEvent {
     data class RecipeClicked(val recipe: Recipe) : BookmarkUIEvent()

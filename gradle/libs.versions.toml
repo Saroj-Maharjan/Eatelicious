@@ -96,11 +96,11 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 
 # Circuit
-circuit-foundation = { group = "com.slack.circuit", name ="circuit-foundation", version.ref = "circuit" }
+circuit-foundation = { group = "com.slack.circuit", name = "circuit-foundation", version.ref = "circuit" }
 circuit-overlay = { group = "com.slack.circuit", name = "circuit-overlay", version.ref = "circuit" }
-circuit-runtime = { group = "com.slack.circuit", name ="circuit-runtime", version.ref = "circuit" }
-circuit-retained = { group = "com.slack.circuit", name ="circuit-retained", version.ref = "circuit" }
-circuitx-gesturenav = { group = "com.slack.circuit", name="circuitx-gesture-navigation", version.ref = "circuit" }
+circuit-runtime = { group = "com.slack.circuit", name = "circuit-runtime", version.ref = "circuit" }
+circuit-retained = { group = "com.slack.circuit", name = "circuit-retained", version.ref = "circuit" }
+circuitx-gesturenav = { group = "com.slack.circuit", name = "circuitx-gesture-navigation", version.ref = "circuit" }
 
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }

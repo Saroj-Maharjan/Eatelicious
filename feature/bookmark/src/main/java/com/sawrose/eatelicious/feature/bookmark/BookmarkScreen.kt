@@ -12,38 +12,45 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.sawrose.eatelicious.commons.di.CircuitInject
 import com.sawrose.eatelicious.commons.navigation.BookmarkScreen
-import com.sawrose.eatelicious.commons.navigation.DiscoverScreen
 import com.sawrose.eatelicious.core.designsystem.component.ScreenBackground
 import com.slack.circuit.runtime.CircuitContext
 import com.slack.circuit.runtime.screen.Screen
 import com.slack.circuit.runtime.ui.Ui
 import com.slack.circuit.runtime.ui.ui
 
-class BookmarkUIFactory: Ui.Factory {
-    override fun create(screen: Screen, context: CircuitContext): Ui<*>? = when(screen){
+class BookmarkUIFactory : Ui.Factory {
+    override fun create(screen: Screen, context: CircuitContext): Ui<*>? = when (screen) {
         is BookmarkScreen -> {
             ui<BookmarkUIState> { state, modifier ->
                 BookmarkScreen(state, modifier)
             }
         }
+
         else -> null
     }
 }
+
 @Composable
 fun BookmarkScreen(
     state: BookmarkUIState,
     modifier: Modifier = Modifier,
 ) {
-
-  ScreenBackground(modifier = Modifier.fillMaxSize()) {
-    Box(modifier = Modifier.fillMaxSize().padding(16.dp).background(color = Color(0x8000838F))) {
-      Text(
-          text = "Bookmark",
-          textAlign = TextAlign.Center,
-          modifier = Modifier.padding(16.dp).align(Alignment.Center),
-          style = MaterialTheme.typography.bodyLarge)
+    ScreenBackground(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .background(color = Color(0x8000838F)),
+        ) {
+            Text(
+                text = "Bookmark",
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(16.dp)
+                    .align(Alignment.Center),
+                style = MaterialTheme.typography.bodyLarge,
+            )
+        }
     }
-  }
 }

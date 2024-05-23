@@ -31,7 +31,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
-import com.sawrose.eatelicious.commons.navigation.EateliciousScreen
 import com.sawrose.eatelicious.commons.navigation.RootScreen
 import com.sawrose.eatelicious.navigation.NavigationType
 import com.sawrose.eatelicious.navigation.buildNavigationItems
@@ -40,7 +39,8 @@ import com.slack.circuit.foundation.NavigableCircuitContent
 import com.slack.circuit.runtime.Navigator
 
 @OptIn(
-    ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class
+    ExperimentalComposeUiApi::class,
+    ExperimentalMaterial3Api::class,
 )
 @Composable
 fun MainComposeApp(
@@ -54,11 +54,6 @@ fun MainComposeApp(
 
     val rootScreen by remember(backstack) {
         derivedStateOf { backstack.last().screen }
-    }
-    val currentPresentation by remember(backstack) {
-        derivedStateOf {
-            (backstack.topRecord?.screen as? EateliciousScreen)?.presentation
-        }
     }
 
     val snackBarStateHost = remember { SnackbarHostState() }
@@ -83,7 +78,8 @@ fun MainComposeApp(
                         .fillMaxWidth(),
                 )
             }
-        }) { padding ->
+        },
+    ) { padding ->
         Row(
             modifier =
             Modifier
@@ -91,8 +87,8 @@ fun MainComposeApp(
                 .padding(padding)
                 .consumeWindowInsets(padding)
                 .windowInsetsPadding(
-                    WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
-                )
+                    WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal),
+                ),
         ) {
             Column(Modifier.fillMaxSize()) {
                 NavigableCircuitContent(

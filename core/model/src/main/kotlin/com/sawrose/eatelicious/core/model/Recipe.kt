@@ -9,5 +9,5 @@ data class Recipe(
     val step: List<String>,
     val ingredientOriginalString: List<String>,
     val summary: String,
-    var saved: Boolean = false
+    var saved: Boolean = false,
 )

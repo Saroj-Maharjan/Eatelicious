@@ -14,14 +14,17 @@ enum class FlavorDimension {
 // purposes, or from a production backend server which supplies up-to-date, real content.
 // These two product flavors reflect this behaviour.
 @Suppress("EnumEntryName")
-enum class EateliciousFlavor(val dimension: FlavorDimension, val applicationIdSuffix: String? = null) {
+enum class EateliciousFlavor(
+    val dimension: FlavorDimension,
+    val applicationIdSuffix: String? = null,
+) {
     demo(FlavorDimension.contentType, applicationIdSuffix = ".demo"),
     prod(FlavorDimension.contentType)
 }
 
 fun configureFlavors(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
-    flavorConfigurationBlock: ProductFlavor.(flavor: EateliciousFlavor) -> Unit = {}
+    flavorConfigurationBlock: ProductFlavor.(flavor: EateliciousFlavor) -> Unit = {},
 ) {
     commonExtension.apply {
         flavorDimensions += FlavorDimension.contentType.name

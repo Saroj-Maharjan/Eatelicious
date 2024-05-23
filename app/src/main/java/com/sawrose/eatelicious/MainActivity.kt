@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 MainComposeApp(
                     backstack = backstack,
                     navigator = navigator,
-                    windowSizeClass = calculateWindowSizeClass(this)
+                    windowSizeClass = calculateWindowSizeClass(this),
                 )
             }
         }

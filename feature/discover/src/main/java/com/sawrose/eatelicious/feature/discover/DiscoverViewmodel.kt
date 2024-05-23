@@ -24,9 +24,9 @@ class DiscoverViewmodel(
 
     private fun getReceipes() {
         viewModelScope.launch {
-            getRecipeUsecase(RecipeRequests.random(10, "breakfast"))
+            getRecipeUsecase(RecipeRequests.Random(10, "breakfast"))
                 .collect { recipes ->
-                    if(recipes.isEmpty()){
+                    if (recipes.isEmpty()) {
                         _discoveruiState.update {
                             DiscoverUIState.Error("No recipes found")
                         }
@@ -46,7 +46,6 @@ class DiscoverViewmodel(
             }
         }
     }
-
 }
 
 sealed class DiscoverUIState {

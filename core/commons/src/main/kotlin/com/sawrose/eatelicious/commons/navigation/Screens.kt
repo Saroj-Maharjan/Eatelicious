@@ -4,18 +4,18 @@ import com.slack.circuit.runtime.screen.Screen
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class RootScreen: EateliciousScreen("Root")
+class RootScreen : EateliciousScreen("Root")
 
 @Parcelize
-class DiscoverScreen: EateliciousScreen("Discover")
+class DiscoverScreen : EateliciousScreen("Discover")
 
 @Parcelize
-class BookmarkScreen: EateliciousScreen("Bookmark")
+class BookmarkScreen : EateliciousScreen("Bookmark")
 
 @Parcelize
-class MealPlanScreen: EateliciousScreen("MealPlan")
+class MealPlanScreen : EateliciousScreen("MealPlan")
 
-abstract class EateliciousScreen(val name: String): Screen {
+abstract class EateliciousScreen(val name: String) : Screen {
     open val arguments: Map<String, *>? = null
     open val presentation: Presentation = Presentation()
 }

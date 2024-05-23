@@ -52,6 +52,6 @@ fun RecipeDTO.toRecipe(): Recipe {
         step = analyzedInstructions.first().steps.map { it.step },
         ingredientOriginalString = extendedIngredients.map { it.original },
         summary = summary,
-        saved = false
+        saved = false,
     )
 }

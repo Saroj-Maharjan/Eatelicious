@@ -2,8 +2,8 @@ package com.sawrose.eatelicious.core.designsystem.component
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.StarHalf
 import androidx.compose.material.icons.outlined.Star
-import androidx.compose.material.icons.outlined.StarHalf
 import androidx.compose.material.icons.outlined.StarOutline
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
@@ -31,38 +31,43 @@ fun RatingBar(
             Icon(
                 imageVector = Icons.AutoMirrored.Outlined.StarHalf,
                 contentDescription = null,
-                tint = starsColor
+                tint = starsColor,
             )
         }
         repeat(unfilledStars) {
             Icon(
                 imageVector = Icons.Outlined.StarOutline,
                 contentDescription = null,
-                tint = starsColor
+                tint = starsColor,
             )
         }
     }
 }
+
 @Preview
 @Composable
 fun RatingPreview() {
     RatingBar(rating = 2.5)
 }
+
 @Preview
 @Composable
 fun TenStarsRatingPreview() {
     RatingBar(stars = 10, rating = 8.5)
 }
+
 @Preview
 @Composable
 fun RatingPreviewFull() {
     RatingBar(rating = 5.0)
 }
+
 @Preview
 @Composable
 fun RatingPreviewWorst() {
     RatingBar(rating = 1.0)
 }
+
 @Preview
 @Composable
 fun RatingPreviewDisabled() {

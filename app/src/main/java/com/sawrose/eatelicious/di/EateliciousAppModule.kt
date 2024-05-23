@@ -11,6 +11,6 @@ val eateliciousAppModule = module {
         commonModule,
         domainKoinModule,
         dataKoinModule,
-        discoverKoinModule
+        discoverKoinModule,
     )
 }

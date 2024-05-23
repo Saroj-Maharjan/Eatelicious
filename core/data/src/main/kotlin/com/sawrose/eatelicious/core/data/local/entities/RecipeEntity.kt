@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.sawrose.eatelicious.core.model.Recipe
 
 @Entity(
-    tableName = "Recipes"
+    tableName = "Recipes",
 )
 data class RecipeEntity(
     @PrimaryKey
@@ -18,7 +18,6 @@ data class RecipeEntity(
     val ingredientOriginalString: String,
     val summary: String,
 )
-
 
 private const val SEPERATOR = ","
 fun Recipe.mapToEntity(): RecipeEntity {

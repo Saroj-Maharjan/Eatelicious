@@ -2,12 +2,9 @@ package com.sawrose.eatelicious.core.data.service.remote
 
 import android.util.Log
 import com.sawrose.eatelicious.commons.network.SponcularEndpoints
-import com.sawrose.eatelicious.core.data.local.mapper.RecipeMapper
-import com.sawrose.eatelicious.core.data.remote.dto.RecipeDTO
-import com.sawrose.eatelicious.core.data.remote.dto.Response
-import com.sawrose.eatelicious.core.data.remote.dto.toRecipe
 import com.sawrose.eatelicious.core.data.remote.BaseKtorClient
 import com.sawrose.eatelicious.core.data.remote.RemoteParams
+import com.sawrose.eatelicious.core.data.remote.dto.Response
 import com.sawrose.eatelicious.core.data.remote.mapper.RecipeDtoMapper
 import com.sawrose.eatelicious.core.data.repository.request.RecipeRequests
 import com.sawrose.eatelicious.core.data.repository.service.RemoteRecipeService
@@ -18,26 +15,26 @@ import com.sawrose.eatelicious.core.model.Recipe
  *  */
 class SponcularRemoteService(
     private val apiClient: BaseKtorClient,
-    private val mapper: RecipeDtoMapper
+    private val mapper: RecipeDtoMapper,
 ) : RemoteRecipeService {
 
     override suspend fun fetch(request: RecipeRequests): Result<List<Recipe>> {
         return when (request) {
-            is RecipeRequests.random -> {
+            is RecipeRequests.Random -> {
                 apiClient.getResponse<Response>(
                     endpoint =
                     SponcularEndpoints.getRandomRecipe(),
-                    params = getParams(request)
+                    params = getParams(request),
                 ).map { response ->
                     Log.i("APIResponse", "fetch: $response")
                     mapper.mapFromEntityList(response.recipes)
                 }
             }
 
-            is RecipeRequests.search -> {
+            is RecipeRequests.Search -> {
                 apiClient.getResponse(
                     endpoint = SponcularEndpoints.search(),
-                    params = getParams(request)
+                    params = getParams(request),
                 )
             }
         }
@@ -47,20 +44,20 @@ class SponcularRemoteService(
         request: RecipeRequests,
     ): RemoteParams {
         val initialParams = when (request) {
-            is RecipeRequests.random -> {
+            is RecipeRequests.Random -> {
                 mapOf(
                     TAGS to request.tags,
-                    NUMBER to request.number
+                    NUMBER to request.number,
                 )
             }
 
-            is RecipeRequests.search -> {
+            is RecipeRequests.Search -> {
                 mapOf(
                     QUERY to request.query,
                     CUISINE to request.cuisine,
                     ADDRECIPEINFORMATION to request.addIngredient,
                     NUMBER to request.number,
-                    OFFSET to request.offset
+                    OFFSET to request.offset,
                 )
             }
         }
@@ -75,6 +72,5 @@ class SponcularRemoteService(
         private const val CUISINE = "cuisine"
         private const val ADDRECIPEINFORMATION = "addRecipeInfo"
         private const val OFFSET = "number"
-
     }
 }

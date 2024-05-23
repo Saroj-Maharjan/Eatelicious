@@ -8,7 +8,7 @@ import com.sawrose.eatelicious.sync.workers.SyncWorker
 object Sync {
     // This method is initializes sync, the process keeps the app's data current
 
-    fun initialize(context: Context){
+    fun initialize(context: Context) {
         WorkManager.getInstance(context).apply {
             enqueueUniqueWork(
                 SyncWorkName,

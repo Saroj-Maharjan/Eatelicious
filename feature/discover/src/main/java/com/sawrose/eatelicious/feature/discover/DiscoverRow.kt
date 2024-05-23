@@ -28,22 +28,21 @@ fun DiscoverRow(
     handleEvent: (DiscoverEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-
     Card(
         shape = MaterialTheme.shapes.medium,
         elevation = CardDefaults.elevatedCardElevation(
-            defaultElevation = 4.dp
+            defaultElevation = 4.dp,
         ),
         onClick = {
             onRecipeClicked(recipe)
         },
         modifier = modifier
-            .padding(8.dp)
+            .padding(8.dp),
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .padding(8.dp)
+                .padding(8.dp),
         ) {
             AsyncImage(
                 model = recipe.image,
@@ -52,7 +51,7 @@ fun DiscoverRow(
                 modifier = Modifier
                     .width(100.dp)
                     .height(150.dp)
-                    .aspectRatio(1f)
+                    .aspectRatio(1f),
             )
             Text(
                 text = recipe.name,
@@ -78,13 +77,13 @@ private fun DiscoverRowPreview() {
                 servings = 4,
                 ingredientOriginalString = emptyList(),
                 step = emptyList(),
-                summary = "Recipe Summary"
+                summary = "Recipe Summary",
             ),
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(1f),
             handleEvent = {},
-            onRecipeClicked = {}
+            onRecipeClicked = {},
         )
     }
 }
