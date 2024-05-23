@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("eatelicious.android.application")
     id("eatelicious.android.application.compose")
@@ -63,7 +65,7 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:model"))
-
+    implementation(projects.core.logging)
 
     implementation(libs.androidx.splash.screen)
     implementation(libs.androidx.core.ktx)

@@ -1,5 +1,7 @@
 package com.sawrose.eatelicious.core.data.remote
 
+import com.sawrose.eatelicious.commons.network.SponcularEndpoints
+
 object SponcularApiClient : BaseKtorClient(
-    baseUrl = "https://api.spoonacular.com/",
+    baseUrl = SponcularEndpoints.baseUrl,
 )

@@ -27,3 +27,6 @@ include(":feature:mealplan")
 include(":feature:bookmark")
 
 include(":core:model")
+include(":core:logging")
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

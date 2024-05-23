@@ -1,10 +1,12 @@
 package com.sawrose.eatelicious.commons.network
 
+import com.sawrose.eatelicious.eatelicious.commons.BuildConfig
+
 object SponcularEndpoints {
     val baseUrl: String
-        get() = "api.spoonacular.com"
+        get() = "https://api.spoonacular.com/"
 
-    private var apiKey = "0c91572727934fe490aec57542fc00b8"
+    private var apiKey = BuildConfig.SPOONCULAR_API_KEY
 
     fun search() =
         "/recipes/complexsearch?apiKey=$apiKey"
