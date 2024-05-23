@@ -49,9 +49,6 @@ jobs:
       - name: Check convention plugins code style with Spotless
         run: ./gradlew spotlessCheck --init-script gradle/init.gradle.kts --no-configuration-cache
 
-      - name: Check code style with Spotless
-        run: ./gradlew spotlessCheck
-
   #      - name: Check code style with SwiftLint
   #        run: fastlane ios lint
   #        working-directory: ios-app
