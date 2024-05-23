@@ -1,6 +1,8 @@
 package com.sawrose.eatelicious.navigation
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.EventNote
+import androidx.compose.material.icons.automirrored.outlined.EventNote
 import androidx.compose.material.icons.filled.BlurOn
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.EventNote
@@ -41,8 +43,8 @@ fun buildNavigationItems(): List<TopLevelDestination> {
             DiscoverScreen(),
             title = "Meal Plan",
             contentDescription = "Meal Plan",
-            iconImageVector = Icons.Outlined.EventNote,
-            selectedImageVector = Icons.Filled.EventNote
+            iconImageVector = Icons.AutoMirrored.Outlined.EventNote,
+            selectedImageVector = Icons.AutoMirrored.Filled.EventNote
         )
     )
 }

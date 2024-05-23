@@ -29,7 +29,7 @@ fun RatingBar(
         }
         if (halfStar) {
             Icon(
-                imageVector = Icons.Outlined.StarHalf,
+                imageVector = Icons.AutoMirrored.Outlined.StarHalf,
                 contentDescription = null,
                 tint = starsColor
             )

@@ -20,7 +20,7 @@ enum class EateliciousFlavor(val dimension: FlavorDimension, val applicationIdSu
 }
 
 fun configureFlavors(
-    commonExtension: CommonExtension<*, *, *, *, *>,
+    commonExtension: CommonExtension<*, *, *, *, *, *>,
     flavorConfigurationBlock: ProductFlavor.(flavor: EateliciousFlavor) -> Unit = {}
 ) {
     commonExtension.apply {

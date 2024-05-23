@@ -1,5 +1,5 @@
 [versions]
-agp = "8.1.4"
+agp = "8.4.1"
 coil = "2.6.0"
 kotlin = "1.9.24"
 ksp = "1.9.24-1.0.20"
@@ -9,7 +9,7 @@ androidxAndroidCompose = "1.9.0"
 androidxCoreKtx = "1.13.1"
 compose-bom = "2024.05.00"
 kotlinxCoroutines = "1.8.1"
-androidxComposeCompiler = "1.5.13"
+androidxComposeCompiler = "1.5.14"
 androidxComposeNavigation = "2.7.7"
 androidx-splashScreen = "1.0.1"
 androidxWindowsSizeClass = "1.2.1"
@@ -133,6 +133,7 @@ ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devto
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+android-lint = { id = "com.android.lint", version.ref = "agp" }
 google-service = { id = "com.google.gms.google-services", version.ref = "google-service" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

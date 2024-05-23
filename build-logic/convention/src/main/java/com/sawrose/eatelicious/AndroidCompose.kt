@@ -11,7 +11,7 @@ import java.io.File
  * Configure Compose Specific options for Android
  */
 internal fun Project.configureAndroidCompose(
-    commonExtension: CommonExtension<*, *, *, *, *>
+    commonExtension: CommonExtension<*, *, *, *, *, *>
 ){
     commonExtension.apply {
         buildFeatures {
@@ -55,7 +55,7 @@ private fun Project.buildComposeMetricsParameters(): List<String> {
     val enableReportsProvider = project.providers.gradleProperty("enableComposeCompilerReports")
     val enableReports = (enableReportsProvider.orNull == "true")
     if (enableReports) {
-        val reportsFolder = File(project.buildDir, "compose-reports")
+        val reportsFolder = buildDir.resolve("compose-reports").resolve(relativePath)
         metricParameters.add("-P")
         metricParameters.add(
             "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" + reportsFolder.absolutePath
