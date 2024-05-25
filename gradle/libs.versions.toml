@@ -8,9 +8,9 @@ androidDesugarJdkLibs = "2.0.4"
 androidxAndroidCompose = "1.9.0"
 androidxCoreKtx = "1.13.1"
 compose-bom = "2024.05.00"
+dokka = "1.9.20"
 kotlinxCoroutines = "1.8.1"
-androidxComposeCompiler = "1.5.14"
-androidxComposeNavigation = "2.7.7"
+kotlinx-datetime = "0.6.0"
 androidx-splashScreen = "1.0.1"
 androidxWindowsSizeClass = "1.2.1"
 adaptive = "0.34.0"
@@ -69,8 +69,6 @@ ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-window-size = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "androidxWindowsSizeClass" }
 accomponist-adaptive = { group = "com.google.accompanist", name = "accompanist-adaptive", version.ref = "adaptive" }
 
-androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxComposeNavigation" }
-
 # sync
 androidx-startup-runtime = { group = "androidx.startup", name = "startup-runtime", version.ref = "startupRuntime" }
 androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workRuntimeKtx" }
@@ -109,6 +107,8 @@ koin-compose-navigation = { module = "io.insert-koin:koin-androidx-compose-navig
 
 mobilenativefoundation-store = { module = "org.mobilenativefoundation.store:store5", version.ref = "store" }
 
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
+
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 
 # Unit Testing
@@ -129,6 +129,7 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -139,7 +140,8 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-
+compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
 
 [bundles]

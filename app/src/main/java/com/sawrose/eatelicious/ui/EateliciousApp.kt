@@ -31,16 +31,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
+import com.sawrose.eatelicious.commons.navigation.MainDetailNavigator
 import com.sawrose.eatelicious.commons.navigation.RootScreen
 import com.sawrose.eatelicious.navigation.NavigationType
 import com.sawrose.eatelicious.navigation.buildNavigationItems
 import com.slack.circuit.backstack.SaveableBackStack
+import com.slack.circuit.backstack.rememberSaveableBackStack
 import com.slack.circuit.foundation.NavigableCircuitContent
+import com.slack.circuit.foundation.rememberCircuitNavigator
 import com.slack.circuit.runtime.Navigator
 
 @OptIn(
     ExperimentalComposeUiApi::class,
-    ExperimentalMaterial3Api::class,
 )
 @Composable
 fun MainComposeApp(
@@ -50,6 +52,20 @@ fun MainComposeApp(
 ) {
     val navigationType = remember(windowSizeClass) {
         NavigationType.forWindowSizeSize(windowSizeClass)
+    }
+
+    val detailBackStack = rememberSaveableBackStack(listOf(RootScreen()))
+    val detailNavigator = rememberCircuitNavigator(detailBackStack) {
+        detailBackStack.popUntil { false }
+        detailBackStack.push(RootScreen())
+    }
+
+    val mainDetailNavigator = remember(navigator, navigationType) {
+        MainDetailNavigator(
+            mainNavigator = navigator,
+            isDetailEnabled = navigationType == NavigationType.RAIL ||
+                    navigationType == NavigationType.PERMANENT_DRAWER,
+        )
     }
 
     val rootScreen by remember(backstack) {
@@ -68,7 +84,7 @@ fun MainComposeApp(
                 EateliciousBottomBar(
                     currentDestination = rootScreen,
                     destinations = buildNavigationItems(),
-                    onNavigateToDestination = { navigator.resetRoot(RootScreen()) },
+                    onNavigateToDestination = { mainDetailNavigator.resetRoot(RootScreen()) },
                     modifier = Modifier.testTag("EateliciousBottomBar"),
                 )
             } else {
@@ -92,7 +108,7 @@ fun MainComposeApp(
         ) {
             Column(Modifier.fillMaxSize()) {
                 NavigableCircuitContent(
-                    navigator = navigator,
+                    navigator = mainDetailNavigator,
                     backStack = backstack,
                     modifier = Modifier
                         .weight(1f)
