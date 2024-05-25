@@ -13,7 +13,7 @@ object ColorUtils {
     private val SRGB_TO_XYZ = arrayOf(
         doubleArrayOf(0.41233895, 0.35762064, 0.18051042),
         doubleArrayOf(0.2126, 0.7152, 0.0722),
-        doubleArrayOf(0.01932141, 0.11916382, 0.95034478)
+        doubleArrayOf(0.01932141, 0.11916382, 0.95034478),
     )
     private val WHITE_POINT_D65 = doubleArrayOf(95.047, 100.0, 108.883)
 

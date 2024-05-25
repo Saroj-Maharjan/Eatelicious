@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -63,8 +62,7 @@ fun MainComposeApp(
     val mainDetailNavigator = remember(navigator, navigationType) {
         MainDetailNavigator(
             mainNavigator = navigator,
-            isDetailEnabled = navigationType == NavigationType.RAIL ||
-                    navigationType == NavigationType.PERMANENT_DRAWER,
+            isDetailEnabled = navigationType == NavigationType.RAIL || navigationType == NavigationType.PERMANENT_DRAWER,
         )
     }
 

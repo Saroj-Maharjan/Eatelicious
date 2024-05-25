@@ -34,7 +34,7 @@ internal object LogColorDefaults {
 @Composable
 fun rememberMaterial3LogColors(
     isSystemInDarkTheme: Boolean = androidx.compose.foundation.isSystemInDarkTheme(),
-    themePrimaryColor: Color = MaterialTheme.colorScheme.primary
+    themePrimaryColor: Color = MaterialTheme.colorScheme.primary,
 ): LogColors {
     val errorColor = MaterialTheme.colorScheme.error
     val timestampColor = LocalContentColor.current
@@ -43,21 +43,51 @@ fun rememberMaterial3LogColors(
         val themeColorArgb = themePrimaryColor.toArgb()
         if (isSystemInDarkTheme) {
             LogColors(
-                debug = Color(Blend.harmonize(LogColorDefaults.DebugColorDark.toArgb(), themeColorArgb)),
-                info = Color(Blend.harmonize(LogColorDefaults.InfoColorDark.toArgb(), themeColorArgb)),
-                warn = Color(Blend.harmonize(LogColorDefaults.WarningColorDark.toArgb(), themeColorArgb)),
+                debug = Color(
+                    Blend.harmonize(
+                        LogColorDefaults.DebugColorDark.toArgb(),
+                        themeColorArgb,
+                    ),
+                ),
+                info = Color(
+                    Blend.harmonize(
+                        LogColorDefaults.InfoColorDark.toArgb(),
+                        themeColorArgb,
+                    ),
+                ),
+                warn = Color(
+                    Blend.harmonize(
+                        LogColorDefaults.WarningColorDark.toArgb(),
+                        themeColorArgb,
+                    ),
+                ),
                 error = errorColor,
                 timestamp = timestampColor,
                 levelIndicator = levelIndicatorColor,
             )
         } else {
             LogColors(
-                debug = Color(Blend.harmonize(LogColorDefaults.DebugColorLight.toArgb(), themeColorArgb)),
-                info = Color(Blend.harmonize(LogColorDefaults.InfoColorLight.toArgb(), themeColorArgb)),
-                warn = Color(Blend.harmonize(LogColorDefaults.WarningColorLight.toArgb(), themeColorArgb)),
+                debug = Color(
+                    Blend.harmonize(
+                        LogColorDefaults.DebugColorLight.toArgb(),
+                        themeColorArgb,
+                    ),
+                ),
+                info = Color(
+                    Blend.harmonize(
+                        LogColorDefaults.InfoColorLight.toArgb(),
+                        themeColorArgb,
+                    ),
+                ),
+                warn = Color(
+                    Blend.harmonize(
+                        LogColorDefaults.WarningColorLight.toArgb(),
+                        themeColorArgb,
+                    ),
+                ),
                 error = errorColor,
                 timestamp = timestampColor,
-                levelIndicator = levelIndicatorColor
+                levelIndicator = levelIndicatorColor,
             )
         }
     }

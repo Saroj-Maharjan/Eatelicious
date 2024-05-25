@@ -16,21 +16,37 @@ import kotlin.math.sqrt
 object HctSolver {
     private val SCALED_DISCOUNT_FROM_LINRGB = arrayOf(
         doubleArrayOf(
-            0.001200833568784504, 0.002389694492170889, 0.0002795742885861124
-        ), doubleArrayOf(
-            0.0005891086651375999, 0.0029785502573438758, 0.0003270666104008398
-        ), doubleArrayOf(
-            0.00010146692491640572, 0.0005364214359186694, 0.0032979401770712076
-        )
+            0.001200833568784504,
+            0.002389694492170889,
+            0.0002795742885861124,
+        ),
+        doubleArrayOf(
+            0.0005891086651375999,
+            0.0029785502573438758,
+            0.0003270666104008398,
+        ),
+        doubleArrayOf(
+            0.00010146692491640572,
+            0.0005364214359186694,
+            0.0032979401770712076,
+        ),
     )
     private val LINRGB_FROM_SCALED_DISCOUNT = arrayOf(
         doubleArrayOf(
-            1373.2198709594231, -1100.4251190754821, -7.278681089101213
-        ), doubleArrayOf(
-            -271.815969077903, 559.6580465940733, -32.46047482791194
-        ), doubleArrayOf(
-            1.9622899599665666, -57.173814538844006, 308.7233197812385
-        )
+            1373.2198709594231,
+            -1100.4251190754821,
+            -7.278681089101213,
+        ),
+        doubleArrayOf(
+            -271.815969077903,
+            559.6580465940733,
+            -32.46047482791194,
+        ),
+        doubleArrayOf(
+            1.9622899599665666,
+            -57.173814538844006,
+            308.7233197812385,
+        ),
     )
     private val Y_FROM_LINRGB = doubleArrayOf(0.2126, 0.7152, 0.0722)
     private val CRITICAL_PLANES = doubleArrayOf(
@@ -288,7 +304,7 @@ object HctSolver {
         96.9059996312159,
         97.78421388448044,
         98.6670533535366,
-        99.55452497210776
+        99.55452497210776,
     )
 
     /**
@@ -362,7 +378,7 @@ object HctSolver {
         return doubleArrayOf(
             source[0] + (target[0] - source[0]) * t,
             source[1] + (target[1] - source[1]) * t,
-            source[2] + (target[2] - source[2]) * t
+            source[2] + (target[2] - source[2]) * t,
         )
     }
 
@@ -469,7 +485,9 @@ object HctSolver {
 
     private fun midpoint(a: DoubleArray, b: DoubleArray): DoubleArray {
         return doubleArrayOf(
-            (a[0] + b[0]) / 2, (a[1] + b[1]) / 2, (a[2] + b[2]) / 2
+            (a[0] + b[0]) / 2,
+            (a[1] + b[1]) / 2,
+            (a[2] + b[2]) / 2,
         )
     }
 
@@ -560,8 +578,10 @@ object HctSolver {
             val jNormalized = j / 100.0
             val alpha = if (chroma == 0.0 || j == 0.0) 0.0 else chroma / sqrt(jNormalized)
             val t = (alpha * tInnerCoeff).pow(1.0 / 0.9)
-            val ac = (viewingConditions.aw
-                    * jNormalized.pow(1.0 / viewingConditions.c / viewingConditions.z))
+            val ac = (
+                viewingConditions.aw
+                    * jNormalized.pow(1.0 / viewingConditions.c / viewingConditions.z)
+                )
             val p2 = ac / viewingConditions.nbb
             val gamma = 23.0 * (p2 + 0.305) * t / (23.0 * p1 + 11 * t * hCos + 108.0 * t * hSin)
             val a = gamma * hCos
@@ -590,7 +610,9 @@ object HctSolver {
             if (iterationRound == 4 || abs(fnj - y) < 0.002) {
                 return if (linrgb[0] > 100.01 || linrgb[1] > 100.01 || linrgb[2] > 100.01) {
                     0
-                } else ColorUtils.argbFromLinrgb(linrgb)
+                } else {
+                    ColorUtils.argbFromLinrgb(linrgb)
+                }
             }
             // Iterates with Newton method,
             // Using 2 * fn(j) / j as the approximation of fn'(j)

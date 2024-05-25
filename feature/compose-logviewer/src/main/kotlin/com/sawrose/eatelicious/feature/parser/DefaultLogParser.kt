@@ -2,7 +2,6 @@ package com.sawrose.eatelicious.feature.parser
 
 import kotlinx.datetime.Instant
 
-
 internal class DefaultLogParser : LogParser {
 
     override fun parseLine(logLine: String): LogLine? {
@@ -27,7 +26,7 @@ internal class DefaultLogParser : LogParser {
         return LogLine(
             level = logLevel?.extractedData,
             timestamp = timestampMutation.extractedData,
-            content = workingLine.trim()
+            content = workingLine.trim(),
         )
     }
 
@@ -37,7 +36,7 @@ internal class DefaultLogParser : LogParser {
         val timestamp = Instant.parse(timestampMatch.value.replace(" ", "T"))
         return StringMutation(
             result = input.removeRange(timestampMatch.range),
-            extractedData = timestamp
+            extractedData = timestamp,
         )
     }
 
@@ -49,7 +48,7 @@ internal class DefaultLogParser : LogParser {
                 if (logLevelMatch.value.contains(knownEntryName)) {
                     return StringMutation(
                         result = input.removeRange(logLevelMatch.range),
-                        extractedData = logLevel
+                        extractedData = logLevel,
                     )
                 }
             }

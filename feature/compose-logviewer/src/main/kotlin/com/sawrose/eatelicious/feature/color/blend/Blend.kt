@@ -5,7 +5,9 @@ import com.sawrose.eatelicious.feature.color.utils.MathUtils.differenceDegrees
 import com.sawrose.eatelicious.feature.color.utils.MathUtils.rotationDirection
 import com.sawrose.eatelicious.feature.color.utils.MathUtils.sanitizeDegreesDouble
 
-// Functions for blending in HCT and CAM16 color spaces.
+/** Functions for blending in HCT and CAM16 color spaces.
+ * @see Hct
+ */
 object Blend {
     /**
      * Blend the design color's HCT hue towards the key color's HCT hue, in a way that leaves the
@@ -22,8 +24,7 @@ object Blend {
         val differenceDegrees = differenceDegrees(fromHct.hue, toHct.hue)
         val rotationDegrees = (differenceDegrees * 0.5).coerceAtMost(15.0)
         val outputHue = sanitizeDegreesDouble(
-            fromHct.hue
-                    + rotationDegrees * rotationDirection(fromHct.hue, toHct.hue)
+            fromHct.hue + rotationDegrees * rotationDirection(fromHct.hue, toHct.hue),
         )
         return Hct.from(outputHue, fromHct.chroma, fromHct.tone).toInt()
     }

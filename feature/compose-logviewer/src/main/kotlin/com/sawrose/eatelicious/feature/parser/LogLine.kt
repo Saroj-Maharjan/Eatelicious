@@ -2,7 +2,6 @@ package com.sawrose.eatelicious.feature.parser
 
 import kotlinx.datetime.Instant
 
-
 /**
  * Describes an entry in a log file.
  *
@@ -13,7 +12,7 @@ import kotlinx.datetime.Instant
 data class LogLine(
     val level: LogLevel?,
     val timestamp: Instant,
-    val content: String
+    val content: String,
 )
 
 /**

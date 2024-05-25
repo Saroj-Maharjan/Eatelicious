@@ -44,7 +44,6 @@ fun LogViewer(
     contentPaddingValues: PaddingValues = PaddingValues(),
     logColor: LogColors = rememberMaterial3LogColors(),
 ) {
-
     val lines by remember(logContents) {
         val logParser = DefaultLogParser()
         derivedStateOf { logParser.parseLines(logContents) }
@@ -70,7 +69,6 @@ fun LogViewer(
                         logColors = logColor,
                         modifier = Modifier.padding(horizontal = 8.dp),
                     )
-
                 }
             }
         }

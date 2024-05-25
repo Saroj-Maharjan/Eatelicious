@@ -44,9 +44,9 @@ class Cam16
  * @param jstar CAM16-UCS J coordinate
  * @param astar CAM16-UCS a coordinate
  * @param bstar CAM16-UCS b coordinate
- */ private constructor(
+ */
+private constructor(
     /** Hue in CAM16  */
-    // CAM16 color dimensions, see getters for documentation.
     val hue: Double,
     /** Chroma in CAM16  */
     val chroma: Double,
@@ -77,13 +77,14 @@ class Cam16
      * relative to the color's own brightness, where chroma is colorfulness relative to white.
      */
     private val s: Double,
-    /** Lightness coordinate in CAM16-UCS  */
-    // Coordinates in UCS space. Used to determine color distance, like delta E equations in L*a*b*.
+    /** Lightness coordinate in CAM16-UCS
+     * Coordinates in UCS space. Used to determine color distance, like delta E equations in L*a*b*.
+     */
     private val jstar: Double,
     /** a* coordinate in CAM16-UCS  */
     private val astar: Double,
     /** b* coordinate in CAM16-UCS  */
-    private val bstar: Double
+    private val bstar: Double,
 ) {
 
     companion object {
@@ -91,7 +92,7 @@ class Cam16
         val XYZ_TO_CAM16RGB = arrayOf(
             doubleArrayOf(0.401288, 0.650173, -0.051461),
             doubleArrayOf(-0.250268, 1.204414, 0.045854),
-            doubleArrayOf(-0.002079, 0.048952, 0.953127)
+            doubleArrayOf(-0.002079, 0.048952, 0.953127),
         )
 
         /**
@@ -112,7 +113,10 @@ class Cam16
         // The RGB => XYZ conversion matrix elements are derived scientific constants. While the values
         // may differ at runtime due to floating point imprecision, keeping the values the same, and
         // accurate, across implementations takes precedence.
-        private fun fromIntInViewingConditions(argb: Int, viewingConditions: ViewingConditions): Cam16 {
+        private fun fromIntInViewingConditions(
+            argb: Int,
+            viewingConditions: ViewingConditions,
+        ): Cam16 {
             // Transform ARGB int to XYZ
             val red = argb and 0x00ff0000 shr 16
             val green = argb and 0x0000ff00 shr 8
@@ -127,7 +131,10 @@ class Cam16
         }
 
         private fun fromXyzInViewingConditions(
-            x: Double, y: Double, z: Double, viewingConditions: ViewingConditions
+            x: Double,
+            y: Double,
+            z: Double,
+            viewingConditions: ViewingConditions,
         ): Cam16 {
             // Transform XYZ to 'cone'/'rgb' responses
             val matrix = XYZ_TO_CAM16RGB
@@ -168,12 +175,18 @@ class Cam16
             val ac: Double = p2 * viewingConditions.nbb
 
             // CAM16 lightness and brightness
-            val j = (100.0
-                    * (ac / viewingConditions.aw).pow(viewingConditions.c * viewingConditions.z))
-            val q: Double = ((4.0
-                    / viewingConditions.c) * sqrt(j / 100.0)
-                    * (viewingConditions.aw + 4.0)
-                    * viewingConditions.flRoot)
+            val j = (
+                100.0 *
+                    (ac / viewingConditions.aw).pow(viewingConditions.c * viewingConditions.z)
+                )
+            val q: Double = (
+                (
+                    4.0 /
+                        viewingConditions.c
+                    ) * sqrt(j / 100.0) *
+                    (viewingConditions.aw + 4.0) *
+                    viewingConditions.flRoot
+                )
 
             // CAM16 chroma, colorfulness, and saturation.
             val huePrime = if (hue < 20.14) hue + 360 else hue
