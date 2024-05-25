@@ -21,12 +21,14 @@ include(":core:commons")
 include(":core:data")
 include(":core:domain")
 include(":core:designsystem")
+include(":core:logging")
+include(":core:model")
+
 //include(":sync")
 include(":feature:discover")
 include(":feature:mealplan")
 include(":feature:bookmark")
+include(":feature:compose-logviewer")
 
-include(":core:model")
-include(":core:logging")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

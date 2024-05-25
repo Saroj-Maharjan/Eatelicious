@@ -33,6 +33,7 @@
             <option value="$PROJECT_DIR$/core/model" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/bookmark" />
+            <option value="$PROJECT_DIR$/feature/compose-logviewer" />
             <option value="$PROJECT_DIR$/feature/discover" />
             <option value="$PROJECT_DIR$/feature/mealplan" />
           </set>

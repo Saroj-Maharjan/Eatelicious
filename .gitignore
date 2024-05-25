@@ -1,6 +1,7 @@
 *.iml
 .gradle
 /local.properties
+/.idea
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
@@ -8,6 +9,8 @@
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 .DS_Store
+.idea/kotlinc.xml
+.idea/gradle.xml
 /build
 /captures
 .externalNativeBuild
@@ -16,9 +19,17 @@ local.properties
 
 # Project exclude paths
 /build-logic/convention/build/
+/core/build/
 /core/commons/build/
 /core/data/build/
 /core/data/build/intermediates/javac/demoDebug/classes/
 /core/designsystem/build/
 /core/domain/build/
 /core/model/build/
+/core/logging/build/
+
+/feature/build/
+/feature/bookmark/build
+/feature/compose-logviewer/build
+/feature/discover/build
+/feature/mealplan/build
