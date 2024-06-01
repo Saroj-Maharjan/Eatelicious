@@ -57,15 +57,16 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:discover"))
-    implementation(project(":feature:mealplan"))
-    implementation(project(":feature:bookmark"))
-    implementation(project(":core:commons"))
-    implementation(project(":core:data"))
-    implementation(project(":core:domain"))
-    implementation(project(":core:designsystem"))
-    implementation(project(":core:model"))
+    implementation(projects.core.commons)
+    implementation(projects.core.data)
+    implementation(projects.core.domain)
+    implementation(projects.core.designsystem)
+    implementation(projects.core.model)
     implementation(projects.core.logging)
+
+    implementation(projects.feature.discover)
+    implementation(projects.feature.bookmark)
+    implementation(projects.feature.mealplan)
 
     implementation(libs.androidx.splash.screen)
     implementation(libs.androidx.core.ktx)
@@ -73,6 +74,9 @@ dependencies {
     implementation(libs.androidx.activity.compose)
 
     implementation(libs.androidx.window.size)
+    implementation(libs.androidx.compose.material3.adaptive)
+    implementation(libs.androidx.compose.material3.adaptive.layout)
+    implementation(libs.androidx.compose.material3.adaptive.navigation)
     implementation(libs.accomponist.adaptive)
 
     implementation(libs.compose.foundation)
@@ -83,10 +87,13 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
 
+    implementation(libs.androidx.navigation.compose)
+    testImplementation(libs.androidx.navigation.testing)
+
+    implementation(libs.androidx.metrics)
+
     implementation(libs.kotlinx.coroutines.android)
     testImplementation(libs.kotlinx.coroutines.test)
-
-    implementation(libs.circuit.foundation)
 
     testImplementation(libs.junit)
 

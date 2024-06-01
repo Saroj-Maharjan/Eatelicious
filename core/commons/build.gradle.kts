@@ -1,6 +1,7 @@
 plugins {
-    id("eatelicious.android.library")
-    id("eatelicious.android.koin")
+    alias(libs.plugins.eatelicious.android.library)
+    alias(libs.plugins.eatelicious.android.library.compose)
+    alias(libs.plugins.eatelicious.android.koin)
     alias(libs.plugins.kotlin.parcelize)
 }
 
@@ -21,5 +22,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.circuit.runtime)
+    implementation(project(":core:logging"))
+    implementation(libs.androidx.metrics)
 }

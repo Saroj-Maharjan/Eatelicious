@@ -1,128 +1,167 @@
 package com.sawrose.eatelicious.ui
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarDuration.Short
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
+import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.WindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
-import com.sawrose.eatelicious.commons.navigation.MainDetailNavigator
-import com.sawrose.eatelicious.commons.navigation.RootScreen
-import com.sawrose.eatelicious.navigation.NavigationType
-import com.sawrose.eatelicious.navigation.buildNavigationItems
-import com.slack.circuit.backstack.SaveableBackStack
-import com.slack.circuit.backstack.rememberSaveableBackStack
-import com.slack.circuit.foundation.NavigableCircuitContent
-import com.slack.circuit.foundation.rememberCircuitNavigator
-import com.slack.circuit.runtime.Navigator
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hierarchy
+import com.sawrose.eatelicious.core.designsystem.component.EateliciousNavigationSuiteScaffold
+import com.sawrose.eatelicious.core.designsystem.component.EateliciousTopAppBar
+import com.sawrose.eatelicious.core.designsystem.component.ScreenBackground
+import com.sawrose.eatelicious.navigation.EateliciousNavHost
+import com.sawrose.eatelicious.navigation.TopLevelDestination
 
-@OptIn(
-    ExperimentalComposeUiApi::class,
-)
 @Composable
-fun MainComposeApp(
-    backstack: SaveableBackStack,
-    navigator: Navigator,
-    windowSizeClass: WindowSizeClass,
+fun EateliciousApp(
+    appState: EatecliciousAppState,
+    modifier: Modifier = Modifier,
+    windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
 ) {
-    val navigationType = remember(windowSizeClass) {
-        NavigationType.forWindowSizeSize(windowSizeClass)
-    }
 
-    val detailBackStack = rememberSaveableBackStack(listOf(RootScreen()))
-    val detailNavigator = rememberCircuitNavigator(detailBackStack) {
-        detailBackStack.popUntil { false }
-        detailBackStack.push(RootScreen())
-    }
+    ScreenBackground(modifier) {
 
-    val mainDetailNavigator = remember(navigator, navigationType) {
-        MainDetailNavigator(
-            mainNavigator = navigator,
-            isDetailEnabled = navigationType == NavigationType.RAIL || navigationType == NavigationType.PERMANENT_DRAWER,
+        val snackBarStateHost = remember { SnackbarHostState() }
+
+        EateliciousApp(
+            appState = appState,
+            snackbarHostState = snackBarStateHost,
+            windowAdaptiveInfo = windowAdaptiveInfo,
         )
     }
+}
 
-    val rootScreen by remember(backstack) {
-        derivedStateOf { backstack.last().screen }
-    }
+@OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
+@Composable
+internal fun EateliciousApp(
+    appState: EatecliciousAppState,
+    snackbarHostState: SnackbarHostState,
+    modifier: Modifier = Modifier,
+    windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
+) {
+    val currentDestination = appState.currentDestination
 
-    val snackBarStateHost = remember { SnackbarHostState() }
-    Scaffold(
-        modifier = Modifier.semantics { testTagsAsResourceId = true },
-        containerColor = Color.Transparent,
-        contentColor = MaterialTheme.colorScheme.onBackground,
-        contentWindowInsets = WindowInsets(0, 0, 0, 0),
-        snackbarHost = { SnackbarHost(snackBarStateHost) },
-        bottomBar = {
-            if (navigationType == NavigationType.BOTTOM_NAVIGATION) {
-                EateliciousBottomBar(
-                    currentDestination = rootScreen,
-                    destinations = buildNavigationItems(),
-                    onNavigateToDestination = { mainDetailNavigator.resetRoot(RootScreen()) },
-                    modifier = Modifier.testTag("EateliciousBottomBar"),
-                )
-            } else {
-                Spacer(
-                    Modifier
-                        .windowInsetsBottomHeight(WindowInsets.navigationBars)
-                        .fillMaxWidth(),
+    EateliciousNavigationSuiteScaffold(
+        navigationSuiteItems = {
+            appState.topLevelDestinations.forEach { destination ->
+                val selected = currentDestination
+                    .isTopLevelDestinationInHierarchy(destination)
+
+                item(
+                    selected = selected,
+                    onClick = {
+                        appState.navigateToTopLevelDestination(
+                            destination,
+                        )
+                    },
+                    icon = {
+                        Icon(
+                            imageVector = destination.unSelectedIcon,
+                            contentDescription = null,
+                        )
+                    },
+                    selectedIcon = {
+                        Icon(
+                            imageVector = destination.selectedIcon,
+                            contentDescription = null,
+                        )
+                    },
+                    label = {
+                        Text(stringResource(id = destination.iconTextId))
+                    },
+                    modifier = Modifier
+                        .testTag("EateliciousTestTag"),
                 )
             }
         },
-    ) { padding ->
-        Row(
-            modifier =
-            Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .consumeWindowInsets(padding)
-                .windowInsetsPadding(
-                    WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal),
-                ),
-        ) {
-            Column(Modifier.fillMaxSize()) {
-                NavigableCircuitContent(
-                    navigator = mainDetailNavigator,
-                    backStack = backstack,
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxHeight(),
-                )
+        windowAdaptiveInfo = windowAdaptiveInfo,
+    ) {
+        Scaffold(
+            modifier = modifier.semantics {
+                testTagsAsResourceId = true
+            },
+            containerColor = Color.Transparent,
+            contentColor = MaterialTheme.colorScheme.onBackground,
+            contentWindowInsets = WindowInsets(0, 0, 0, 0),
+            snackbarHost = { SnackbarHost(snackbarHostState) },
+        ) { paddingValues ->
+            Column(
+                Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .consumeWindowInsets(paddingValues)
+                    .windowInsetsPadding(
+                        WindowInsets.safeDrawing.only(
+                            WindowInsetsSides.Horizontal,
+                        ),
+                    ),
+            ) {
+                // Show the top app bar on top level destinations.
+                val destination = appState.currentTopDestination
+                val shouldShowTopAppBar = destination != null
 
-//                EateliciousNavHost(
-//                    appState = appState,
-//                    onShowSnackbar = { message, action ->
-//                        snackBarStateHost.showSnackbar(
-//                            message = message,
-//                            actionLabel = action,
-//                            duration = SnackbarDuration.Short,
-//                        ) == SnackbarResult.ActionPerformed
-//                    })
+                if (destination != null) {
+                    EateliciousTopAppBar(
+                        titleRes = destination.titleTextId,
+                    )
+                }
+
+                Box(
+// Workaround for https://issuetracker.google.com/338478720
+                    modifier = Modifier.consumeWindowInsets(
+                        if (shouldShowTopAppBar) {
+                            WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
+                        } else {
+                            WindowInsets(0, 0, 0, 0)
+                        },
+                    ),
+                ) {
+                    EateliciousNavHost(
+                        appState = appState,
+                        onShowSnackbar = { message, action ->
+                            snackbarHostState.showSnackbar(
+                                message = message,
+                                actionLabel = action,
+                                duration = Short,
+                            ) == SnackbarResult.ActionPerformed
+                        },
+                    )
+                }
+
             }
         }
     }
+
 }
+
+private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TopLevelDestination) =
+    this?.hierarchy?.any {
+        it.route?.contains(destination.name, true) ?: false
+    } ?: false

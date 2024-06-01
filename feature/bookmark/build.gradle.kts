@@ -11,5 +11,4 @@ dependencies {
     implementation(project(":core:model"))
     implementation(libs.androidx.activity.compose)
     implementation(libs.compose.material3)
-    implementation(libs.circuit.foundation)
 }
