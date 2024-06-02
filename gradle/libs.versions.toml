@@ -15,7 +15,7 @@ androidx-splashScreen = "1.0.1"
 androidxWindowsSizeClass = "1.2.1"
 adaptive = "0.34.0"
 google-service = "4.4.2"
-firebase-bom = "33.0.0"
+firebase-bom = "33.1.0"
 
 ktor = "2.3.11"
 room = "2.6.1"
@@ -34,7 +34,7 @@ junit = "4.13.2"
 junit-ext = "1.1.5"
 turbine = "1.1.0"
 robolectric = "4.12.2"
-roborazzi = "1.18.0"
+roborazzi = "1.20.0"
 mockk = "1.13.11"
 
 # Instrumental Test
