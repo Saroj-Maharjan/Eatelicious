@@ -23,7 +23,7 @@ class SponcularRemoteService(
             is RecipeRequests.Random -> {
                 apiClient.getResponse<Response>(
                     endpoint =
-                    SponcularEndpoints.getRandomRecipe(),
+                    SponcularEndpoints.getRandomRecipes(),
                     params = getParams(request),
                 ).map { response ->
                     Log.i("APIResponse", "fetch: $response")
@@ -34,6 +34,13 @@ class SponcularRemoteService(
             is RecipeRequests.Search -> {
                 apiClient.getResponse(
                     endpoint = SponcularEndpoints.search(),
+                    params = getParams(request),
+                )
+            }
+
+            is RecipeRequests.RecipeInformation -> {
+                apiClient.getResponse(
+                    endpoint = SponcularEndpoints.getRecipe(),
                     params = getParams(request),
                 )
             }
@@ -60,6 +67,13 @@ class SponcularRemoteService(
                     OFFSET to request.offset,
                 )
             }
+
+            is RecipeRequests.RecipeInformation -> {
+                mapOf(
+                    ID to request.id,
+                    INCLUDENUTRITION to request.includeNutrition,
+                )
+            }
         }
 
         return initialParams
@@ -72,5 +86,7 @@ class SponcularRemoteService(
         private const val CUISINE = "cuisine"
         private const val ADDRECIPEINFORMATION = "addRecipeInfo"
         private const val OFFSET = "number"
+        private const val ID = "id"
+        private const val INCLUDENUTRITION = "includeNutrition"
     }
 }

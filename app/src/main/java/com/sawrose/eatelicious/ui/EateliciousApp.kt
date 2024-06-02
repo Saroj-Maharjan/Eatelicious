@@ -20,6 +20,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.WindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
@@ -58,7 +59,11 @@ fun EateliciousApp(
     }
 }
 
-@OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
+@OptIn(
+    ExperimentalComposeUiApi::class,
+    ExperimentalMaterial3Api::class,
+    ExperimentalMaterial3AdaptiveApi::class
+)
 @Composable
 internal fun EateliciousApp(
     appState: EatecliciousAppState,

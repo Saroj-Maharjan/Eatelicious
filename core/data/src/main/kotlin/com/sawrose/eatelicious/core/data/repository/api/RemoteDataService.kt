@@ -1,6 +1,4 @@
-package com.sawrose.eatelicious.commons.data
-
-import com.sawrose.eatelicious.core.model.Recipe
+package com.sawrose.eatelicious.core.data.repository.api
 
 /**
  * Defines the data layer for requesting information
@@ -10,5 +8,5 @@ interface RemoteDataService<Request, Data> {
     /**
      * Make an asynchronous request of [Data]
      * */
-    suspend fun fetch(request: Request): Result<List<Recipe>>
+    suspend fun fetch(request: Request): Result<Data>
 }

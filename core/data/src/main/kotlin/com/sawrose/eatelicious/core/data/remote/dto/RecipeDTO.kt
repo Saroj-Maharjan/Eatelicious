@@ -41,17 +41,3 @@ data class RecipeDTO(
     @SerialName("creditsText")
     val creditsText: String,
 )
-
-fun RecipeDTO.toRecipe(): Recipe {
-    return Recipe(
-        id = id,
-        name = title,
-        image = image,
-        spoonacularScore = healthScore.toDouble(),
-        servings = servings,
-        step = analyzedInstructions.first().steps.map { it.step },
-        ingredientOriginalString = extendedIngredients.map { it.original },
-        summary = summary,
-        saved = false,
-    )
-}

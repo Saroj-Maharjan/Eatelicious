@@ -5,10 +5,12 @@ import androidx.lifecycle.viewModelScope
 import com.sawrose.eatelicious.core.data.repository.request.RecipeRequests
 import com.sawrose.eatelicious.core.domain.usecase.GetRecipeUsecase
 import com.sawrose.eatelicious.core.model.Recipe
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.time.Duration
 
 class DiscoverViewmodel(
     private val getRecipeUsecase: GetRecipeUsecase,
@@ -27,6 +29,10 @@ class DiscoverViewmodel(
             getRecipeUsecase(RecipeRequests.Random(10, "breakfast"))
                 .collect { recipes ->
                     if (recipes.isEmpty()) {
+                        _discoveruiState.update {
+                            DiscoverUIState.Loading
+                        }
+                        delay(4000L)
                         _discoveruiState.update {
                             DiscoverUIState.Error("No recipes found")
                         }

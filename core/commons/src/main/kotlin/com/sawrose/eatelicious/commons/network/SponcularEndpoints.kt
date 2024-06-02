@@ -11,6 +11,18 @@ object SponcularEndpoints {
     fun search() =
         "/recipes/complexsearch?apiKey=$apiKey"
 
-    fun getRandomRecipe() =
+    fun getRandomRecipes() =
         "/recipes/random?apiKey=$apiKey"
+
+    fun getRecipe() =
+        "/recipes/{id}/information?apiKey=$apiKey"
+
+    fun getMealsPlan() =
+        "mealplanner/generate?apiKey=$apiKey"
+
+    fun getAvailableCuisines() =
+        "recipes/cuisines?apiKey=$apiKey"
+
+    fun getIngredients() =
+        "food/ingredients/search?apiKey=$apiKey"
 }

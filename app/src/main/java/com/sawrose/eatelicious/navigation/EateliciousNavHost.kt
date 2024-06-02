@@ -22,7 +22,7 @@ fun EateliciousNavHost(
     modifier: Modifier = Modifier,
     startDestination: String = DISCOVER_ROUTE,
 ) {
-    val navController = rememberNavController()
+    val navController = appState.navController
 
     NavHost(
         navController = navController,

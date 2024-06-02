@@ -7,6 +7,7 @@ import com.sawrose.eatelicious.core.data.repository.request.RecipeRequests
 import com.sawrose.eatelicious.core.data.repository.service.LocalRecipeService
 import com.sawrose.eatelicious.core.model.Recipe
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 
@@ -31,6 +32,13 @@ class RoomRecipeService(
                 database.recipeTable.getRecipes().map {
                     mapper.mapFromEntityList(it)
                 }
+            }
+
+            is RecipeRequests.RecipeInformation -> {
+                flowOf()
+//                database.recipeTable.getRecipe(request.id).map {
+//                    listOf(mapper.mapFromEntity(it))
+//                }
             }
         }
     }
