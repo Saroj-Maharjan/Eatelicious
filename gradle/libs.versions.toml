@@ -15,7 +15,7 @@ androidx-splashScreen = "1.0.1"
 androidxWindowsSizeClass = "1.2.1"
 adaptive = "0.34.0"
 google-service = "4.4.1"
-firebase-bom = "33.0.0"
+firebase-bom = "33.1.0"
 
 ktor = "2.3.11"
 room = "2.6.1"
