@@ -39,7 +39,7 @@ junit = "4.13.2"
 junit-ext = "1.1.5"
 turbine = "1.1.0"
 robolectric = "4.12.2"
-roborazzi = "1.18.0"
+roborazzi = "1.20.0"
 mockk = "1.13.11"
 
 # Instrumental Test

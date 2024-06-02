@@ -15,6 +15,7 @@
 /captures
 .externalNativeBuild
 .cxx
+/venv/
 local.properties
 
 # Project exclude paths
