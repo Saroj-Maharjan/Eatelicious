@@ -26,7 +26,7 @@ fun HomeIngredient(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier.background(Color.DarkGray)
+        modifier.background(Color.DarkGray),
     ) {
         Text(
             "Search for ingredients",
@@ -56,7 +56,7 @@ fun HomeIngredient(
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.White,
             ),
-            shape = MaterialTheme.shapes.small
+            shape = MaterialTheme.shapes.small,
         ) {
             Text(
                 "View all ingredients",
@@ -64,7 +64,5 @@ fun HomeIngredient(
                 color = Color.Black,
             )
         }
-
     }
-
 }

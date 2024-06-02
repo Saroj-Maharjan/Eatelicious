@@ -59,8 +59,8 @@ fun TrackDisposableJank(
 /**
  * Track jank while scrolling anything that's scrollable.
  */
-//@Composable
-//fun TrackScrollJank(scrollableState: ScrollableState, stateName: String) {
+// @Composable
+// fun TrackScrollJank(scrollableState: ScrollableState, stateName: String) {
 //    TrackJank(scrollableState) { metricsHolder ->
 //        snapshotFlow { scrollableState.isScrollInProgress }.collect { isScrollInProgress ->
 //            metricsHolder.state?.apply {
@@ -72,4 +72,4 @@ fun TrackDisposableJank(
 //            }
 //        }
 //    }
-//}
+// }

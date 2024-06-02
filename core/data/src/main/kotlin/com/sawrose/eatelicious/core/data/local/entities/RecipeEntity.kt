@@ -2,7 +2,6 @@ package com.sawrose.eatelicious.core.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.sawrose.eatelicious.core.model.Recipe
 
 @Entity(
     tableName = "Recipes",

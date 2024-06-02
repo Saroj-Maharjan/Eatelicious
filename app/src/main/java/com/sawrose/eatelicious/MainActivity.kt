@@ -35,9 +35,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val appState = rememberEatecliciousAppState()
-            CompositionLocalProvider(
-
-            ) {
+            CompositionLocalProvider {
                 EateliciousTheme {
                     EateliciousApp(
                         appState,

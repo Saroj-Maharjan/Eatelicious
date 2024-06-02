@@ -19,6 +19,6 @@ sealed interface RecipeRequests {
 
     data class RecipeInformation(
         val id: Int,
-        val includeNutrition:Boolean
-    ): RecipeRequests
+        val includeNutrition: Boolean,
+    ) : RecipeRequests
 }

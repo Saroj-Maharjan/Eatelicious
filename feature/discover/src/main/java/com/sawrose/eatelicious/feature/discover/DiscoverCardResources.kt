@@ -64,7 +64,7 @@ fun DiscoverCardResources(
                 BookmarkButton(
                     recipe.saved,
                     {},
-                    Modifier.align(Alignment.TopEnd)
+                    Modifier.align(Alignment.TopEnd),
                 )
             }
             Column(
@@ -147,7 +147,6 @@ fun DiscoverHeaderImage(
             contentDescription = null,
         )
     }
-
 }
 
 @Composable
@@ -173,7 +172,6 @@ fun BookmarkButton(
             )
         },
     )
-
 }
 
 @Preview(showBackground = true, showSystemUi = true)

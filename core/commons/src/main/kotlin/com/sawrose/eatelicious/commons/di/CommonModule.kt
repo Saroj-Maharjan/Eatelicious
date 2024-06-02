@@ -27,7 +27,6 @@ fun provideOnFrameListener(): JankStats.OnFrameListener = JankStats.OnFrameListe
     }
 }
 
-
 fun provideWindow(activity: Activity): Window = activity.window
 
 fun provideJankStats(window: Window, frameListener: JankStats.OnFrameListener): JankStats {

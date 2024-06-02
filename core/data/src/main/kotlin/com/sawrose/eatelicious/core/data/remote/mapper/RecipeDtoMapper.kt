@@ -8,7 +8,7 @@ class RecipeDtoMapper : EntityMapper<RecipeDTO, Recipe> {
     override fun mapFromEntity(entity: RecipeDTO): Recipe {
         return Recipe(
             id = entity.id,
-            name = entity.title,
+            title = entity.title,
             image = entity.image,
             spoonacularScore = entity.healthScore.toDouble(),
             servings = entity.servings,

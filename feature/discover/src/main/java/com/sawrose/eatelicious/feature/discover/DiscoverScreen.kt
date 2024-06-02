@@ -67,7 +67,7 @@ fun DiscoverScreen(
         LazyColumn(
             modifier = Modifier
                 .statusBarsPadding()
-                .padding(start = 8.dp, end = 8.dp)
+                .padding(start = 8.dp, end = 8.dp),
         ) {
             item { HeaderTitle() }
             item {
@@ -105,7 +105,9 @@ fun DailyInspiration(
 ) {
     LazyRow(
         contentPadding = PaddingValues(
-            8.dp, 8.dp, 16.dp,
+            8.dp,
+            8.dp,
+            16.dp,
         ),
     ) {
         items(recipes) { recipe ->

@@ -1,6 +1,5 @@
 package com.sawrose.eatelicious.core.data.remote.dto
 
-import com.sawrose.eatelicious.core.model.Recipe
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
