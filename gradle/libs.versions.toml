@@ -17,7 +17,7 @@ adaptive = "0.34.0"
 google-service = "4.4.2"
 firebase-bom = "33.1.0"
 
-ktor = "2.3.11"
+ktor = "2.3.12"
 room = "2.6.1"
 spatia-room = "0.2.9"
 koin = "3.5.6"
