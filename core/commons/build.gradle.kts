@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.sawrose.eatelicious.eatelicious.commons"
+    namespace = "com.sawrose.eatelicious.core.commons"
 
     defaultConfig {
         val properties = Properties()
@@ -28,4 +28,5 @@ android {
 dependencies {
     implementation(project(":core:logging"))
     implementation(libs.androidx.metrics)
+    implementation(libs.mobilenativefoundation.store)
 }

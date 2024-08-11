@@ -63,6 +63,8 @@ dependencies {
     implementation(projects.core.designsystem)
     implementation(projects.core.model)
     implementation(projects.core.logging)
+    implementation(projects.data.recipe)
+    implementation(projects.data.cuisine)
 
     implementation(projects.feature.discover)
     implementation(projects.feature.bookmark)
@@ -94,6 +96,10 @@ dependencies {
 
     implementation(libs.kotlinx.coroutines.android)
     testImplementation(libs.kotlinx.coroutines.test)
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.analytics)
 
     testImplementation(libs.junit)
 

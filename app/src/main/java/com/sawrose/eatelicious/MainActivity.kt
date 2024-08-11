@@ -5,12 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.metrics.performance.JankStats
 import com.sawrose.eatelicious.core.designsystem.theme.EateliciousTheme
 import com.sawrose.eatelicious.ui.EateliciousApp
-import com.sawrose.eatelicious.ui.rememberEatecliciousAppState
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -34,11 +34,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            val appState = rememberEatecliciousAppState()
+            val windowSizeClass = calculateWindowSizeClass(activity = this)
             CompositionLocalProvider {
                 EateliciousTheme {
                     EateliciousApp(
-                        appState,
+                        windowSize = windowSizeClass,
                     )
                 }
             }
@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun setupSplashScreen() {
-        //        Waiting util the data is loaded.
+        //        Waiting util the randomRecipe is loaded.
         installSplashScreen().setKeepOnScreenCondition(::shouldKeepSplashOpen)
     }
 }

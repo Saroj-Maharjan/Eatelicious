@@ -2,6 +2,7 @@ package com.sawrose.eatelicious.core.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.sawrose.eatelicious.core.data.local.dao.CuisineDao
 import com.sawrose.eatelicious.core.data.local.dao.RecipeDao
 import com.sawrose.eatelicious.core.data.local.entities.CuisineEntity
 import com.sawrose.eatelicious.core.data.local.entities.IngredientEntity
@@ -18,4 +19,5 @@ import com.sawrose.eatelicious.core.data.local.entities.RecipeEntity
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract val recipeTable: RecipeDao
+    abstract val cuisineTable: CuisineDao
 }

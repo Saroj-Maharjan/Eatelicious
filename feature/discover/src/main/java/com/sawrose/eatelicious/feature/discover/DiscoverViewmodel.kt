@@ -2,17 +2,21 @@ package com.sawrose.eatelicious.feature.discover
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sawrose.eatelicious.core.data.repository.request.RecipeRequests
+import com.sawrose.eatelicious.core.domain.repository.cuisine.CuisineRequest
+import com.sawrose.eatelicious.core.domain.repository.recipe.RecipeRequests
+import com.sawrose.eatelicious.core.domain.usecase.GetCuisineUsecase
 import com.sawrose.eatelicious.core.domain.usecase.GetRecipeUsecase
+import com.sawrose.eatelicious.core.model.Cuisine
 import com.sawrose.eatelicious.core.model.Recipe
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DiscoverViewmodel(
     private val getRecipeUsecase: GetRecipeUsecase,
+    private val getCuisineUsecase: GetCuisineUsecase,
 ) : ViewModel() {
 
     private val _discoveruiState: MutableStateFlow<DiscoverUIState> =
@@ -20,27 +24,24 @@ class DiscoverViewmodel(
     val discoveruiState = _discoveruiState.asStateFlow()
 
     init {
-        getReceipes()
+        getAllReceipes()
     }
 
-    private fun getReceipes() {
+    private fun getAllReceipes() {
         viewModelScope.launch {
             getRecipeUsecase(RecipeRequests.Random(10, "breakfast"))
-                .collect { recipes ->
-                    if (recipes.isEmpty()) {
-                        _discoveruiState.update {
-                            DiscoverUIState.Loading
-                        }
-                        delay(4000L)
-                        _discoveruiState.update {
-                            DiscoverUIState.Error("No recipes found")
-                        }
-                    } else {
-                        _discoveruiState.update {
-                            DiscoverUIState.Success(recipes)
-                        }
+                .combine(
+                    getCuisineUsecase(CuisineRequest.Search),
+                ) { recipe, cuisine ->
+                    _discoveruiState.update {
+                        DiscoverUIState.Success(recipe, cuisine)
                     }
                 }
+//                .onStart {
+//                    _discoveruiState.update {
+//                        DiscoverUIState.Loading
+//                    }
+//                }
         }
     }
 
@@ -53,10 +54,14 @@ class DiscoverViewmodel(
     }
 }
 
-sealed class DiscoverUIState {
-    data object Loading : DiscoverUIState()
-    data class Success(val data: List<Recipe>) : DiscoverUIState()
-    data class Error(val message: String) : DiscoverUIState()
+sealed interface DiscoverUIState {
+    data object Loading : DiscoverUIState
+    data class Success(
+        val randomRecipe: List<Recipe>,
+        val cuisineList: List<Cuisine>,
+    ) : DiscoverUIState
+
+    data class Error(val message: String) : DiscoverUIState
 }
 
 sealed class DiscoverEvent {

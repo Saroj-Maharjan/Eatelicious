@@ -1,17 +1,17 @@
 [versions]
-agp = "8.4.1"
+agp = "8.5.2"
 coil = "2.6.0"
-kotlin = "2.0.0"
-ksp = "2.0.0-1.0.21"
+kotlin = "2.0.10"
+ksp = "2.0.10-1.0.24"
 androidDesugarJdkLibs = "2.0.4"
 
-androidxAndroidCompose = "1.9.0"
+androidxAndroidCompose = "1.9.1"
 androidxCoreKtx = "1.13.1"
 androidxMetrics = "1.0.0-beta01"
-androidxNavigation = "2.8.0-beta02"
-androidxComposeMaterial3Adaptive = "1.0.0-beta01"
-androidxComposeMaterial3AdaptiveNavigationSuite = "1.3.0-beta01"
-compose-bom = "2024.05.00"
+androidxNavigation = "2.8.0-beta07"
+androidxComposeMaterial3Adaptive = "1.0.0-beta04"
+androidxComposeMaterial3AdaptiveNavigationSuite = "1.3.0-beta05"
+compose-bom = "2024.06.00"
 dokka = "1.9.20"
 kotlinxCoroutines = "1.8.1"
 kotlinx-datetime = "0.6.0"
@@ -19,31 +19,33 @@ androidx-splashScreen = "1.0.1"
 androidxWindowsSizeClass = "1.2.1"
 adaptive = "0.34.0"
 google-service = "4.4.2"
-firebase-bom = "33.1.0"
+firebase-bom = "33.1.2"
 
-ktor = "2.3.11"
+ktor = "2.3.12"
 room = "2.6.1"
-spatia-room = "0.2.9"
+menuprovider = "1.4.0"
+mongoDriver = "1.7.2"
+spatia-room = "0.3.0"
 koin = "3.5.6"
 koin-compose = "3.5.6"
 store = "5.0.0"
-androidxLifecycle = "2.8.1"
+androidxLifecycle = "2.8.4"
 circuit = "0.20.0"
 
 startupRuntime = "1.1.1"
-workRuntimeKtx = "2.9.0"
+workRuntimeKtx = "2.9.1"
 secrets = "2.0.1"
 
 #Unit test
 junit = "4.13.2"
-junit-ext = "1.1.5"
+junit-ext = "1.2.1"
 turbine = "1.1.0"
 robolectric = "4.12.2"
 roborazzi = "1.20.0"
 mockk = "1.13.11"
 
 # Instrumental Test
-espresso-core = "3.5.1"
+espresso-core = "3.6.1"
 
 [libraries]
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
@@ -83,6 +85,12 @@ androidx-metrics = { group = "androidx.metrics", name = "metrics-performance", v
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
 androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxNavigation" }
 
+# mongo db
+mongodb-driver-kotlin = { group = "org.mongodb", name = "mongodb-driver-kotlin", version = "mongoDriver" }
+
+# menu provider
+compose-menuprovider = { group = "io.github.boswelja.menuprovider", name = "material3", version.ref = "menuprovider" }
+
 # sync
 androidx-startup-runtime = { group = "androidx.startup", name = "startup-runtime", version.ref = "startupRuntime" }
 androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workRuntimeKtx" }
@@ -117,6 +125,8 @@ mobilenativefoundation-store = { module = "org.mobilenativefoundation.store:stor
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
 
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
 
 # Unit Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }

@@ -34,3 +34,6 @@ local.properties
 /feature/compose-logviewer/build
 /feature/discover/build
 /feature/mealplan/build
+/.idea
+/data/recipe/build
+/data/cuisine/build

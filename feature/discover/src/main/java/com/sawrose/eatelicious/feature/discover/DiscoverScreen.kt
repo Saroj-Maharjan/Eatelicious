@@ -1,5 +1,6 @@
 package com.sawrose.eatelicious.feature.discover
 
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.ReportDrawnWhen
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
@@ -44,9 +45,9 @@ internal fun DiscoverRoute(
         }
 
         is DiscoverUIState.Success -> {
-            AnimatedVisibility(visible = uiState.data.isNotEmpty()) {
+            AnimatedVisibility(visible = uiState.randomRecipe.isNotEmpty()) {
                 DiscoverScreen(
-                    recipes = uiState.data,
+                    recipes = uiState.randomRecipe,
                     onRecipeClicked = onRecipeClicked,
                     handleEvent = handleEvent,
                 )

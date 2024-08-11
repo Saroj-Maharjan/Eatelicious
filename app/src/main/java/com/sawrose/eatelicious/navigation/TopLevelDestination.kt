@@ -4,34 +4,23 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BlurOn
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.EventNote
-import androidx.compose.material.icons.outlined.BlurOn
-import androidx.compose.material.icons.outlined.Bookmark
-import androidx.compose.material.icons.outlined.EventNote
-import androidx.compose.ui.graphics.vector.ImageVector
 import com.sawrose.eatelicious.R
+import com.sawrose.eatelicious.core.designsystem.navigation.NavigationItem
 
-enum class TopLevelDestination(
-    val selectedIcon: ImageVector,
-    val unSelectedIcon: ImageVector,
-    val iconTextId: Int,
-    val titleTextId: Int,
-) {
-    DISCOVER(
-        selectedIcon = Icons.Filled.BlurOn,
-        unSelectedIcon = Icons.Outlined.BlurOn,
-        iconTextId = R.string.discover,
-        titleTextId = R.string.discover,
+val navigationItems = listOf(
+    NavigationItem(
+        icon = Icons.Filled.BlurOn,
+        labelRes = R.string.discover,
+        route = "discover",
     ),
-    BOOKMARK(
-        selectedIcon = Icons.Filled.Bookmark,
-        unSelectedIcon = Icons.Outlined.Bookmark,
-        iconTextId = R.string.Bookmark,
-        titleTextId = R.string.Bookmark,
+    NavigationItem(
+        icon = Icons.Filled.Bookmark,
+        labelRes = R.string.Bookmark,
+        route = "bookmark",
     ),
-    MEAL_PLAN(
-        selectedIcon = Icons.Filled.EventNote,
-        unSelectedIcon = Icons.Outlined.EventNote,
-        iconTextId = R.string.MealPlan,
-        titleTextId = R.string.MealPlan,
+    NavigationItem(
+        icon = Icons.Filled.EventNote,
+        labelRes = R.string.MealPlan,
+        route = "meal_plan",
     ),
-}
+)

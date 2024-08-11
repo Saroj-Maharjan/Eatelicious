@@ -2,14 +2,11 @@ package com.sawrose.eatelicious.core.data.local.mapper
 
 import com.sawrose.eatelicious.commons.utils.EntityMapper
 import com.sawrose.eatelicious.core.data.local.entities.RecipeEntity
-import com.sawrose.eatelicious.core.model.AnalyzedInstructionsItem
-import com.sawrose.eatelicious.core.model.ExtendedIngredientsItem
 import com.sawrose.eatelicious.core.model.Recipe
-import com.sawrose.eatelicious.core.model.StepsItem
 
 const val SEPERATOR = "_"
 
-class RecipeMapper : EntityMapper<RecipeEntity, Recipe> {
+class RecipeEntityMapper : EntityMapper<RecipeEntity, Recipe> {
     override fun mapFromEntity(entity: RecipeEntity): Recipe {
         return Recipe(
             id = entity.id,
@@ -31,21 +28,8 @@ class RecipeMapper : EntityMapper<RecipeEntity, Recipe> {
             creditsText = entity.creditsText,
             readyInMinutes = entity.readyInMinutes,
             summary = entity.summary,
-            analyzedInstructions = entity.step.split(SEPERATOR).map { step ->
-                AnalyzedInstructionsItem(
-                    steps = listOf(
-                        StepsItem(
-                            step = step,
-                        ),
-                    ),
-                )
-            },
-            extendedIngredients = entity.ingredientOriginalString.split(SEPERATOR)
-                .map { ingredient ->
-                    ExtendedIngredientsItem(
-                        originalString = ingredient,
-                    )
-                },
+            analyzedInstructions = entity.step.split(SEPERATOR),
+            extendedIngredients = entity.ingredientOriginalString.split(SEPERATOR),
             saved = false,
         )
     }

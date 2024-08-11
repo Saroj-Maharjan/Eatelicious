@@ -72,7 +72,7 @@ fun DiscoverCardResources(
                     .padding(16.dp),
             ) {
                 Text(
-                    text = recipe.name,
+                    text = "${recipe.readyInMinutes} MIN",
                     style = MaterialTheme.typography.bodyMedium,
                     maxLines = 1,
                     textAlign = TextAlign.Start,
@@ -80,15 +80,24 @@ fun DiscoverCardResources(
                     modifier = Modifier
                         .fillMaxWidth(),
                 )
+
                 Text(
-                    "${recipe.servings} servings",
-                    style = MaterialTheme.typography.bodySmall,
+                    text = recipe.title,
+                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 1,
+                    textAlign = TextAlign.Start,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                )
+                Text(
+                    "by ${recipe.sourceName}",
+                    style = MaterialTheme.typography.labelMedium,
                     fontWeight = FontWeight.Light,
                     fontStyle = FontStyle.Normal,
                     maxLines = 1,
                     textAlign = TextAlign.Start,
                     modifier = Modifier
-                        .padding(4.dp)
                         .fillMaxWidth(),
                 )
             }
@@ -181,12 +190,25 @@ private fun DiscoverRowPreview() {
         DiscoverCardResources(
             recipe = Recipe(
                 id = 1,
-                name = "Recipe Name",
+                title = "Recipe Name",
+                sourceName = "Test source",
                 image = "https://via.placeholder.com/150",
                 spoonacularScore = 4.5,
                 servings = 4,
-                ingredientOriginalString = emptyList(),
-                step = emptyList(),
+                sustainable = false,
+                glutenFree = false,
+                dairyFree = false,
+                vegan = false,
+                cheap = false,
+                vegetarian = false,
+                veryHealthy = false,
+                veryPopular = false,
+                healthScore = 4.5,
+                aggregateLikes = 100,
+                creditsText = "Credits Text",
+                readyInMinutes = 30,
+                extendedIngredients = emptyList(),
+                analyzedInstructions = emptyList(),
                 summary = "Recipe Summary",
             ),
             modifier = Modifier

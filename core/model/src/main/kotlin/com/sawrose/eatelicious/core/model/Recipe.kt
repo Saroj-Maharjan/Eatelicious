@@ -20,12 +20,7 @@ data class Recipe(
     val creditsText: String,
     val readyInMinutes: Int,
     val summary: String,
-    val analyzedInstructions: List<AnalyzedInstructionsItem>,
-    val extendedIngredients: List<ExtendedIngredientsItem>,
+    val analyzedInstructions: List<String>,
+    val extendedIngredients: List<String>,
     var saved: Boolean = false,
 )
-
-data class AnalyzedInstructionsItem(val steps: List<StepsItem>? = null)
-data class StepsItem(val step: String? = null)
-
-data class ExtendedIngredientsItem(val originalString: String? = null)

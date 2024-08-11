@@ -25,7 +25,7 @@ fun IngredientItem(
     Column(
         Modifier
             .clickable {
-                onIngredientSearch(ingredient.ingredient)
+                onIngredientSearch(ingredient.title)
             },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -38,7 +38,7 @@ fun IngredientItem(
             DiscoverHeaderImage(imageUrl = "")
         }
         Text(
-            text = ingredient.ingredient,
+            text = ingredient.title,
             style = MaterialTheme.typography.bodySmall,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(4.dp, 16.dp),

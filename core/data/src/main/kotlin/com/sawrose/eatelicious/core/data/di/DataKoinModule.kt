@@ -2,25 +2,24 @@ package com.sawrose.eatelicious.core.data.di
 
 import androidx.room.Room
 import com.sawrose.eatelicious.core.data.local.AppDatabase
-import com.sawrose.eatelicious.core.data.local.mapper.RecipeMapper
-import com.sawrose.eatelicious.core.data.remote.BaseKtorClient
-import com.sawrose.eatelicious.core.data.remote.SponcularApiClient
-import com.sawrose.eatelicious.core.data.remote.mapper.RecipeDtoMapper
-import com.sawrose.eatelicious.core.data.repository.RecipeRepository
-import com.sawrose.eatelicious.core.data.repository.service.LocalRecipeService
-import com.sawrose.eatelicious.core.data.repository.service.RemoteRecipeService
-import com.sawrose.eatelicious.core.data.service.StoreRecipeService
-import com.sawrose.eatelicious.core.data.service.local.RoomRecipeService
-import com.sawrose.eatelicious.core.data.service.remote.SponcularRemoteService
+import com.sawrose.eatelicious.core.data.local.mapper.CuisineEntityMapper
+import com.sawrose.eatelicious.core.data.local.mapper.RecipeEntityMapper
+import com.sawrose.eatelicious.core.data.remote.ApiStateProvider
+import com.sawrose.eatelicious.core.data.remote.SpooncularApiStateProvider
+import com.sawrose.eatelicious.core.data.remote.getHttpClient
 import org.koin.android.ext.koin.androidContext
-import org.koin.core.module.dsl.bind
+import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val dataKoinModule = module {
-    single<BaseKtorClient> {
-        SponcularApiClient
-    }
+    // API state
+    singleOf(::SpooncularApiStateProvider) bind ApiStateProvider::class
+
+    //Ktor Client
+    singleOf(::getHttpClient)
+
 
     single {
         Room.databaseBuilder(
@@ -32,11 +31,8 @@ val dataKoinModule = module {
     }
 
     single { get<AppDatabase>().recipeTable }
+    single { get<AppDatabase>().cuisineTable }
 
-    singleOf(::RecipeMapper)
-    singleOf(::RecipeDtoMapper)
-
-    singleOf(::SponcularRemoteService) { bind<RemoteRecipeService>() }
-    singleOf(::RoomRecipeService) { bind<LocalRecipeService>() }
-    singleOf(::StoreRecipeService) { bind<RecipeRepository>() }
+    factoryOf(::CuisineEntityMapper)
+    factoryOf(::RecipeEntityMapper)
 }
