@@ -38,7 +38,7 @@ roborazzi = "1.20.0"
 mockk = "1.13.11"
 
 # Instrumental Test
-espresso-core = "3.5.1"
+espresso-core = "3.6.1"
 
 [libraries]
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
