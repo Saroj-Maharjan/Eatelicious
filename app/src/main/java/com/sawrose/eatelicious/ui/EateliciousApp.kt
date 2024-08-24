@@ -1,6 +1,6 @@
 package com.sawrose.eatelicious.ui
 
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.SnackbarDuration.Short
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
@@ -12,7 +12,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.util.fastFirstOrNull
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -42,10 +41,7 @@ fun EateliciousApp(
     }
 }
 
-@OptIn(
-    ExperimentalComposeUiApi::class,
-    ExperimentalMaterial3Api::class,
-)
+
 @Composable
 internal fun EateliciousApp(
     snackbarHostState: SnackbarHostState,
@@ -72,7 +68,7 @@ internal fun EateliciousApp(
         ) {
             NavigationDrawerLayout(
                 drawerHeaderContent = {
-                    DrawerSection()
+                    DrawerSection(navController)
                 },
                 onNavigationItemClick = {
                     navController.navigate(it.route)
@@ -87,6 +83,7 @@ internal fun EateliciousApp(
                 ) {
                     provideMenuProvider()
                     EateliciousNavHost(
+                        Modifier.padding(it),
                         navController,
                         onShowSnackbar = { message, action ->
                             snackbarHostState.showSnackbar(

@@ -1,10 +1,12 @@
 package com.sawrose.eatelicious.core.logging
 
+import com.sawrose.eatelicious.core.model.LogLevel
+
 typealias Extras = Map<String, String>
 class Heartwood private constructor() {
 
     interface Bark {
-        fun log(priority: LogPriority, tag: String?, extras: Extras?, message: String)
+        fun log(priority: LogLevel, tag: String?, extras: Extras?, message: String)
     }
 
     companion object : Bark {
@@ -14,7 +16,7 @@ class Heartwood private constructor() {
             barks.add(bark)
         }
 
-        override fun log(priority: LogPriority, tag: String?, extras: Extras?, message: String) {
+        override fun log(priority: LogLevel, tag: String?, extras: Extras?, message: String) {
             barks.forEach { it.log(priority, tag, extras, message) }
         }
     }
@@ -32,7 +34,7 @@ enum class LogPriority(val priority: Int) {
  * Bark out a message into the world for all to hear.
  */
 inline fun Any.bark(
-    priority: LogPriority = LogPriority.DEBUG,
+    priority: LogLevel = LogLevel.Debug,
     /**
      * If provided, the log will use this tag instead of the simple class name of `this` at the call
      * site.
@@ -53,7 +55,7 @@ inline fun Any.bark(
  */
 inline fun bark(
     tag: String,
-    priority: LogPriority = LogPriority.DEBUG,
+    priority: LogLevel = LogLevel.Debug,
     throwable: Throwable? = null,
     extras: Extras? = null,
     message: () -> String,

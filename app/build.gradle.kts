@@ -1,8 +1,9 @@
-import java.util.Properties
+import com.sawrose.eatelicious.EateliciousBuildType
 
 plugins {
     alias(libs.plugins.eatelicious.android.application)
     alias(libs.plugins.eatelicious.android.application.compose)
+    alias(libs.plugins.eatelicious.android.application.firebase)
     alias(libs.plugins.eatelicious.android.application.flavors)
     alias(libs.plugins.eatelicious.android.koin)
 }
@@ -25,12 +26,12 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix =
-                com.sawrose.eatelicious.EateliciousBuildType.DEBUG.applicationIdSuffix
+                EateliciousBuildType.DEBUG.applicationIdSuffix
         }
         val release by getting {
             isMinifyEnabled = true
             applicationIdSuffix =
-                com.sawrose.eatelicious.EateliciousBuildType.RELEASE.applicationIdSuffix
+                EateliciousBuildType.RELEASE.applicationIdSuffix
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
@@ -63,12 +64,15 @@ dependencies {
     implementation(projects.core.designsystem)
     implementation(projects.core.model)
     implementation(projects.core.logging)
+
     implementation(projects.data.recipe)
     implementation(projects.data.cuisine)
+    implementation(projects.data.logs)
 
     implementation(projects.feature.discover)
     implementation(projects.feature.bookmark)
     implementation(projects.feature.mealplan)
+    implementation(projects.feature.composeLogviewer)
 
     implementation(libs.androidx.splash.screen)
     implementation(libs.androidx.core.ktx)
@@ -93,6 +97,7 @@ dependencies {
     testImplementation(libs.androidx.navigation.testing)
 
     implementation(libs.androidx.metrics)
+    implementation(libs.kotlinx.datetime)
 
     implementation(libs.kotlinx.coroutines.android)
     testImplementation(libs.kotlinx.coroutines.test)

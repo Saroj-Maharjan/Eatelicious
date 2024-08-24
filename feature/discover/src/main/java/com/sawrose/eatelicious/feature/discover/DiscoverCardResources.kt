@@ -39,10 +39,15 @@ import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import com.sawrose.eatelicious.core.designsystem.component.EateliciousIconToggleButton
 import com.sawrose.eatelicious.core.model.Recipe
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Composable
 fun DiscoverCardResources(
     recipe: Recipe,
+    onShowSnackbar: suspend (String, String?) -> Boolean,
+    onRecipeClicked: (recipe: Recipe) -> Unit,
     handleEvent: (DiscoverEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -52,7 +57,10 @@ fun DiscoverCardResources(
             defaultElevation = 8.dp,
         ),
         onClick = {
-            handleEvent(DiscoverEvent.OnRecipeClicked(recipe))
+            CoroutineScope(Dispatchers.IO).launch {
+                onShowSnackbar("Recipe Clicked: ${recipe.title}", null)
+                onRecipeClicked(recipe)
+            }
         },
         modifier = modifier
             .width(250.dp)
@@ -214,6 +222,8 @@ private fun DiscoverRowPreview() {
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(1f),
+            onShowSnackbar = { _, _ -> true },
+            onRecipeClicked = {},
             handleEvent = {},
         )
     }

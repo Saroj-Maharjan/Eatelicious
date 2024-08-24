@@ -30,8 +30,12 @@ dependencyResolutionManagement {
 
 rootProject.name = "Eatelicious"
 include(":app")
-include(":data:recipe")
-include(":data:cuisine")
+include(
+    ":data:bookmark",
+    ":data:recipe",
+    ":data:cuisine",
+    ":data:logs",
+)
 
 include(":core:commons")
 include(":core:data")

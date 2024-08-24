@@ -1,7 +1,7 @@
 package com.sawrose.eatelicious.feature.discover.navigation
 
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
@@ -14,12 +14,16 @@ import org.koin.androidx.compose.koinViewModel
 const val DISCOVER_ROUTE = "discover"
 fun NavController.navigateToDiscover(navOptions: NavOptions) = navigate(DISCOVER_ROUTE, navOptions)
 
-fun NavGraphBuilder.discoverScreen(onRecipeClicked: (Recipe) -> Unit) {
+fun NavGraphBuilder.discoverScreen(
+    onShowSnackbar: suspend (String, String?) -> Boolean,
+    onRecipeClicked: (Recipe) -> Unit,
+) {
     composable(DISCOVER_ROUTE) {
         val viewmodel: DiscoverViewmodel = koinViewModel()
-        val uiState by viewmodel.discoveruiState.collectAsState()
+        val uiState by viewmodel.discoveruiState.collectAsStateWithLifecycle()
         DiscoverRoute(
             uiState,
+            onShowSnackbar,
             onRecipeClicked,
             viewmodel::handleEvent,
         )

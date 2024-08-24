@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.eatelicious.android.library)
     alias(libs.plugins.eatelicious.android.library.compose)
@@ -7,6 +9,19 @@ plugins {
 
 android {
     namespace = "com.sawrose.eatelicious.data.recipe"
+    defaultConfig {
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+        buildConfigField(
+            "String",
+            "SPOONCULAR_API_KEY",
+            "\"${properties.getProperty("sponcular_api")}\"",
+        )
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {

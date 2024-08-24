@@ -8,6 +8,7 @@ import com.sawrose.eatelicious.feature.bookmark.navigation.bookmarkScreen
 import com.sawrose.eatelicious.feature.discover.navigation.DISCOVER_ROUTE
 import com.sawrose.eatelicious.feature.discover.navigation.discoverScreen
 import com.sawrose.eatelicious.feature.mealplan.navigation.mealPlanScreen
+import com.sawrose.eatelicious.feature.navigation.logfileScreen
 
 /**
  * The navigation graph defined in this file defines the different top level routes. Navigation
@@ -15,9 +16,9 @@ import com.sawrose.eatelicious.feature.mealplan.navigation.mealPlanScreen
  * */
 @Composable
 fun EateliciousNavHost(
+    modifier: Modifier = Modifier,
     navController: NavHostController,
     onShowSnackbar: suspend (String, String?) -> Boolean,
-    modifier: Modifier = Modifier,
     startDestination: String = DISCOVER_ROUTE,
 ) {
 
@@ -26,8 +27,13 @@ fun EateliciousNavHost(
         startDestination = startDestination,
         modifier = modifier,
     ) {
-        discoverScreen(onRecipeClicked = {})
+        discoverScreen(
+            onShowSnackbar = onShowSnackbar,
+            onRecipeClicked = {},
+        )
         bookmarkScreen()
         mealPlanScreen()
+
+        logfileScreen()
     }
 }

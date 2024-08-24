@@ -26,7 +26,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:logging"))
+    implementation(projects.core.model)
     implementation(libs.androidx.metrics)
     implementation(libs.mobilenativefoundation.store)
+    implementation(libs.coil.compose)
 }

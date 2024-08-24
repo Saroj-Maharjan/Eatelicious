@@ -33,6 +33,93 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284891828669:android:39f048b232d5fd700a42d4",
+        "android_client_info": {
+          "package_name": "com.sawrose.eatelicious.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284891828669-gmrkvj3lhpg6i3mm3arqv7377jpr0g5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2tGNHepJLEW9z2hlsNCuK0Q7OgXkHscw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284891828669-gmrkvj3lhpg6i3mm3arqv7377jpr0g5k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284891828669:android:39f048b232d5fd700a42d4",
+        "android_client_info": {
+          "package_name": "com.sawrose.eatelicious.demo.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284891828669-gmrkvj3lhpg6i3mm3arqv7377jpr0g5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2tGNHepJLEW9z2hlsNCuK0Q7OgXkHscw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284891828669-gmrkvj3lhpg6i3mm3arqv7377jpr0g5k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284891828669:android:39f048b232d5fd700a42d4",
+        "android_client_info": {
+          "package_name": "com.sawrose.eatelicious.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284891828669-gmrkvj3lhpg6i3mm3arqv7377jpr0g5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2tGNHepJLEW9z2hlsNCuK0Q7OgXkHscw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284891828669-gmrkvj3lhpg6i3mm3arqv7377jpr0g5k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

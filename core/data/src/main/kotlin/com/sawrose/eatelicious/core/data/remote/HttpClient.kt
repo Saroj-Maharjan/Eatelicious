@@ -140,6 +140,7 @@ suspend inline fun <reified T : Any> HttpClient.getResponse(
     params: RemoteParams = emptyMap(),
 ): Result<T> {
     return try {
+        Log.d("HttpClient", "getResponse: $endpoint")
         val apiResult: T = get(endpoint) {
             addParams(params)
         }.body()

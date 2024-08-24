@@ -1,8 +1,10 @@
 package com.sawrose.eatelicious.feature.discover
 
-import androidx.activity.compose.BackHandler
+import android.util.Log
 import androidx.activity.compose.ReportDrawnWhen
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -28,10 +30,10 @@ import com.sawrose.eatelicious.core.model.Recipe
 @Composable
 internal fun DiscoverRoute(
     uiState: DiscoverUIState,
+    onShowSnackbar: suspend (String, String?) -> Boolean,
     onRecipeClicked: (Recipe) -> Unit,
     handleEvent: (DiscoverEvent) -> Unit,
 ) {
-    // This code should be called when the UI is ready for use and relates to Time To Full Display.
     ReportDrawnWhen { uiState !is DiscoverUIState.Loading }
     when (uiState) {
         is DiscoverUIState.Loading -> {
@@ -45,9 +47,18 @@ internal fun DiscoverRoute(
         }
 
         is DiscoverUIState.Success -> {
-            AnimatedVisibility(visible = uiState.randomRecipe.isNotEmpty()) {
+            Log.d(
+                "DiscoverRoute",
+                "DiscoverUIState.Success: ${uiState.randomRecipe.size} | ${uiState.cuisineList.size}",
+            )
+            AnimatedVisibility(
+                visible = uiState.randomRecipe.isNotEmpty(),
+                enter = EnterTransition.None,
+                exit = fadeOut(),
+            ) {
                 DiscoverScreen(
                     recipes = uiState.randomRecipe,
+                    onShowSnackbar = onShowSnackbar,
                     onRecipeClicked = onRecipeClicked,
                     handleEvent = handleEvent,
                 )
@@ -59,6 +70,7 @@ internal fun DiscoverRoute(
 @Composable
 fun DiscoverScreen(
     recipes: List<Recipe>,
+    onShowSnackbar: suspend (String, String?) -> Boolean,
     onRecipeClicked: (Recipe) -> Unit,
     handleEvent: (DiscoverEvent) -> Unit,
 ) {
@@ -70,12 +82,17 @@ fun DiscoverScreen(
                 .statusBarsPadding()
                 .padding(start = 8.dp, end = 8.dp),
         ) {
+            item { HomeIngredient(emptyList(), {}, {}) }
+            item { Spacer(modifier = Modifier.padding(16.dp)) }
             item { HeaderTitle() }
             item {
-                DailyInspiration(recipes = recipes, handleEvent = handleEvent)
+                DailyInspiration(
+                    recipes = recipes,
+                    onShowSnackbar,
+                    onRecipeClicked,
+                    handleEvent = handleEvent,
+                )
             }
-            item { Spacer(modifier = Modifier.padding(16.dp)) }
-            item { HomeIngredient(emptyList(), {}, {}) }
             item { Spacer(modifier = Modifier.padding(16.dp)) }
         }
     }
@@ -101,19 +118,24 @@ fun HeaderTitle() {
 @Composable
 fun DailyInspiration(
     recipes: List<Recipe>,
+    onShowSnackbar: suspend (String, String?) -> Boolean,
+    onRecipeClicked: (Recipe) -> Unit,
     handleEvent: (DiscoverEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyRow(
+        modifier = modifier,
         contentPadding = PaddingValues(
             8.dp,
             8.dp,
             16.dp,
         ),
     ) {
-        items(recipes) { recipe ->
+        items(recipes, key = { it.id }) { recipe ->
             DiscoverCardResources(
                 recipe = recipe,
+                onShowSnackbar = onShowSnackbar,
+                onRecipeClicked = onRecipeClicked,
                 handleEvent = handleEvent,
             )
         }

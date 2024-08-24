@@ -1,7 +1,6 @@
 package com.sawrose.eatelicious.data.recipe.impl
 
 import android.util.Log
-import com.sawrose.eatelicious.core.commons.BuildConfig
 import com.sawrose.eatelicious.core.data.remote.RemoteParams
 import com.sawrose.eatelicious.core.data.remote.dto.Response
 import com.sawrose.eatelicious.core.data.remote.dto.toRecipe
@@ -9,10 +8,11 @@ import com.sawrose.eatelicious.core.data.remote.getResponse
 import com.sawrose.eatelicious.core.domain.repository.recipe.RecipeRequests
 import com.sawrose.eatelicious.core.domain.repository.recipe.RemoteRecipeService
 import com.sawrose.eatelicious.core.model.Recipe
+import com.sawrose.eatelicious.data.recipe.BuildConfig
 import io.ktor.client.HttpClient
 
 /**
- *  Implementation of [RemoteService] that fetches data from the Spoonacular API.
+ *  Implementation of [RemoteRecipeService] that fetches data from the Spoonacular API.
  *  */
 class RecipeRemoteService(
     private val client: HttpClient,

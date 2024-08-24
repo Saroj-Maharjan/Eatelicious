@@ -1,11 +1,13 @@
 package com.sawrose.eatelicious.data.recipe.impl
 
 import android.util.Log
-import com.sawrose.eatelicious.core.model.Recipe
 import com.sawrose.eatelicious.core.domain.repository.recipe.LocalRecipeService
 import com.sawrose.eatelicious.core.domain.repository.recipe.RecipeRepository
 import com.sawrose.eatelicious.core.domain.repository.recipe.RecipeRequests
 import com.sawrose.eatelicious.core.domain.repository.recipe.RemoteRecipeService
+import com.sawrose.eatelicious.core.logging.bark
+import com.sawrose.eatelicious.core.model.LogLevel
+import com.sawrose.eatelicious.core.model.Recipe
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
@@ -16,11 +18,11 @@ import org.mobilenativefoundation.store.store5.StoreReadRequest
 import org.mobilenativefoundation.store.store5.StoreReadResponse
 
 class RecipeStoreService(
-    private val remoteService: com.sawrose.eatelicious.core.domain.repository.recipe.RemoteRecipeService,
-    private val localService: com.sawrose.eatelicious.core.domain.repository.recipe.LocalRecipeService,
-) : com.sawrose.eatelicious.core.domain.repository.recipe.RecipeRepository {
+    private val remoteService: RemoteRecipeService,
+    private val localService: LocalRecipeService,
+) : RecipeRepository {
 
-    private val store = StoreBuilder.from<com.sawrose.eatelicious.core.domain.repository.recipe.RecipeRequests, Result<List<Recipe>>, List<Recipe>>(
+    private val store = StoreBuilder.from<RecipeRequests, Result<List<Recipe>>, List<Recipe>>(
         fetcher = Fetcher.of { request ->
             remoteService.fetch(request)
         },
@@ -32,14 +34,12 @@ class RecipeStoreService(
                 recipes.fold(
                     onSuccess = {
                         localService.insert(it)
-                        Log.i("StoreRecipeService", "Inserting the database: $it")
+                        bark { "Inserting the database: $it" }
                     },
                     onFailure = {
-                        Log.e(
-                            "StoreRecipeService",
-                            "Error writing data to local source of truth",
-                            it,
-                        )
+                        bark(LogLevel.Error, throwable = it) {
+                            "Error writing data to local source of truth"
+                        }
                     },
                 )
             },
@@ -47,7 +47,7 @@ class RecipeStoreService(
     ).build()
 
     override fun stream(
-        request: com.sawrose.eatelicious.core.domain.repository.recipe.RecipeRequests,
+        request: RecipeRequests,
         refreshCache: Boolean,
     ): Flow<List<Recipe>> {
         return store.stream(

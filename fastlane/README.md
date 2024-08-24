@@ -29,7 +29,15 @@ Runs all the tests
 [bundle exec] fastlane android beta
 ```
 
-Submit a new Beta Build to Crashlytics Beta
+Submit a new Beta Build to firebase App Disribution Beta
+
+### android screenshots
+
+```sh
+[bundle exec] fastlane android screenshots
+```
+
+Generate app screenshots that will be uploaded to play store
 
 ### android deploy
 

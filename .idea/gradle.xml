@@ -32,7 +32,9 @@
             <option value="$PROJECT_DIR$/core/logging" />
             <option value="$PROJECT_DIR$/core/model" />
             <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/data/bookmark" />
             <option value="$PROJECT_DIR$/data/cuisine" />
+            <option value="$PROJECT_DIR$/data/logs" />
             <option value="$PROJECT_DIR$/data/recipe" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/bookmark" />

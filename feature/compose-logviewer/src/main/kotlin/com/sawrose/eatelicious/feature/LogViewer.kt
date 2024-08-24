@@ -6,11 +6,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.selection.SelectionContainer
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -22,17 +24,62 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sawrose.eatelicious.core.model.LogLevel
+import com.sawrose.eatelicious.core.model.LogLine
 import com.sawrose.eatelicious.feature.parser.DefaultLogParser
-import com.sawrose.eatelicious.feature.parser.LogLevel
-import com.sawrose.eatelicious.feature.parser.LogLine
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+
+
+@Composable
+fun LogScreen(
+    viewState: LogFileUIState,
+    modifier: Modifier = Modifier,
+) {
+
+    when (viewState) {
+        is LogFileUIState.Loading -> {
+            Box(modifier = Modifier.fillMaxSize()) {
+
+                CircularProgressIndicator(
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }
+        }
+
+        is LogFileUIState.Empty -> {
+            Box {
+                Text(text = viewState.message)
+            }
+        }
+
+        is LogFileUIState.Success -> {
+            LogViewer(
+                logContents = buildList {
+                    viewState.logs.forEach { logLine ->
+                        add(
+                            buildString {
+                                append(logLine.timestamp)
+                                append(" ")
+                                append("[${logLine.level}]")
+                                append(" ")
+                                append(logLine.content)
+                            },
+                        )
+                    }
+                },
+                modifier = modifier,
+            )
+        }
+    }
+}
 
 /**
  * A Composable that can be used to display log-style text.

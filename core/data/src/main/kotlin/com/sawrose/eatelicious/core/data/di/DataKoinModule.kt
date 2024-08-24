@@ -2,7 +2,11 @@ package com.sawrose.eatelicious.core.data.di
 
 import androidx.room.Room
 import com.sawrose.eatelicious.core.data.local.AppDatabase
+import com.sawrose.eatelicious.core.data.local.dao.CuisineDao
+import com.sawrose.eatelicious.core.data.local.dao.FileLogDao
+import com.sawrose.eatelicious.core.data.local.dao.RecipeDao
 import com.sawrose.eatelicious.core.data.local.mapper.CuisineEntityMapper
+import com.sawrose.eatelicious.core.data.local.mapper.LogEntityMapper
 import com.sawrose.eatelicious.core.data.local.mapper.RecipeEntityMapper
 import com.sawrose.eatelicious.core.data.remote.ApiStateProvider
 import com.sawrose.eatelicious.core.data.remote.SpooncularApiStateProvider
@@ -21,18 +25,20 @@ val dataKoinModule = module {
     singleOf(::getHttpClient)
 
 
-    single {
+    single<AppDatabase> {
         Room.databaseBuilder(
             androidContext(),
             AppDatabase::class.java,
-            "eatelicious-db",
+            "eatelicious.db",
         )
             .build()
     }
 
-    single { get<AppDatabase>().recipeTable }
-    single { get<AppDatabase>().cuisineTable }
+    single<RecipeDao> { get<AppDatabase>().recipeTable }
+    single<CuisineDao> { get<AppDatabase>().cuisineTable }
+    single<FileLogDao> { get<AppDatabase>().logTable }
 
     factoryOf(::CuisineEntityMapper)
     factoryOf(::RecipeEntityMapper)
+    factoryOf(::LogEntityMapper)
 }

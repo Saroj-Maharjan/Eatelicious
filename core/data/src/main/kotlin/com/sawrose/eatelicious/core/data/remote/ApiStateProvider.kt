@@ -47,5 +47,5 @@ sealed class Authorisation {
 
 internal class SpooncularApiStateProvider: ApiStateProvider {
     override var serverAddress: String? = SponcularEndpoints.baseUrl
-    override var authorisation: Authorisation? =Authorisation.ApiKey(SponcularEndpoints.apiKey)
+    override var authorisation: Authorisation? = Authorisation.ApiKey(SponcularEndpoints.apiKey)
 }
