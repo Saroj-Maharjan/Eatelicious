@@ -6,7 +6,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.sawrose.eatelicious.feature.LogFileViewmodel
 import com.sawrose.eatelicious.feature.LogScreen
-import com.sawrose.eatelicious.feature.LogViewer
 import org.koin.androidx.compose.koinViewModel
 
 const val LOGFILE_ROUTE = "logfile"
@@ -18,6 +17,5 @@ fun NavGraphBuilder.logfileScreen() {
         LogScreen(
             viewState = viewstate,
         )
-
     }
 }

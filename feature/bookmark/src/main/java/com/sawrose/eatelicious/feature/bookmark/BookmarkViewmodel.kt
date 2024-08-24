@@ -2,7 +2,6 @@ package com.sawrose.eatelicious.feature.bookmark
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
@@ -19,7 +18,6 @@ class BookmarkViewmodel : ViewModel() {
             BookmarkUIState.Loading,
         )
 }
-
 
 sealed interface BookmarkUIState {
     data object Loading : BookmarkUIState

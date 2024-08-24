@@ -4,9 +4,7 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-
 
 /**
  * Describes a single item in the navigation drawer displayed in navigation-related UI.
@@ -37,7 +35,6 @@ internal val LocalSelectedNavigationItem = compositionLocalOf<NavigationItem?> {
     null
 }
 
-
 /**
  * Provides the navigation items to the children composables.
  *
@@ -53,15 +50,13 @@ fun ProvideNavigationItems(
     bottomNavigationItems: List<NavigationItem>,
     navigationRailItems: List<NavigationItem>,
     navigationDrawerItems: List<NavigationItem>,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
-
     CompositionLocalProvider(
         LocalSelectedNavigationItem provides selectedNavigationItem,
         LocalBottomNavigationItems provides bottomNavigationItems,
         LocalNavigationRailItems provides navigationRailItems,
         LocalNavigationDrawerItems provides navigationDrawerItems,
-        content = content
+        content = content,
     )
-
 }

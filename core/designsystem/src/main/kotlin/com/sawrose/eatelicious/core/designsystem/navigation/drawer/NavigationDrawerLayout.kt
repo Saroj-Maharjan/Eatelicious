@@ -31,7 +31,7 @@ fun NavigationDrawerLayout(
     selectedItem: NavigationItem? = LocalSelectedNavigationItem.current,
     drawerItems: List<NavigationItem> = LocalNavigationDrawerItems.current,
     navigationMode: NavigationMode = LocalNavigationMode.current,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     if (navigationMode.primaryNavigationMode == PrimaryNavigationMode.Permanent) {
         PermanentNavigationDrawer(
@@ -41,23 +41,23 @@ fun NavigationDrawerLayout(
                         items = drawerItems,
                         selectedItem = selectedItem,
                         onItemClick = onNavigationItemClick,
-                        headerContent = drawerHeaderContent
+                        headerContent = drawerHeaderContent,
                     )
                 }
             },
             content = content,
-            modifier = modifier
+            modifier = modifier,
         )
     } else {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val controller = remember(drawerState) {
             ModalDrawerController(
-                openDrawer = drawerState::open
+                openDrawer = drawerState::open,
             )
         }
         val coroutineScope = rememberCoroutineScope()
         CompositionLocalProvider(
-            LocalModalDrawerController provides controller
+            LocalModalDrawerController provides controller,
         ) {
             ModalNavigationDrawer(
                 drawerContent = {
@@ -69,13 +69,13 @@ fun NavigationDrawerLayout(
                                 onNavigationItemClick(it)
                                 coroutineScope.launch { drawerState.close() }
                             },
-                            headerContent = drawerHeaderContent
+                            headerContent = drawerHeaderContent,
                         )
                     }
                 },
                 drawerState = drawerState,
                 content = content,
-                modifier = modifier
+                modifier = modifier,
             )
         }
     }

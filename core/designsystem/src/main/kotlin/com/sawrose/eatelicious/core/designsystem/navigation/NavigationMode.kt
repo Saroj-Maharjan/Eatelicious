@@ -21,7 +21,7 @@ data class NavigationMode(
  */
 enum class PrimaryNavigationMode {
     Modal,
-    Permanent
+    Permanent,
 }
 
 /**
@@ -30,7 +30,7 @@ enum class PrimaryNavigationMode {
 enum class SecondaryNavigationMode {
     None,
     Bar,
-    Rail
+    Rail,
 }
 
 /**

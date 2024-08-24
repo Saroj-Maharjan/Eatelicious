@@ -37,30 +37,27 @@ import com.sawrose.eatelicious.feature.parser.DefaultLogParser
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
-
 @Composable
 fun LogScreen(
-    viewState: LogFileUIState,
+    viewState: LogFileViewstate,
     modifier: Modifier = Modifier,
 ) {
-
     when (viewState) {
-        is LogFileUIState.Loading -> {
+        is LogFileViewstate.Loading -> {
             Box(modifier = Modifier.fillMaxSize()) {
-
                 CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center)
+                    modifier = Modifier.align(Alignment.Center),
                 )
             }
         }
 
-        is LogFileUIState.Empty -> {
+        is LogFileViewstate.Empty -> {
             Box {
                 Text(text = viewState.message)
             }
         }
 
-        is LogFileUIState.Success -> {
+        is LogFileViewstate.Success -> {
             LogViewer(
                 logContents = buildList {
                     viewState.logs.forEach { logLine ->

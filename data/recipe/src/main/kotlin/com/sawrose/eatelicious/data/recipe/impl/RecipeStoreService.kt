@@ -1,6 +1,5 @@
 package com.sawrose.eatelicious.data.recipe.impl
 
-import android.util.Log
 import com.sawrose.eatelicious.core.domain.repository.recipe.LocalRecipeService
 import com.sawrose.eatelicious.core.domain.repository.recipe.RecipeRepository
 import com.sawrose.eatelicious.core.domain.repository.recipe.RecipeRequests

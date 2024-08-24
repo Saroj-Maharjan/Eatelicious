@@ -13,7 +13,7 @@ import androidx.navigation.NavHostController
 @Composable
 fun DrawerSection(
     navHostController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier.aspectRatio(2.2f),
@@ -22,9 +22,8 @@ fun DrawerSection(
         Column {
             Text("Eatelicious")
         }
-        Button(onClick = {navHostController.navigate("logfile") }) {
+        Button(onClick = { navHostController.navigate("logfile") }) {
             Text("Show Logs")
         }
-
     }
 }

@@ -34,7 +34,7 @@ fun BackNavigationScaffold(
     containerColor: Color = MaterialTheme.colorScheme.background,
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
-    content: @Composable (PaddingValues) -> Unit
+    content: @Composable (PaddingValues) -> Unit,
 ) {
     val topBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     Scaffold(
@@ -44,7 +44,7 @@ fun BackNavigationScaffold(
                 title = title,
                 menuHost = menuHost,
                 onNavigateBack = onNavigateBack,
-                scrollBehavior = topBarScrollBehavior
+                scrollBehavior = topBarScrollBehavior,
             )
         },
         bottomBar = bottomBar,

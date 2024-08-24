@@ -9,5 +9,4 @@ class GetCuisineUsecase(
 
     operator fun invoke(request: CuisineRequest) =
         repository.stream(request)
-
 }

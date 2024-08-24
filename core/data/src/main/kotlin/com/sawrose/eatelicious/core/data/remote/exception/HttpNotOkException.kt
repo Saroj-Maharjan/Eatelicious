@@ -14,13 +14,13 @@ import java.io.IOException
 open class HttpNotOkException(
     val code: Int,
     val description: String,
-    cause: Throwable? = null
+    cause: Throwable? = null,
 ) : IOException(description, cause) {
     override fun equals(other: Any?): Boolean {
         return if (other is HttpNotOkException) {
             code == other.code &&
-                    description == other.description &&
-                    cause == other.cause
+                description == other.description &&
+                cause == other.cause
         } else {
             super.equals(other)
         }
@@ -39,7 +39,7 @@ open class HttpNotOkException(
 class RedirectResponseException(
     code: Int,
     description: String,
-    cause: Throwable? = null
+    cause: Throwable? = null,
 ) : HttpNotOkException(code, description, cause) {
     init {
         require(code in VALID_RANGE) { "Invalid redirect response code $code" }
@@ -56,7 +56,7 @@ class RedirectResponseException(
 open class ClientRequestException(
     code: Int,
     description: String,
-    cause: Throwable? = null
+    cause: Throwable? = null,
 ) : HttpNotOkException(code, description, cause) {
     init {
         require(code in VALID_RANGE) { "Invalid client request code $code" }
@@ -72,7 +72,7 @@ open class ClientRequestException(
  */
 class ClientUnauthorizedException(
     description: String,
-    cause: Throwable? = null
+    cause: Throwable? = null,
 ) : ClientRequestException(UNAUTHORIZED_STATUS_CODE, description, cause) {
     companion object {
         private const val UNAUTHORIZED_STATUS_CODE = 401
@@ -85,7 +85,7 @@ class ClientUnauthorizedException(
 class ServerResponseException(
     code: Int,
     description: String,
-    cause: Throwable? = null
+    cause: Throwable? = null,
 ) : HttpNotOkException(code, description, cause) {
     init {
         require(code in VALID_RANGE) { "Invalid server response code $code" }

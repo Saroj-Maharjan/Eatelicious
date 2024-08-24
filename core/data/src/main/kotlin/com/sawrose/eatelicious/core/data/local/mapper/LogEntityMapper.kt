@@ -4,12 +4,12 @@ import com.sawrose.eatelicious.commons.utils.EntityMapper
 import com.sawrose.eatelicious.core.data.local.entities.FileLogEntity
 import com.sawrose.eatelicious.core.model.LogLine
 
-class LogEntityMapper: EntityMapper<FileLogEntity, LogLine> {
+class LogEntityMapper : EntityMapper<FileLogEntity, LogLine> {
     override fun mapFromEntity(entity: FileLogEntity): LogLine {
         return LogLine(
             level = entity.level,
             timestamp = entity.timestamp,
-            content = entity.content
+            content = entity.content,
         )
     }
 
@@ -17,7 +17,7 @@ class LogEntityMapper: EntityMapper<FileLogEntity, LogLine> {
         return FileLogEntity(
             level = domain.level,
             timestamp = domain.timestamp,
-            content = domain.content
+            content = domain.content,
         )
     }
 }

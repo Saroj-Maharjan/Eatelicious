@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.sawrose.eatelicious.core.data.local.entities.CuisineEntity
-import com.sawrose.eatelicious.core.model.Cuisine
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -21,9 +21,8 @@ val dataKoinModule = module {
     // API state
     singleOf(::SpooncularApiStateProvider) bind ApiStateProvider::class
 
-    //Ktor Client
+    // Ktor Client
     singleOf(::getHttpClient)
-
 
     single<AppDatabase> {
         Room.databaseBuilder(

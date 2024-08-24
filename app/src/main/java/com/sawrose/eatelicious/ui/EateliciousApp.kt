@@ -6,7 +6,6 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.derivedStateOf
@@ -29,24 +28,20 @@ import com.sawrose.eatelicious.navigation.provideMenuProvider
 @Composable
 fun EateliciousApp(
     modifier: Modifier = Modifier,
-    windowSize: WindowSizeClass,
 ) {
     ScreenBackground(modifier) {
         val snackBarStateHost = remember { SnackbarHostState() }
 
         EateliciousApp(
             snackbarHostState = snackBarStateHost,
-            windowSize = windowSize,
         )
     }
 }
-
 
 @Composable
 internal fun EateliciousApp(
     snackbarHostState: SnackbarHostState,
     modifier: Modifier = Modifier,
-    windowSize: WindowSizeClass,
 ) {
     val navController = rememberNavController()
     val currentBackstackEntry by navController.currentBackStackEntryAsState()
@@ -74,7 +69,6 @@ internal fun EateliciousApp(
                     navController.navigate(it.route)
                 },
             ) {
-
                 NavigationSuiteScaffold(
                     title = { Text(text = selectedDestination?.route ?: "Eatelicious") },
                     onNavigate = {
@@ -83,7 +77,7 @@ internal fun EateliciousApp(
                 ) {
                     provideMenuProvider()
                     EateliciousNavHost(
-                        Modifier.padding(it),
+                        modifier.padding(it),
                         navController,
                         onShowSnackbar = { message, action ->
                             snackbarHostState.showSnackbar(
@@ -96,6 +90,5 @@ internal fun EateliciousApp(
                 }
             }
         }
-
     }
 }

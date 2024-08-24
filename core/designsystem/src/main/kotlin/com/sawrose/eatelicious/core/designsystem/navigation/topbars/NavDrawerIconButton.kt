@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 @Composable
 internal fun NavDrawerIconButton(
     drawerController: ModalDrawerController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val coroutineScope = rememberCoroutineScope()
     IconButton(
@@ -22,7 +22,7 @@ internal fun NavDrawerIconButton(
                 drawerController.openDrawer()
             }
         },
-        modifier = modifier
+        modifier = modifier,
     ) {
         Icon(Icons.Default.Menu, contentDescription = "TODO")
     }

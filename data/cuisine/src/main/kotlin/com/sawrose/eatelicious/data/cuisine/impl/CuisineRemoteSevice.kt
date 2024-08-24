@@ -1,8 +1,8 @@
 package com.sawrose.eatelicious.data.cuisine.impl
 
-import com.sawrose.eatelicious.core.model.Cuisine
 import com.sawrose.eatelicious.core.domain.repository.cuisine.CuisineRemoteService
 import com.sawrose.eatelicious.core.domain.repository.cuisine.CuisineRequest
+import com.sawrose.eatelicious.core.model.Cuisine
 import io.ktor.client.HttpClient
 
 class CuisineRemoteSevice(

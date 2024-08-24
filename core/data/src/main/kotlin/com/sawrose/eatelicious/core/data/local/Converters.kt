@@ -14,5 +14,4 @@ class Converters {
     fun dateToTimestamp(instant: Instant?): Long? {
         return instant?.toEpochMilliseconds()
     }
-
 }

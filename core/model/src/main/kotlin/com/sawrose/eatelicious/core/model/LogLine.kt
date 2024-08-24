@@ -17,7 +17,7 @@ data class LogLine(
     val level: LogLevel?,
     val timestamp: Instant,
     val content: String,
-){
+) {
     /**
      * Returns a string representation of the log entry.
      */

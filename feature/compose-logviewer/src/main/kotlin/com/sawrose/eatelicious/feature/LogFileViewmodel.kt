@@ -12,18 +12,17 @@ class LogFileViewmodel(
     logRepository: LogsRepository,
 ) : ViewModel() {
 
-    val viewState: StateFlow<LogFileUIState> = logRepository.getAllLogs()
+    val viewState: StateFlow<LogFileViewstate> = logRepository.getAllLogs()
         .map { logs ->
             if (logs.isEmpty()) {
-                LogFileUIState.Empty("No Logs has been found")
+                LogFileViewstate.Empty("No Logs has been found")
             } else {
-                LogFileUIState.Success(logs)
+                LogFileViewstate.Success(logs)
             }
-
         }
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000L),
-            initialValue = LogFileUIState.Loading,
+            initialValue = LogFileViewstate.Loading,
         )
 }

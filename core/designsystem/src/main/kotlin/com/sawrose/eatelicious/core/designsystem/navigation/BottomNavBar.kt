@@ -12,7 +12,7 @@ internal fun BottomNavBar(
     items: List<NavigationItem>,
     selectedItem: NavigationItem?,
     onItemClick: (NavigationItem) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     NavigationBar(modifier = modifier) {
         Spacer(Modifier.width(8.dp))
@@ -20,7 +20,7 @@ internal fun BottomNavBar(
             BottomNavigationItem(
                 item = item,
                 selected = item == selectedItem,
-                onClick = { onItemClick(item) }
+                onClick = { onItemClick(item) },
             )
         }
         Spacer(Modifier.width(8.dp))

@@ -29,7 +29,7 @@ internal fun ColumnScope.NavigationDrawerContent(
             onClick = {
                 onItemClick(item)
             },
-            modifier = Modifier.padding(horizontal = 12.dp)
+            modifier = Modifier.padding(horizontal = 12.dp),
         )
     }
 }
@@ -39,13 +39,13 @@ internal fun NavigationDrawerItem(
     item: NavigationItem,
     selected: Boolean,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     NavigationDrawerItem(
         icon = { Icon(item.icon, contentDescription = null) },
         label = { Text(stringResource(item.labelRes)) },
         selected = selected,
         onClick = onClick,
-        modifier = modifier
+        modifier = modifier,
     )
 }

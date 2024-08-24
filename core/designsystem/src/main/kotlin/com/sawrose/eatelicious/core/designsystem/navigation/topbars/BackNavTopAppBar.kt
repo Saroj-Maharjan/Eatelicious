@@ -23,7 +23,7 @@ fun BackNavTopAppBar(
     onNavigateBack: () -> Unit,
     modifier: Modifier = Modifier,
     menuHost: MenuHost = LocalMenuHost.current,
-    scrollBehavior: TopAppBarScrollBehavior? = null
+    scrollBehavior: TopAppBarScrollBehavior? = null,
 ) {
     TopAppBar(
         title = title,
@@ -34,6 +34,6 @@ fun BackNavTopAppBar(
         },
         actions = { AnimatedTopAppBarMenuItems(menuHost = menuHost) },
         modifier = modifier,
-        scrollBehavior = scrollBehavior
+        scrollBehavior = scrollBehavior,
     )
 }

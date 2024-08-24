@@ -9,5 +9,4 @@ interface LogsRepository {
     suspend fun addLog(logLine: LogLine)
 
     suspend fun clearLogs()
-
 }

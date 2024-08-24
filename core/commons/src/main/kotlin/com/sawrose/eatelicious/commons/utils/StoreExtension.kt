@@ -25,7 +25,6 @@ fun <T> Flow<StoreReadResponse<T>>.filterForResults(): Flow<StoreReadResponse<T>
     it is StoreReadResponse.Loading || it is StoreReadResponse.NoNewData
 }
 
-
 @Suppress("NOTHING_TO_INLINE")
 inline fun <Key : Any, Local : Any, Output : Any> storeBuilder(
     fetcher: Fetcher<Key, Local>,
@@ -53,6 +52,5 @@ fun <Key : Any, Local : Any, Output : Any> SourceOfTruth<Key, Local, Output>.usi
         override fun reader(key: Key): Flow<Output?> {
             return wrapped.reader(key).flowOn(readDispatcher)
         }
-
     }
 }

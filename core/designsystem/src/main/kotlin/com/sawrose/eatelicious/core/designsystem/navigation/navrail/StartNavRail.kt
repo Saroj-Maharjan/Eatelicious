@@ -21,13 +21,13 @@ internal fun StartNavRail(
         header = {
             NavDrawerIconButton(drawerController)
         },
-        modifier = modifier
+        modifier = modifier,
     ) {
         items.forEach { item ->
             NavigationRailItem(
                 item = item,
                 selected = item == selectedItem,
-                onClick = { onItemClick(item) }
+                onClick = { onItemClick(item) },
             )
         }
     }

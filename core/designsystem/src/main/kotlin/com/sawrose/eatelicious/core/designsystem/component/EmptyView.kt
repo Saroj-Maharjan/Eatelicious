@@ -25,7 +25,6 @@ fun EmptyView(
     message: String,
     imageVector: ImageVector? = null,
 ) {
-
     ElevatedCard(
         modifier = modifier,
         shape = MaterialTheme.shapes.medium,

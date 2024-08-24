@@ -42,7 +42,7 @@ fun ErrorView(
             modifier = Modifier.fillMaxWidth(),
             style = MaterialTheme.typography.labelMedium,
             color = Color.Black,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
 
         Button(
@@ -55,11 +55,11 @@ fun ErrorView(
             onClick = onReload,
         ) {
             Row(
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
                     imageVector = Icons.Default.Refresh,
-                    contentDescription = null
+                    contentDescription = null,
                 )
 
                 Text(
@@ -67,7 +67,7 @@ fun ErrorView(
                     modifier = Modifier.padding(start = 4.dp),
                     style = MaterialTheme.typography.labelMedium,
                     color = Color.White,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
             }
         }

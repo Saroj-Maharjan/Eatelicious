@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 
 class AndroidBark(
-    private val logsRepository: LogsRepository
+    private val logsRepository: LogsRepository,
 ) : Heartwood.Bark {
 
     override fun log(priority: LogLevel, tag: String?, extras: Extras?, message: String) {

@@ -21,7 +21,6 @@ fun EateliciousNavHost(
     onShowSnackbar: suspend (String, String?) -> Boolean,
     startDestination: String = DISCOVER_ROUTE,
 ) {
-
     NavHost(
         navController = navController,
         startDestination = startDestination,

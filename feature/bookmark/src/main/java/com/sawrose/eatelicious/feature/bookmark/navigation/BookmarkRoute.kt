@@ -19,7 +19,7 @@ fun NavGraphBuilder.bookmarkScreen() {
 
         val uiState by viewmodel.uiState.collectAsStateWithLifecycle()
         BookmarkPage(
-            uiState = uiState
+            uiState = uiState,
         )
     }
 }

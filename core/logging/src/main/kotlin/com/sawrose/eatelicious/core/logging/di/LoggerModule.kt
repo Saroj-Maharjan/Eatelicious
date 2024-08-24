@@ -1,6 +1,8 @@
-package com.sawrose.eatelicious.core.logging
+package com.sawrose.eatelicious.core.logging.di
 
 import androidx.metrics.performance.JankStats
+import com.sawrose.eatelicious.core.logging.Heartwood
+import com.sawrose.eatelicious.core.logging.bark
 import com.sawrose.eatelicious.core.logging.logging.AndroidBark
 import com.sawrose.eatelicious.core.model.LogLevel
 import org.koin.core.module.dsl.singleOf

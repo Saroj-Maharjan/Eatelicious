@@ -72,6 +72,6 @@ fun RecipeDTO.toRecipe() =
         creditsText,
         readyInMinutes,
         summary,
-        analyzedInstructions.map{ it.steps.joinToString(SEPERATOR) },
+        analyzedInstructions.map { it.steps.joinToString(SEPERATOR) },
         extendedIngredients.filter { it.original.isNotEmpty() }.map { it.original },
     )

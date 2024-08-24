@@ -30,7 +30,6 @@ class DiscoverViewmodel(
     fun handleEvent(event: DiscoverEvent) {
         when (event) {
             is DiscoverEvent.OnRecipeClicked -> {
-
             }
         }
     }

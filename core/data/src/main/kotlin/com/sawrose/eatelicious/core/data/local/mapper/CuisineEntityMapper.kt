@@ -20,5 +20,4 @@ class CuisineEntityMapper : EntityMapper<CuisineEntity, Cuisine> {
             color = domain.color,
         )
     }
-
 }

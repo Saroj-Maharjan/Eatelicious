@@ -34,15 +34,12 @@ fun BookmarkPage(
 
     when (uiState) {
         BookmarkUIState.Loading -> {
-
         }
 
         is BookmarkUIState.Error -> {
-
         }
 
         is BookmarkUIState.Success -> {
-
             BookmarkScreen(
                 bookmarks = uiState.bookmarks,
             )

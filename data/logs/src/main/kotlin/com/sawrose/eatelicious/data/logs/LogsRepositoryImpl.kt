@@ -16,7 +16,6 @@ class LogsRepositoryImpl(
             mapper.mapFromEntityList(it)
         }
 
-
     override suspend fun addLog(logLine: LogLine) {
         logsDao.insertLog(mapper.mapToEntity(logLine))
     }
