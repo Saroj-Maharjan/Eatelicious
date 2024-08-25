@@ -1,6 +1,7 @@
 plugins {
-    id("eatelicious.android.feature")
-    id("eatelicious.android.library.compose")
+    alias(libs.plugins.eatelicious.android.feature)
+    alias(libs.plugins.eatelicious.android.library.compose)
+    alias(libs.plugins.eatelicious.android.koin)
 }
 
 android {
@@ -8,8 +9,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:model"))
+    implementation(projects.core.commons)
+    implementation(projects.core.model)
+    implementation(projects.core.data)
     implementation(libs.androidx.activity.compose)
     implementation(libs.compose.material3)
-    implementation(libs.circuit.foundation)
 }

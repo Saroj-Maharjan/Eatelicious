@@ -34,3 +34,12 @@ local.properties
 /feature/compose-logviewer/build
 /feature/discover/build
 /feature/mealplan/build
+/data/recipe/build
+/data/cuisine/build
+/.idea
+/app/build
+/data/logs/build
+/venv
+/fastlane
+app/google-services.json
+/.idea

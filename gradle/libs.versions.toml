@@ -1,13 +1,17 @@
 [versions]
-agp = "8.4.1"
+agp = "8.5.2"
 coil = "2.6.0"
-kotlin = "2.0.0"
-ksp = "2.0.0-1.0.21"
+kotlin = "2.0.20"
+ksp = "2.0.20-1.0.24"
 androidDesugarJdkLibs = "2.0.4"
 
-androidxAndroidCompose = "1.9.0"
+androidxAndroidCompose = "1.9.1"
 androidxCoreKtx = "1.13.1"
-compose-bom = "2024.05.00"
+androidxMetrics = "1.0.0-beta01"
+androidxNavigation = "2.8.0-rc01"
+androidxComposeMaterial3Adaptive = "1.0.0-rc01"
+androidxComposeMaterial3AdaptiveNavigationSuite = "1.3.0-rc01"
+compose-bom = "2024.08.00"
 dokka = "1.9.20"
 kotlinxCoroutines = "1.8.1"
 kotlinx-datetime = "0.6.0"
@@ -15,30 +19,36 @@ androidx-splashScreen = "1.0.1"
 androidxWindowsSizeClass = "1.2.1"
 adaptive = "0.34.0"
 google-service = "4.4.2"
-firebase-bom = "33.1.0"
+firebase-bom = "33.2.0"
+firebaseCrashlyticsPlugin = "3.0.2"
+firebasePerfPlugin = "1.4.2"
 
-ktor = "2.3.11"
+ktor = "2.3.12"
 room = "2.6.1"
-spatia-room = "0.2.9"
+menuprovider = "1.4.0"
+mongoDriver = "1.7.2"
+spatia-room = "0.3.0"
 koin = "3.5.6"
 koin-compose = "3.5.6"
 store = "5.0.0"
-androidxLifecycle = "2.8.1"
-circuit = "0.20.0"
+androidxLifecycle = "2.8.4"
+circuit = "0.23.1"
 
 startupRuntime = "1.1.1"
-workRuntimeKtx = "2.9.0"
+workRuntimeKtx = "2.9.1"
+secrets = "2.0.1"
+moduleGraph = "2.5.0"
 
 #Unit test
 junit = "4.13.2"
-junit-ext = "1.1.5"
+junit-ext = "1.2.1"
 turbine = "1.1.0"
 robolectric = "4.12.2"
 roborazzi = "1.20.0"
 mockk = "1.13.11"
 
 # Instrumental Test
-espresso-core = "3.5.1"
+espresso-core = "3.6.1"
 
 [libraries]
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
@@ -62,12 +72,27 @@ compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-material3-navigationSuite = { group = "androidx.compose.material3", name = "material3-adaptive-navigation-suite", version.ref = "androidxComposeMaterial3AdaptiveNavigationSuite" }
+androidx-compose-material3-adaptive = { group = "androidx.compose.material3.adaptive", name = "adaptive", version.ref = "androidxComposeMaterial3Adaptive" }
+androidx-compose-material3-adaptive-layout = { group = "androidx.compose.material3.adaptive", name = "adaptive-layout", version.ref = "androidxComposeMaterial3Adaptive" }
+androidx-compose-material3-adaptive-navigation = { group = "androidx.compose.material3.adaptive", name = "adaptive-navigation", version.ref = "androidxComposeMaterial3Adaptive" }
 
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 
 androidx-window-size = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "androidxWindowsSizeClass" }
 accomponist-adaptive = { group = "com.google.accompanist", name = "accompanist-adaptive", version.ref = "adaptive" }
+
+androidx-metrics = { group = "androidx.metrics", name = "metrics-performance", version.ref = "androidxMetrics" }
+
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
+androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxNavigation" }
+
+# mongo db
+mongodb-driver-kotlin = { group = "org.mongodb", name = "mongodb-driver-kotlin", version = "mongoDriver" }
+
+# menu provider
+compose-menuprovider = { group = "io.github.boswelja.menuprovider", name = "material3", version.ref = "menuprovider" }
 
 # sync
 androidx-startup-runtime = { group = "androidx.startup", name = "startup-runtime", version.ref = "startupRuntime" }
@@ -93,13 +118,6 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 
-# Circuit
-circuit-foundation = { group = "com.slack.circuit", name = "circuit-foundation", version.ref = "circuit" }
-circuit-overlay = { group = "com.slack.circuit", name = "circuit-overlay", version.ref = "circuit" }
-circuit-runtime = { group = "com.slack.circuit", name = "circuit-runtime", version.ref = "circuit" }
-circuit-retained = { group = "com.slack.circuit", name = "circuit-retained", version.ref = "circuit" }
-circuitx-gesturenav = { group = "com.slack.circuit", name = "circuitx-gesture-navigation", version.ref = "circuit" }
-
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-compose" }
@@ -110,6 +128,10 @@ mobilenativefoundation-store = { module = "org.mobilenativefoundation.store:stor
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
 
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-performance = { group = "com.google.firebase", name = "firebase-perf" }
+firebase-performance-gradle = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebasePerfPlugin" }
 
 # Unit Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -130,11 +152,15 @@ android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", ver
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsPlugin" }
+firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebasePerfPlugin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 android-lint = { id = "com.android.lint", version.ref = "agp" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }
+firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "firebasePerfPlugin" }
 google-service = { id = "com.google.gms.google-services", version.ref = "google-service" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -143,6 +169,24 @@ kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref =
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
+secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets" }
+module-graph = { id = "com.jraska.module.graph.assertion", version.ref = "moduleGraph" }
+
+# Plugins defined by this project
+eatelicious-android-application = { id = "eatelicious.android.application", version = "unspecified" }
+eatelicious-android-application-compose = { id = "eatelicious.android.application.compose", version = "unspecified" }
+eatelicious-android-application-firebase = { id = "eatelicious.android.application.firebase", version = "unspecified" }
+eatelicious-android-application-flavors = { id = "eatelicious.android.application.flavors", version = "unspecified" }
+#eatelicious-android-application-jacoco = { id = "eatelicious.android.application.jacoco", version = "unspecified" }
+eatelicious-android-feature = { id = "eatelicious.android.feature", version = "unspecified" }
+eatelicious-android-koin = { id = "eatelicious.android.koin", version = "unspecified" }
+eatelicious-android-library = { id = "eatelicious.android.library", version = "unspecified" }
+eatelicious-android-library-compose = { id = "eatelicious.android.library.compose", version = "unspecified" }
+#eatelicious-android-library-jacoco = { id = "eatelicious.android.library.jacoco", version = "unspecified" }
+#eatelicious-android-lint = { id = "eatelicious.android.lint", version = "unspecified" }
+eatelicious-android-room = { id = "eatelicious.android.room", version = "unspecified" }
+eatelicious-android-test = { id = "eatelicious.android.test", version = "unspecified" }
+eatelicious-jvm-library = { id = "eatelicious.jvm.library", version = "unspecified" }
 
 [bundles]
 

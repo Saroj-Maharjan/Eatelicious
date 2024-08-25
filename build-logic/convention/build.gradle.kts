@@ -31,6 +31,8 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.compose.gradlePlugin)
+    compileOnly(libs.firebase.crashlytics.gradlePlugin)
+    compileOnly(libs.firebase.performance.gradlePlugin)
 }
 
 gradlePlugin {
@@ -46,6 +48,10 @@ gradlePlugin {
         register("androidLibraryCompose") {
             id = "eatelicious.android.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"
+        }
+        register("androidApplicationFirebase") {
+            id = "eatelicious.android.application.firebase"
+            implementationClass = "AndroidApplicationFirebaseConventionPlugin"
         }
         register("androidLibrary") {
             id = "eatelicious.android.library"

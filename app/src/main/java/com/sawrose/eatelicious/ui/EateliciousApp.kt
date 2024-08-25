@@ -1,127 +1,93 @@
 package com.sawrose.eatelicious.ui
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
-import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.windowInsetsBottomHeight
-import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarDuration.Short
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
+import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.testTagsAsResourceId
-import com.sawrose.eatelicious.commons.navigation.MainDetailNavigator
-import com.sawrose.eatelicious.commons.navigation.RootScreen
-import com.sawrose.eatelicious.navigation.NavigationType
-import com.sawrose.eatelicious.navigation.buildNavigationItems
-import com.slack.circuit.backstack.SaveableBackStack
-import com.slack.circuit.backstack.rememberSaveableBackStack
-import com.slack.circuit.foundation.NavigableCircuitContent
-import com.slack.circuit.foundation.rememberCircuitNavigator
-import com.slack.circuit.runtime.Navigator
+import androidx.compose.ui.util.fastFirstOrNull
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.sawrose.eatelicious.core.designsystem.component.ScreenBackground
+import com.sawrose.eatelicious.core.designsystem.navigation.LocalNavigationMode
+import com.sawrose.eatelicious.core.designsystem.navigation.NavigationModeDefaults.calculateFromAdaptiveInfo
+import com.sawrose.eatelicious.core.designsystem.navigation.NavigationSuiteScaffold
+import com.sawrose.eatelicious.core.designsystem.navigation.ProvideNavigationItems
+import com.sawrose.eatelicious.core.designsystem.navigation.drawer.NavigationDrawerLayout
+import com.sawrose.eatelicious.navigation.EateliciousNavHost
+import com.sawrose.eatelicious.navigation.navigationItems
+import com.sawrose.eatelicious.navigation.provideMenuProvider
 
-@OptIn(
-    ExperimentalComposeUiApi::class,
-)
 @Composable
-fun MainComposeApp(
-    backstack: SaveableBackStack,
-    navigator: Navigator,
-    windowSizeClass: WindowSizeClass,
+fun EateliciousApp(
+    modifier: Modifier = Modifier,
 ) {
-    val navigationType = remember(windowSizeClass) {
-        NavigationType.forWindowSizeSize(windowSizeClass)
-    }
+    ScreenBackground(modifier) {
+        val snackBarStateHost = remember { SnackbarHostState() }
 
-    val detailBackStack = rememberSaveableBackStack(listOf(RootScreen()))
-    val detailNavigator = rememberCircuitNavigator(detailBackStack) {
-        detailBackStack.popUntil { false }
-        detailBackStack.push(RootScreen())
-    }
-
-    val mainDetailNavigator = remember(navigator, navigationType) {
-        MainDetailNavigator(
-            mainNavigator = navigator,
-            isDetailEnabled = navigationType == NavigationType.RAIL || navigationType == NavigationType.PERMANENT_DRAWER,
+        EateliciousApp(
+            snackbarHostState = snackBarStateHost,
         )
     }
+}
 
-    val rootScreen by remember(backstack) {
-        derivedStateOf { backstack.last().screen }
+@Composable
+internal fun EateliciousApp(
+    snackbarHostState: SnackbarHostState,
+    modifier: Modifier = Modifier,
+) {
+    val navController = rememberNavController()
+    val currentBackstackEntry by navController.currentBackStackEntryAsState()
+    val selectedDestination by remember {
+        derivedStateOf {
+            val currentDestination = currentBackstackEntry?.destination?.parent?.route
+            navigationItems.fastFirstOrNull { it.route == currentDestination }
+        }
     }
 
-    val snackBarStateHost = remember { SnackbarHostState() }
-    Scaffold(
-        modifier = Modifier.semantics { testTagsAsResourceId = true },
-        containerColor = Color.Transparent,
-        contentColor = MaterialTheme.colorScheme.onBackground,
-        contentWindowInsets = WindowInsets(0, 0, 0, 0),
-        snackbarHost = { SnackbarHost(snackBarStateHost) },
-        bottomBar = {
-            if (navigationType == NavigationType.BOTTOM_NAVIGATION) {
-                EateliciousBottomBar(
-                    currentDestination = rootScreen,
-                    destinations = buildNavigationItems(),
-                    onNavigateToDestination = { mainDetailNavigator.resetRoot(RootScreen()) },
-                    modifier = Modifier.testTag("EateliciousBottomBar"),
-                )
-            } else {
-                Spacer(
-                    Modifier
-                        .windowInsetsBottomHeight(WindowInsets.navigationBars)
-                        .fillMaxWidth(),
-                )
-            }
-        },
-    ) { padding ->
-        Row(
-            modifier =
-            Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .consumeWindowInsets(padding)
-                .windowInsetsPadding(
-                    WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal),
-                ),
+    ProvideNavigationItems(
+        selectedNavigationItem = selectedDestination,
+        bottomNavigationItems = navigationItems,
+        navigationRailItems = navigationItems,
+        navigationDrawerItems = navigationItems,
+    ) {
+        CompositionLocalProvider(
+            LocalNavigationMode provides calculateFromAdaptiveInfo(currentWindowAdaptiveInfo()),
         ) {
-            Column(Modifier.fillMaxSize()) {
-                NavigableCircuitContent(
-                    navigator = mainDetailNavigator,
-                    backStack = backstack,
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxHeight(),
-                )
-
-//                EateliciousNavHost(
-//                    appState = appState,
-//                    onShowSnackbar = { message, action ->
-//                        snackBarStateHost.showSnackbar(
-//                            message = message,
-//                            actionLabel = action,
-//                            duration = SnackbarDuration.Short,
-//                        ) == SnackbarResult.ActionPerformed
-//                    })
+            NavigationDrawerLayout(
+                drawerHeaderContent = {
+                    DrawerSection(navController)
+                },
+                onNavigationItemClick = {
+                    navController.navigate(it.route)
+                },
+            ) {
+                NavigationSuiteScaffold(
+                    title = { Text(text = selectedDestination?.route ?: "Eatelicious") },
+                    onNavigate = {
+                        navController.navigate(it)
+                    },
+                ) {
+                    provideMenuProvider()
+                    EateliciousNavHost(
+                        modifier.padding(it),
+                        navController,
+                        onShowSnackbar = { message, action ->
+                            snackbarHostState.showSnackbar(
+                                message = message,
+                                actionLabel = action,
+                                duration = Short,
+                            ) == SnackbarResult.ActionPerformed
+                        },
+                    )
+                }
             }
         }
     }

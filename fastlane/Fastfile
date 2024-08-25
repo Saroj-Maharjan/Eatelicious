@@ -1,0 +1,61 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new Beta Build to firebase App Disribution Beta"
+  lane :beta do
+    value = firebase_app_distribution(
+        app: "1:284891828669:android:764f5bbce44134060a42d4",
+        firebase_cli_token: "1//0g3kC-iNWZLKoCgYIARAAGBASNwF-L9IrOU85Ag7kY1HXiHKZk024RDcefnx3cN240orptLfWYAhN8_VveC6RdVUblLTDUdHZr7Q",
+        android_artifact_type: "APK",
+        android_artifact_path: "app/build/outputs/apk/demo/release/app-demo-release.apk",
+        release_notes: "Fix bug 123",
+        testers: "saroj.maharjan1993@gmail.com",
+        groups: "android-qa, or-someone-group",
+        debug: true
+    )
+  end
+
+  desc "Generate app screenshots that will be uploaded to play store"
+  lane :screenshots do |options|
+
+      gradle(
+            task: "assembleDebug assembleAndroidTest"
+      )
+
+      screengrab(
+          locales: ['en-US'],
+          clear_previous_screenshots: true,
+          app_package_name: "com.sawrose.eatelicious",
+          use_tests_in_packages: ['com.sawrose.eatelicious.screenshots'],
+          app_apk_path: "app/build/outputs/apk/demo/debug/app-demo-debug.apk",
+          tests_apk_path: "app/build/outputs/apk/androidTest/demo/debug/app-demo-debug-androidTest.apk"
+      )
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    gradle(task: "clean assembleRelease")
+    upload_to_play_store
+  end
+
+end

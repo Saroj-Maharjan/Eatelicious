@@ -1,6 +1,6 @@
 plugins {
-    id("eatelicious.android.library")
-    id("eatelicious.android.library.compose")
+    alias(libs.plugins.eatelicious.android.library)
+    alias(libs.plugins.eatelicious.android.library.compose)
 }
 
 android {
@@ -8,11 +8,15 @@ android {
 }
 
 dependencies {
-    implementation(libs.compose.foundation)
-    implementation(libs.compose.foundation.layout)
-    implementation(libs.compose.material.iconsext)
-    implementation(libs.compose.material3)
-    implementation(libs.compose.ui)
+    api(libs.compose.foundation)
+    api(libs.compose.foundation.layout)
+    api(libs.compose.material.iconsext)
+    api(libs.compose.material3)
+    api(libs.androidx.compose.material3.adaptive)
+    api(libs.compose.material3.navigationSuite)
+    api(libs.compose.ui.util)
+    api(libs.coil.compose)
+    api(libs.compose.menuprovider)
 
     implementation(libs.androidx.core.ktx)
 }

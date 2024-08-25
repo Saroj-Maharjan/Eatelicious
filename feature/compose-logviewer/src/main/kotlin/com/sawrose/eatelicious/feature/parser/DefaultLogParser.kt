@@ -1,5 +1,7 @@
 package com.sawrose.eatelicious.feature.parser
 
+import com.sawrose.eatelicious.core.model.LogLevel
+import com.sawrose.eatelicious.core.model.LogLine
 import kotlinx.datetime.Instant
 
 internal class DefaultLogParser : LogParser {

@@ -1,10 +1,12 @@
-import java.util.Properties
+import com.sawrose.eatelicious.EateliciousBuildType
 
 plugins {
-    id("eatelicious.android.application")
-    id("eatelicious.android.application.compose")
-    id("eatelicious.android.application.flavors")
-    id("eatelicious.android.koin")
+    alias(libs.plugins.eatelicious.android.application)
+    alias(libs.plugins.eatelicious.android.application.compose)
+    alias(libs.plugins.eatelicious.android.application.firebase)
+    alias(libs.plugins.eatelicious.android.application.flavors)
+    alias(libs.plugins.eatelicious.android.koin)
+//    id("com.google.android.gms.oss-licenses-plugin")
 }
 
 android {
@@ -25,12 +27,12 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix =
-                com.sawrose.eatelicious.EateliciousBuildType.DEBUG.applicationIdSuffix
+                EateliciousBuildType.DEBUG.applicationIdSuffix
         }
         val release by getting {
             isMinifyEnabled = true
             applicationIdSuffix =
-                com.sawrose.eatelicious.EateliciousBuildType.RELEASE.applicationIdSuffix
+                EateliciousBuildType.RELEASE.applicationIdSuffix
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
@@ -39,7 +41,7 @@ android {
             // To publish on the Play store a private signing key is required, but to allow anyone
             // who clones the code to sign and run the release variant, use the debug signing key.
             // TODO: Abstract the signing configuration to a separate file to avoid hardcoding this.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.named("debug").get()
         }
     }
 
@@ -57,15 +59,21 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:discover"))
-    implementation(project(":feature:mealplan"))
-    implementation(project(":feature:bookmark"))
-    implementation(project(":core:commons"))
-    implementation(project(":core:data"))
-    implementation(project(":core:domain"))
-    implementation(project(":core:designsystem"))
-    implementation(project(":core:model"))
+    implementation(projects.core.commons)
+    implementation(projects.core.data)
+    implementation(projects.core.domain)
+    implementation(projects.core.designsystem)
+    implementation(projects.core.model)
     implementation(projects.core.logging)
+
+    implementation(projects.data.recipe)
+    implementation(projects.data.cuisine)
+    implementation(projects.data.logs)
+
+    implementation(projects.feature.discover)
+    implementation(projects.feature.bookmark)
+    implementation(projects.feature.mealplan)
+    implementation(projects.feature.composeLogviewer)
 
     implementation(libs.androidx.splash.screen)
     implementation(libs.androidx.core.ktx)
@@ -73,6 +81,9 @@ dependencies {
     implementation(libs.androidx.activity.compose)
 
     implementation(libs.androidx.window.size)
+    implementation(libs.androidx.compose.material3.adaptive)
+    implementation(libs.androidx.compose.material3.adaptive.layout)
+    implementation(libs.androidx.compose.material3.adaptive.navigation)
     implementation(libs.accomponist.adaptive)
 
     implementation(libs.compose.foundation)
@@ -83,10 +94,18 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
 
+    implementation(libs.androidx.navigation.compose)
+    testImplementation(libs.androidx.navigation.testing)
+
+    implementation(libs.androidx.metrics)
+    implementation(libs.kotlinx.datetime)
+
     implementation(libs.kotlinx.coroutines.android)
     testImplementation(libs.kotlinx.coroutines.test)
 
-    implementation(libs.circuit.foundation)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.analytics)
 
     testImplementation(libs.junit)
 
