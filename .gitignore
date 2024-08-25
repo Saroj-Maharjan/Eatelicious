@@ -42,3 +42,4 @@ local.properties
 /venv
 /fastlane
 app/google-services.json
+/.idea

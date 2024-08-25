@@ -1,4 +1,4 @@
-package com.sawrose.eatelicious.commons.view
+package com.sawrose.eatelicious.core.designsystem.component
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment

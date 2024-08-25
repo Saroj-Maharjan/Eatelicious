@@ -15,6 +15,7 @@ dependencies {
     api(libs.androidx.compose.material3.adaptive)
     api(libs.compose.material3.navigationSuite)
     api(libs.compose.ui.util)
+    api(libs.coil.compose)
     api(libs.compose.menuprovider)
 
     implementation(libs.androidx.core.ktx)

@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.eatelicious.android.application.firebase)
     alias(libs.plugins.eatelicious.android.application.flavors)
     alias(libs.plugins.eatelicious.android.koin)
+//    id("com.google.android.gms.oss-licenses-plugin")
 }
 
 android {

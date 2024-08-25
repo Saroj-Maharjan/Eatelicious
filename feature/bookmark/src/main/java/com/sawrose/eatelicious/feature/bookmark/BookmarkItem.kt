@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.sawrose.eatelicious.commons.view.AsyncImage
+import com.sawrose.eatelicious.core.designsystem.component.AsyncImage
 import com.sawrose.eatelicious.core.model.Recipe
 
 @Composable

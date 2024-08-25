@@ -26,8 +26,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.model)
     implementation(libs.androidx.metrics)
     implementation(libs.mobilenativefoundation.store)
-    implementation(libs.coil.compose)
 }
