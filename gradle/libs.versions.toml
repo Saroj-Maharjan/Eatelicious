@@ -24,7 +24,7 @@ koin = "3.5.6"
 koin-compose = "3.5.6"
 store = "5.0.0"
 androidxLifecycle = "2.8.1"
-circuit = "0.20.0"
+circuit = "0.25.0"
 
 startupRuntime = "1.1.1"
 workRuntimeKtx = "2.9.0"
