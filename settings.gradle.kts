@@ -37,12 +37,15 @@ include(
     ":data:logs",
 )
 
-include(":core:commons")
-include(":core:data")
-include(":core:domain")
-include(":core:designsystem")
-include(":core:logging")
-include(":core:model")
+include(
+    ":core:commons",
+    ":core:data",
+    ":core:domain",
+    ":core:designsystem",
+    ":core:logging",
+    ":core:model",
+    ":core:navigation"
+)
 
 //include(":sync")
 include(":feature:discover")

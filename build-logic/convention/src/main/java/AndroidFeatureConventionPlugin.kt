@@ -3,6 +3,7 @@ import com.sawrose.eatelicious.configureGradleManagedDevices
 import com.sawrose.eatelicious.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.kotlin
@@ -10,15 +11,11 @@ import org.gradle.kotlin.dsl.kotlin
 class AndroidFeatureConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            pluginManager.apply {
-                apply("eatelicious.android.library")
-//                apply("eatelicious.android.hilt")
-            }
+            apply(plugin = "eatelicious.android.library")
+            apply(plugin = "org.jetbrains.kotlin.plugin.serialization")
+
             extensions.configure<LibraryExtension> {
-                defaultConfig {
-                    testInstrumentationRunner =
-                        "com.sawrose.eatelicious.core.testing.NiaTestRunner"
-                }
+                testOptions.animationsDisabled = true
                 configureGradleManagedDevices(this)
             }
 

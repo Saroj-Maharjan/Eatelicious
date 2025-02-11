@@ -1,41 +1,44 @@
 [versions]
-agp = "8.5.2"
+agp = "8.8.0"
+androidTools = "31.8.0"
 coil = "2.6.0"
-kotlin = "2.0.20"
-ksp = "2.0.20-1.0.24"
-androidDesugarJdkLibs = "2.0.4"
+dependencyGuard = "0.5.0"
+kotlin = "2.1.0"
+ksp = "2.1.0-1.0.29"
+androidDesugarJdkLibs = "2.1.4"
 
-androidxAndroidCompose = "1.9.1"
-androidxCoreKtx = "1.13.1"
+androidxAndroidCompose = "1.10.0"
+androidxCoreKtx = "1.15.0"
 androidxMetrics = "1.0.0-beta01"
-androidxNavigation = "2.8.0-rc01"
-androidxComposeMaterial3Adaptive = "1.0.0-rc01"
-androidxComposeMaterial3AdaptiveNavigationSuite = "1.3.0-rc01"
-compose-bom = "2024.08.00"
+androidxNavigation = "2.8.6"
+androidxComposeMaterial3Adaptive = "1.0.0"
+androidxComposeMaterial3AdaptiveNavigationSuite = "1.3.1"
+compose-bom = "2025.01.01"
 dokka = "1.9.20"
-kotlinxCoroutines = "1.8.1"
+kotlinxCoroutines = "1.9.0"
 kotlinx-datetime = "0.6.0"
+kotlinxSerializationJson = "1.8.0"
 androidx-splashScreen = "1.0.1"
-androidxWindowsSizeClass = "1.2.1"
+androidxWindowsSizeClass = "1.3.1"
 adaptive = "0.34.0"
 google-service = "4.4.2"
-firebase-bom = "33.2.0"
+googleFonts = "1.7.7"
+firebase-bom = "33.8.0"
 firebaseCrashlyticsPlugin = "3.0.2"
 firebasePerfPlugin = "1.4.2"
 
-ktor = "2.3.12"
+ktor = "3.0.2"
 room = "2.6.1"
 menuprovider = "1.4.0"
-mongoDriver = "1.7.2"
 spatia-room = "0.3.0"
-koin = "3.5.6"
-koin-compose = "3.5.6"
+koin = "4.0.0"
+koin-compose = "4.0.0"
 store = "5.0.0"
-androidxLifecycle = "2.8.4"
+androidxLifecycle = "2.8.7"
 circuit = "0.23.1"
 
-startupRuntime = "1.1.1"
-workRuntimeKtx = "2.9.1"
+startupRuntime = "1.2.0"
+workRuntimeKtx = "2.10.0"
 secrets = "2.0.1"
 moduleGraph = "2.5.0"
 
@@ -83,13 +86,12 @@ ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-window-size = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "androidxWindowsSizeClass" }
 accomponist-adaptive = { group = "com.google.accompanist", name = "accompanist-adaptive", version.ref = "adaptive" }
 
+google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "googleFonts" }
+
 androidx-metrics = { group = "androidx.metrics", name = "metrics-performance", version.ref = "androidxMetrics" }
 
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
 androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxNavigation" }
-
-# mongo db
-mongodb-driver-kotlin = { group = "org.mongodb", name = "mongodb-driver-kotlin", version = "mongoDriver" }
 
 # menu provider
 compose-menuprovider = { group = "io.github.boswelja.menuprovider", name = "material3", version.ref = "menuprovider" }
@@ -118,14 +120,16 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 
+# koin
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-compose" }
 koin-compose-navigation = { module = "io.insert-koin:koin-androidx-compose-navigation", version.ref = "koin-compose" }
 
+# utilities
 mobilenativefoundation-store = { module = "org.mobilenativefoundation.store:store5", version.ref = "store" }
-
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
@@ -149,16 +153,19 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsPlugin" }
 firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebasePerfPlugin" }
+room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 android-lint = { id = "com.android.lint", version.ref = "agp" }
+dependencyGuard = { id = "com.dropbox.dependency-guard", version.ref = "dependencyGuard" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }
 firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "firebasePerfPlugin" }
 google-service = { id = "com.google.gms.google-services", version.ref = "google-service" }
@@ -169,6 +176,7 @@ kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref =
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
+room = { id = "androidx.room", version.ref = "room" }
 secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets" }
 module-graph = { id = "com.jraska.module.graph.assertion", version.ref = "moduleGraph" }
 

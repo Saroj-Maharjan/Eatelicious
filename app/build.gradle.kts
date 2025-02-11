@@ -75,6 +75,11 @@ dependencies {
     implementation(projects.feature.mealplan)
     implementation(projects.feature.composeLogviewer)
 
+    // Google SignIn
+    implementation("androidx.credentials:credentials:1.2.2")
+    implementation("androidx.credentials:credentials-play-services-auth:1.2.2")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.0")
+
     implementation(libs.androidx.splash.screen)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime)
@@ -117,4 +122,8 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+}
+
+dependencyGuard {
+    configuration("prodReleaseRuntimeClasspath")
 }

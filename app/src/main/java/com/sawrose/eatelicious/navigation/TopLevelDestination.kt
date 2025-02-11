@@ -3,7 +3,7 @@ package com.sawrose.eatelicious.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BlurOn
 import androidx.compose.material.icons.filled.Bookmark
-import androidx.compose.material.icons.filled.EventNote
+import androidx.compose.material.icons.filled.Event
 import com.sawrose.eatelicious.R
 import com.sawrose.eatelicious.core.designsystem.navigation.NavigationItem
 
@@ -19,7 +19,7 @@ val navigationItems = listOf(
         route = "bookmark",
     ),
     NavigationItem(
-        icon = Icons.Filled.EventNote,
+        icon = Icons.Filled.Event,
         labelRes = R.string.MealPlan,
         route = "meal_plan",
     ),

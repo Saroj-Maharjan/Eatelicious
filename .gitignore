@@ -43,3 +43,6 @@ local.properties
 /fastlane
 app/google-services.json
 /.idea
+/.idea
+/.idea
+/data/bookmark/build

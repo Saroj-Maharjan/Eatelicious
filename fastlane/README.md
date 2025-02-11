@@ -47,6 +47,14 @@ Generate app screenshots that will be uploaded to play store
 
 Deploy a new version to the Google Play
 
+### android generateReleaseNotes
+
+```sh
+[bundle exec] fastlane android generateReleaseNotes
+```
+
+Generate release note
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.

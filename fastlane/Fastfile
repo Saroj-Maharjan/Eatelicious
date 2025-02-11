@@ -58,4 +58,13 @@ platform :android do
     upload_to_play_store
   end
 
+  desc "Generate release note"
+  lane :generateReleaseNotes do |options|
+    branchName = `git rev-parse --abbrev-ref HEAD`.chomp()
+    releaseNotes = changelog_from_git_commits(
+      commits_count: 1,
+      pretty: "- %s%n#{options[:repoName]}/#{branchName} @ %h %n %n#{options[:actionUrl]}"
+    )
+    releaseNotes
+  end
 end

@@ -17,6 +17,7 @@ dependencies {
     api(libs.compose.ui.util)
     api(libs.coil.compose)
     api(libs.compose.menuprovider)
+    implementation(libs.google.fonts)
 
     implementation(libs.androidx.core.ktx)
 }
