@@ -1,5 +1,7 @@
 package com.sawrose.eatelicious.feature.parser
 
+import com.sawrose.eatelicious.core.model.LogLine
+
 /**
  * Provides functions for sanitizing and extracting data from lines of text that are (usually)
  * written to a log output. See [parseLine] for details.

@@ -6,17 +6,30 @@ import com.sawrose.eatelicious.core.model.Recipe
 
 const val SEPERATOR = "_"
 
-class RecipeMapper : EntityMapper<RecipeEntity, Recipe> {
+class RecipeEntityMapper : EntityMapper<RecipeEntity, Recipe> {
     override fun mapFromEntity(entity: RecipeEntity): Recipe {
         return Recipe(
             id = entity.id,
-            name = entity.name,
+            title = entity.title,
+            sourceName = entity.sourceName,
             image = entity.image,
             spoonacularScore = entity.spoonacularScore,
             servings = entity.servings,
-            step = entity.step.split(SEPERATOR),
-            ingredientOriginalString = entity.ingredientOriginalString.split(SEPERATOR),
+            sustainable = entity.sustainable,
+            glutenFree = entity.glutenFree,
+            dairyFree = entity.dairyFree,
+            vegan = entity.vegan,
+            cheap = entity.cheap,
+            vegetarian = entity.vegetarian,
+            veryHealthy = entity.veryHealthy,
+            veryPopular = entity.veryPopular,
+            healthScore = entity.healthScore,
+            aggregateLikes = entity.aggregateLikes,
+            creditsText = entity.creditsText,
+            readyInMinutes = entity.readyInMinutes,
             summary = entity.summary,
+            analyzedInstructions = entity.step.split(SEPERATOR),
+            extendedIngredients = entity.ingredientOriginalString.split(SEPERATOR),
             saved = false,
         )
     }
@@ -24,13 +37,26 @@ class RecipeMapper : EntityMapper<RecipeEntity, Recipe> {
     override fun mapToEntity(domain: Recipe): RecipeEntity {
         return RecipeEntity(
             id = domain.id,
-            name = domain.name,
+            title = domain.title,
+            sourceName = domain.sourceName,
             image = domain.image,
             spoonacularScore = domain.spoonacularScore,
             servings = domain.servings,
-            step = domain.step.joinToString(SEPERATOR),
-            ingredientOriginalString = domain.ingredientOriginalString.joinToString(SEPERATOR),
+            sustainable = domain.sustainable,
+            glutenFree = domain.glutenFree,
+            dairyFree = domain.dairyFree,
+            vegan = domain.vegan,
+            cheap = domain.cheap,
+            vegetarian = domain.vegetarian,
+            veryHealthy = domain.veryHealthy,
+            veryPopular = domain.veryPopular,
+            healthScore = domain.healthScore,
+            aggregateLikes = domain.aggregateLikes,
+            creditsText = domain.creditsText,
+            readyInMinutes = domain.readyInMinutes,
             summary = domain.summary,
+            step = domain.analyzedInstructions.joinToString(separator = SEPERATOR),
+            ingredientOriginalString = domain.extendedIngredients.joinToString(SEPERATOR),
         )
     }
 }

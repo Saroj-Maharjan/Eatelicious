@@ -9,7 +9,7 @@ private const val INGREDIENTS_TABLE_NAME = "ingredients"
 class IngredientEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val quality: Double,
-    val measure: String,
-    val ingredient: String,
+    val title: String,
+    val image: String,
+    val background: String,
 )

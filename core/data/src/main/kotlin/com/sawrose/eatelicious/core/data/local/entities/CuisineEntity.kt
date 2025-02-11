@@ -8,9 +8,8 @@ private const val CUISINE_TABLE_NAME = "cuisines"
 @Entity(tableName = CUISINE_TABLE_NAME)
 data class CuisineEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
-    val videoURL: String,
-    val description: String,
-    val shortDescription: String,
-    val thumbnailURL: String,
+    val id: Int = 0,
+    val title: String,
+    val image: String,
+    val color: String,
 )

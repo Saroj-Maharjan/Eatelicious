@@ -13,7 +13,7 @@ dependencies {
     implementation(project(":core:commons"))
     implementation(project(":core:model"))
 
-
+    implementation(libs.kotlinx.datetime)
     implementation(libs.bundles.network)
     implementation(libs.mobilenativefoundation.store)
 }

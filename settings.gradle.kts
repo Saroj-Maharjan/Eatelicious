@@ -1,28 +1,51 @@
+rootProject.name = "Eatelicious"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
     includeBuild("build-logic")
     repositories {
-        google()
+        google {
+            mavenContent {
+                includeGroupAndSubgroups("androidx")
+                includeGroupAndSubgroups("com.android")
+                includeGroupAndSubgroups("com.google")
+            }
+        }
         mavenCentral()
         gradlePluginPortal()
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
+        google {
+            mavenContent {
+                includeGroupAndSubgroups("androidx")
+                includeGroupAndSubgroups("com.android")
+                includeGroupAndSubgroups("com.google")
+            }
+        }
         mavenCentral()
     }
 }
 
 rootProject.name = "Eatelicious"
 include(":app")
+include(
+    ":data:bookmark",
+    ":data:recipe",
+    ":data:cuisine",
+    ":data:logs",
+)
 
-include(":core:commons")
-include(":core:data")
-include(":core:domain")
-include(":core:designsystem")
-include(":core:logging")
-include(":core:model")
+include(
+    ":core:commons",
+    ":core:data",
+    ":core:domain",
+    ":core:designsystem",
+    ":core:logging",
+    ":core:model",
+    ":core:navigation"
+)
 
 //include(":sync")
 include(":feature:discover")

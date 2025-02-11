@@ -10,6 +10,9 @@ android {
 
 dependencies {
     implementation(projects.core.logging)
+    implementation(projects.core.model)
+    implementation(projects.core.domain)
+
     implementation(libs.androidx.activity.compose)
     implementation(libs.compose.material3)
     implementation(libs.kotlinx.datetime)
